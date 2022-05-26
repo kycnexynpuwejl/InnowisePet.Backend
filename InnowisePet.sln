@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.Models", "InnowisePet.Models\InnowisePet.Models.csproj", "{AEBCD7B5-5A0C-421B-A6E1-CB33A4A7E1E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.API", "InnowisePet.API\InnowisePet.API.csproj", "{F9DC6D2C-B8AB-40CF-973A-342E01817F6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.DAL", "InnowisePet.DAL\InnowisePet.DAL.csproj", "{1B9DD219-3915-4E60-82BD-7077B3FC8477}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.BLL", "InnowisePet.BLL\InnowisePet.BLL.csproj", "{B31DF8E5-CE05-4F4B-8DC1-197AF946741A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		{AEBCD7B5-5A0C-421B-A6E1-CB33A4A7E1E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEBCD7B5-5A0C-421B-A6E1-CB33A4A7E1E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEBCD7B5-5A0C-421B-A6E1-CB33A4A7E1E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9DC6D2C-B8AB-40CF-973A-342E01817F6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9DC6D2C-B8AB-40CF-973A-342E01817F6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9DC6D2C-B8AB-40CF-973A-342E01817F6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9DC6D2C-B8AB-40CF-973A-342E01817F6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B9DD219-3915-4E60-82BD-7077B3FC8477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B9DD219-3915-4E60-82BD-7077B3FC8477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B9DD219-3915-4E60-82BD-7077B3FC8477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B9DD219-3915-4E60-82BD-7077B3FC8477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B31DF8E5-CE05-4F4B-8DC1-197AF946741A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31DF8E5-CE05-4F4B-8DC1-197AF946741A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31DF8E5-CE05-4F4B-8DC1-197AF946741A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31DF8E5-CE05-4F4B-8DC1-197AF946741A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
