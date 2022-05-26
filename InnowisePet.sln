@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scaffold", "Scaffold\Scaffold.csproj", "{A82C7F5A-DC3D-4981-AAB2-AF9903E3DC04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.Models", "InnowisePet.Models\InnowisePet.Models.csproj", "{AEBCD7B5-5A0C-421B-A6E1-CB33A4A7E1E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A82C7F5A-DC3D-4981-AAB2-AF9903E3DC04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A82C7F5A-DC3D-4981-AAB2-AF9903E3DC04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A82C7F5A-DC3D-4981-AAB2-AF9903E3DC04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A82C7F5A-DC3D-4981-AAB2-AF9903E3DC04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEBCD7B5-5A0C-421B-A6E1-CB33A4A7E1E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEBCD7B5-5A0C-421B-A6E1-CB33A4A7E1E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEBCD7B5-5A0C-421B-A6E1-CB33A4A7E1E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEBCD7B5-5A0C-421B-A6E1-CB33A4A7E1E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
