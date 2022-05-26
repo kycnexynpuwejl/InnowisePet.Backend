@@ -1,4 +1,5 @@
 using InnowisePet.BLL.Services.Implementations;
+using InnowisePet.DTO.Dtos;
 using InnowisePet.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ public class ProductController : Controller
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Product>>> GetProductsAsync()
+    public async Task<IActionResult> GetProductsAsync()
     {
         return Ok(await _productService.GetProductsAsync());
     }
