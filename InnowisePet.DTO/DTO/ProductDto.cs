@@ -1,4 +1,4 @@
-namespace InnowisePet.DTO.Dtos;
+namespace InnowisePet.DTO.DTO;
 
 public class ProductDto
 {

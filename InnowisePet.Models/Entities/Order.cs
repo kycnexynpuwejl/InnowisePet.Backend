@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace InnowisePet.Models
+﻿namespace InnowisePet.Models.Entities
 {
     public class Order
     {

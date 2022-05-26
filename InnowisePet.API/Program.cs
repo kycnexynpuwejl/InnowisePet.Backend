@@ -1,6 +1,8 @@
+using System.Data;
 using InnowisePet.BLL.Services.Implementations;
 using InnowisePet.DAL.Repo.Implementations;
 using InnowisePet.DAL.Repo.Interfaces;
+using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddTransient<IDbConnection>(_ => new SqlConnection(builder.Configuration.GetConnectionString("DbConnection")));
 
 var app = builder.Build();
 
