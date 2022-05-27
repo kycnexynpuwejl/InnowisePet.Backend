@@ -14,6 +14,16 @@ public class CategoryRepository : ICategoryRepository
         _dbConnection = dbConnection;
     }
 
+    public async Task<IEnumerable<Category>> GetCategoriesAsync()
+    {
+        const string sql = @"
+                            SELECT *
+                                From [dbo].[category]
+                            ";
+
+        return await _dbConnection.QueryAsync<Category>(sql);
+    }
+
     public async Task<Category> GetCategoryById(Guid id)
     {
         string sql = $@"
@@ -23,5 +33,40 @@ public class CategoryRepository : ICategoryRepository
                             ";
 
         return await _dbConnection.QueryFirstOrDefaultAsync<Category>(sql);
+    }
+
+    public async Task<bool> CreateCategoryAsync(Category category)
+    {
+        const string sql = @"
+                            INSERT INTO [dbo].[category]
+                                (id, title)
+                            VALUES(@id, @title)
+                            ";
+        var result = await _dbConnection.ExecuteAsync(sql, category);
+
+        return result > 0;
+    }
+
+    public async Task<bool> UpdateCategoryAsync(Guid id, Category category)
+    {
+        string sql = $@"
+                        UPDATE [dbo].[category]
+                        SET title = @title
+                        WHERE id = '{id}'
+                        ";
+        var result = await _dbConnection.ExecuteAsync(sql, category);
+
+        return result > 0;
+    }
+
+    public async Task<bool> DeleteCategoryAsync(Guid id)
+    {
+        string sql = $@"
+                        DELETE FROM [dbo].[category]
+                        WHERE id = '{id}'
+                        ";
+        var result = await _dbConnection.ExecuteAsync(sql);
+
+        return result > 0;
     }
 }
