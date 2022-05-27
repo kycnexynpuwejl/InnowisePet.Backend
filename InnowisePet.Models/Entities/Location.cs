@@ -2,7 +2,7 @@
 {
     public class Location
     {
-        public string City { get; set; }
-        public Guid Id { get; set; }
+        public string city { get; set; }
+        public Guid id { get; set; }
     }
 }

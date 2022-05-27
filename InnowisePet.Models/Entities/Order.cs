@@ -2,12 +2,12 @@
 {
     public class Order
     {
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public string Line1 { get; set; }
-        public string Line2 { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
-        public Guid Id { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public string line1 { get; set; }
+        public string line2 { get; set; }
+        public string city { get; set; }
+        public string country { get; set; }
+        public Guid id { get; set; }
     }
 }

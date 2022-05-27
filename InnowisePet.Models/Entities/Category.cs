@@ -2,7 +2,7 @@
 {
     public class Category
     {
-        public string Title { get; set; }
-        public Guid Id { get; set; }
+        public Guid id { get; set; }
+        public string title { get; set; }
     }
 }

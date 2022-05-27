@@ -2,8 +2,8 @@
 {
     public class Storage
     {
-        public string Title { get; set; }
-        public Guid Id { get; set; }
-        public Guid LocationId { get; set; }
+        public string title { get; set; }
+        public Guid id { get; set; }
+        public Guid location_id { get; set; }
     }
 }

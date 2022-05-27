@@ -2,12 +2,10 @@
 {
     public class Product
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public double Price { get; set; }
-        public int Quantity { get; set; }
-        public Guid Id { get; set; }
-        public Guid StorageId { get; set; }
-        public Guid CategoryId { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
+        public double price { get; set; }
+        public Guid id { get; set; }
+        public Guid category_id { get; set; }
     }
 }

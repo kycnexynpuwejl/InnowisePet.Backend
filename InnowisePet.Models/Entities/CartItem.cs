@@ -2,11 +2,11 @@
 {
     public class CartItem
     {
-        public int Quantity { get; set; }
-        public short Status { get; set; }
-        public Guid Id { get; set; }
-        public Guid ProductId { get; set; }
-        public Guid? OrderId { get; set; }
-        public Guid CartId { get; set; }
+        public int quantity { get; set; }
+        public short status { get; set; }
+        public Guid id { get; set; }
+        public Guid product_id { get; set; }
+        public Guid? order_id { get; set; }
+        public Guid cart_id { get; set; }
     }
 }
