@@ -52,5 +52,31 @@ public class ProductRepository : IProductRepository
         
         return result > 0;
     }
-    
+
+    public async Task<bool> UpdateProductAsync(Guid id, Product product)
+    {
+        string sql = $@"
+                            UPDATE [dbo].[product]
+                            SET
+                                title = @title,
+                                description = @description,
+                                price = @price,
+                                category_id = @category_id
+                            WHERE id = '{id}'
+                            ";
+        var result = await _dbConnection.ExecuteAsync(sql, product);
+
+        return result > 0;
+    }
+
+    public async Task<bool> DeleteProductAsync(Guid id)
+    {
+        string sql = $@"
+                        DELETE FROM [dbo].[product]
+                        WHERE id = '{id}'
+                        ";
+        var result = await _dbConnection.ExecuteAsync(sql);
+
+        return result > 0;
+    }
 }

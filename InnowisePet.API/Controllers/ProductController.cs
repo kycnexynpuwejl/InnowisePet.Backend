@@ -1,4 +1,4 @@
-using InnowisePet.BLL.Services.Implementations;
+using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DTO.DTO;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,5 +31,17 @@ public class ProductController : Controller
     public async Task<IActionResult> CreateProductAsync(ProductCreateDto productCreateDto)
     {
         return Ok(await _productService.CreateProductAsync(productCreateDto));
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateProductAsync([FromRoute] Guid id, [FromBody] ProductUpdateDto productUpdateDto)
+    {
+        return Ok(await _productService.UpdateProductAsync(id, productUpdateDto));
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteProductAsync([FromRoute] Guid id)
+    {
+        return Ok(await _productService.DeleteProductAsync(id));
     }
 }
