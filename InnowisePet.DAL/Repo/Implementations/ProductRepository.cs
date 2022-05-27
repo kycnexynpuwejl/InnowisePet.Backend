@@ -17,20 +17,28 @@ public class ProductRepository : IProductRepository
     public async Task<IEnumerable<Product>> GetProductsAsync()
     {
         const string sql = @"
-                            SELECT *
-                                FROM [dbo].[product]
+                            SELECT
+                                p.id,
+                                p.category_id,
+                                p.title,
+                                p.description,
+                                p.price,
+                                c.title as CategoryName
+                                FROM [dbo].[product] p
+                                JOIN [dbo].[category] c
+                                ON p.category_id = c.id
                             ";
         return await _dbConnection.QueryAsync<Product>(sql);
     }
 
     public async Task<Product> GetProductByIdAsync(Guid id)
     {
-        const string sql = @"
+        string sql = $@"
                             SELECT *
                                 FROM [dbo].[product]
-                                WHERE id = @id
+                                WHERE id = '{id}'
                             ";
-        return await _dbConnection.QueryFirstAsync<Product>(sql, new { id });
+        return await _dbConnection.QueryFirstAsync<Product>(sql);
     }
 
     public async Task<bool> CreateProductAsync(Product product)

@@ -22,7 +22,10 @@ public class ProductService : IProductService
     public async Task<IEnumerable<ProductGetDto>> GetProductsAsync()
     {
         var result =  await _productRepository.GetProductsAsync();
-        
+        foreach (var product in result)
+        {
+            var category = await _categoryRepository.GetCategoryById(product.category_id);
+        }
 
         return _mapper.Map<IEnumerable<ProductGetDto>>(result);
     }
