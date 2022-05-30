@@ -27,21 +27,21 @@ public class ProductStorageService : IProductStorageService
     public async Task<ProductStorageGetDto> GetProductStorageByIdAsync(Guid id)
     {
         ProductStorage result = await _productStorageRepository.GetProductStorageByIdAsync(id);
-        ProductStorageGetDto? mappedResult = _mapper.Map<ProductStorageGetDto>(result);
+        ProductStorageGetDto mappedResult = _mapper.Map<ProductStorageGetDto>(result);
 
         return mappedResult;
     }
     
     public async Task<bool> CreateProductStorageAsync(ProductStorageCreateDto productStorageCreateDto)
     {
-        ProductStorage? productStorage = _mapper.Map<ProductStorage>(productStorageCreateDto);
+        ProductStorage productStorage = _mapper.Map<ProductStorage>(productStorageCreateDto);
 
         return await _productStorageRepository.CreateProductStorageAsync(productStorage);
     }
 
     public async Task<bool> UpdateProductStorageAsync(Guid id, ProductStorageUpdateDto productStorageUpdateDto)
     {
-        ProductStorage? product = _mapper.Map<ProductStorage>(productStorageUpdateDto);
+        ProductStorage product = _mapper.Map<ProductStorage>(productStorageUpdateDto);
 
         return await _productStorageRepository.UpdateProductStorageAsync(id, product);
     }

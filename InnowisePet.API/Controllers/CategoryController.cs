@@ -1,6 +1,5 @@
 using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DTO.DTO;
-using InnowisePet.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.API.Controllers;

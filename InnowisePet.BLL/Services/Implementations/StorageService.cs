@@ -30,7 +30,7 @@ public class StorageService : IStorageService
     {
         Storage result = await _storageRepository.GetStorageByIdAsync(id);
         Location location = await _locationRepository.GetLocationByIdAsync(result.location_id);
-        StorageGetDto? mappedResult = _mapper.Map<StorageGetDto>(result);
+        StorageGetDto mappedResult = _mapper.Map<StorageGetDto>(result);
         mappedResult.LocationName = location.city;
         
         return mappedResult;
@@ -38,14 +38,14 @@ public class StorageService : IStorageService
     
     public async Task<bool> CreateStorageAsync(StorageCreateDto storageCreateDto)
     {
-        Storage? storage = _mapper.Map<Storage>(storageCreateDto);
+        Storage storage = _mapper.Map<Storage>(storageCreateDto);
 
         return await _storageRepository.CreateStorageAsync(storage);
     }
     
     public async Task<bool> UpdateStorageAsync(Guid id, StorageUpdateDto storageUpdateDto)
     {
-        Storage? storage = _mapper.Map<Storage>(storageUpdateDto);
+        Storage storage = _mapper.Map<Storage>(storageUpdateDto);
 
         return await _storageRepository.UpdateStorageAsync(id, storage);
     }

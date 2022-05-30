@@ -33,14 +33,14 @@ public class UserService : IUserService
     
     public async Task<bool> CreateUserAsync(UserCreateDto userCreateDto)
     {
-        User? user = _mapper.Map<User>(userCreateDto);
+        User user = _mapper.Map<User>(userCreateDto);
 
         return await _userRepository.CreateUserAsync(user);
     }
     
     public async Task<bool> UpdateUserAsync(Guid id, UserUpdateDto userUpdateDto)
     {
-        User? user = _mapper.Map<User>(userUpdateDto);
+        User user = _mapper.Map<User>(userUpdateDto);
 
         return await _userRepository.UpdateUserAsync(id, user);
     }

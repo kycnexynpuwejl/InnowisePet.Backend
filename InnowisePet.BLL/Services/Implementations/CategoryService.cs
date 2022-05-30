@@ -29,14 +29,14 @@ public class CategoryService : ICategoryService
 
     public async Task<bool> CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
     {
-        Category? category = _mapper.Map<Category>(categoryCreateDto);
+        Category category = _mapper.Map<Category>(categoryCreateDto);
 
         return await _categoryRepository.CreateCategoryAsync(category);
     }
 
     public async Task<bool> UpdateCategoryAsync(Guid id, CategoryUpdateDto categoryUpdateDto)
     {
-        Category? category = _mapper.Map<Category>(categoryUpdateDto);
+        Category category = _mapper.Map<Category>(categoryUpdateDto);
 
         return await _categoryRepository.UpdateCategoryAsync(id, category);
     }

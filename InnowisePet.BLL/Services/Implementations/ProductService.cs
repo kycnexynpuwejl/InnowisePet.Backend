@@ -11,7 +11,7 @@ public class ProductService : IProductService
     private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
     
-    public ProductService(IProductRepository productRepository, IMapper mapper, ICategoryRepository categoryRepository)
+    public ProductService(IProductRepository productRepository, IMapper mapper)
     {
         _productRepository = productRepository;
         _mapper = mapper;
@@ -33,14 +33,14 @@ public class ProductService : IProductService
 
     public async Task<bool> CreateProductAsync(ProductCreateDto productCreateDto)
     {
-        Product? product = _mapper.Map<Product>(productCreateDto);
+        Product product = _mapper.Map<Product>(productCreateDto);
 
         return await _productRepository.CreateProductAsync(product);
     }
 
     public async Task<bool> UpdateProductAsync(Guid id, ProductUpdateDto productUpdateDto)
     {
-        Product? product = _mapper.Map<Product>(productUpdateDto);
+        Product product = _mapper.Map<Product>(productUpdateDto);
 
         return await _productRepository.UpdateProductAsync(id, product);
     }

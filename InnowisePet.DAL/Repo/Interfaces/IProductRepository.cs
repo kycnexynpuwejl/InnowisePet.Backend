@@ -1,4 +1,3 @@
-using InnowisePet.Models;
 using InnowisePet.Models.Entities;
 
 namespace InnowisePet.DAL.Repo.Interfaces;

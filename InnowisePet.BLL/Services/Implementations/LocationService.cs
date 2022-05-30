@@ -29,14 +29,14 @@ public class LocationService : ILocationService
 
     public async Task<bool> CreateLocationAsync(LocationCreateDto locationCreateDto)
     {
-        Location? location = _mapper.Map<Location>(locationCreateDto);
+        Location location = _mapper.Map<Location>(locationCreateDto);
 
         return await _locationRepository.CreateLocationAsync(location);
     }
 
     public async Task<bool> UpdateLocationAsync(Guid id, LocationUpdateDto locationUpdateDto)
     {
-        Location? location = _mapper.Map<Location>(locationUpdateDto);
+        Location location = _mapper.Map<Location>(locationUpdateDto);
 
         return await _locationRepository.UpdateLocationAsync(id, location);
     }
