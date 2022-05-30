@@ -21,16 +21,16 @@ public class StorageService : IStorageService
     
     public async Task<IEnumerable<StorageGetDto>> GetStoragesAsync()
     {
-        var result =  await _storageRepository.GetStoragesAsync();
+        IEnumerable<Storage> result =  await _storageRepository.GetStoragesAsync();
 
         return _mapper.Map<IEnumerable<StorageGetDto>>(result);
     }
     
     public async Task<StorageGetDto> GetStorageByIdAsync(Guid id)
     {
-        var result = await _storageRepository.GetStorageByIdAsync(id);
-        var location = await _locationRepository.GetLocationByIdAsync(result.location_id);
-        var mappedResult = _mapper.Map<StorageGetDto>(result);
+        Storage result = await _storageRepository.GetStorageByIdAsync(id);
+        Location location = await _locationRepository.GetLocationByIdAsync(result.location_id);
+        StorageGetDto? mappedResult = _mapper.Map<StorageGetDto>(result);
         mappedResult.LocationName = location.city;
         
         return mappedResult;
@@ -38,14 +38,14 @@ public class StorageService : IStorageService
     
     public async Task<bool> CreateStorageAsync(StorageCreateDto storageCreateDto)
     {
-        var storage = _mapper.Map<Storage>(storageCreateDto);
+        Storage? storage = _mapper.Map<Storage>(storageCreateDto);
 
         return await _storageRepository.CreateStorageAsync(storage);
     }
     
     public async Task<bool> UpdateStorageAsync(Guid id, StorageUpdateDto storageUpdateDto)
     {
-        var storage = _mapper.Map<Storage>(storageUpdateDto);
+        Storage? storage = _mapper.Map<Storage>(storageUpdateDto);
 
         return await _storageRepository.UpdateStorageAsync(id, storage);
     }

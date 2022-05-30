@@ -40,7 +40,7 @@ public class LocationRepository : ILocationRepository
                             (id, city)
                         VALUES(@id, @city)
                         ";
-        var result = await _dbConnection.ExecuteAsync(sql, location);
+        int result = await _dbConnection.ExecuteAsync(sql, location);
 
         return result > 0;
     }
@@ -52,7 +52,7 @@ public class LocationRepository : ILocationRepository
                         SET city = @city
                         WHERE id = '{id}'
                         ";
-        var result = await _dbConnection.ExecuteAsync(sql, location);
+        int result = await _dbConnection.ExecuteAsync(sql, location);
 
         return result > 0;
     }
@@ -63,7 +63,7 @@ public class LocationRepository : ILocationRepository
                         DELETE FROM [dbo].[location]
                         WHERE id = '{id}'
                         ";
-        var result = await _dbConnection.ExecuteAsync(sql);
+        int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;
     }

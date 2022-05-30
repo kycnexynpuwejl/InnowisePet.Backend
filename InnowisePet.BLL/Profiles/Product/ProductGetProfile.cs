@@ -13,6 +13,7 @@ public class ProductGetProfile : Profile
             .ForMember(p => p.Description, opt => opt.MapFrom(p => p.description))
             .ForMember(p => p.Price, opt => opt.MapFrom(p => p.price))
             .ForMember(p => p.CategoryName, opt => opt.MapFrom(p => p.CategoryName))
-            .ForMember(p => p.Id, opt => opt.MapFrom(p => p.id));
+            .ForMember(p => p.Id, opt => opt.MapFrom(p => p.id))
+            .ForMember(p => p.Quantity, opt => opt.MapFrom(p => p.Quantity));
     }
 }

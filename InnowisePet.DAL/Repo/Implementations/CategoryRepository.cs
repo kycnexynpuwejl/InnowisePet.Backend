@@ -42,7 +42,7 @@ public class CategoryRepository : ICategoryRepository
                                 (id, title)
                             VALUES(@id, @title)
                             ";
-        var result = await _dbConnection.ExecuteAsync(sql, category);
+        int result = await _dbConnection.ExecuteAsync(sql, category);
 
         return result > 0;
     }
@@ -54,7 +54,7 @@ public class CategoryRepository : ICategoryRepository
                             SET title = @title
                             WHERE id = '{id}'
                         ";
-        var result = await _dbConnection.ExecuteAsync(sql, category);
+        int result = await _dbConnection.ExecuteAsync(sql, category);
 
         return result > 0;
     }
@@ -65,7 +65,7 @@ public class CategoryRepository : ICategoryRepository
                         DELETE FROM [dbo].[category]
                             WHERE id = '{id}'
                         ";
-        var result = await _dbConnection.ExecuteAsync(sql);
+        int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;
     }

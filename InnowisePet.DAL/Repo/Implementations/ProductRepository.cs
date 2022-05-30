@@ -17,16 +17,17 @@ public class ProductRepository : IProductRepository
     public async Task<IEnumerable<Product>> GetProductsAsync()
     {
         const string sql = @"
-                            SELECT
+                            SELECT DISTINCT
                                 p.id,
                                 p.category_id,
                                 p.title,
                                 p.description,
                                 p.price,
-                                c.title as CategoryName
-                                FROM [dbo].[product] p
-                                JOIN [dbo].[category] c
-                                ON p.category_id = c.id
+                                c.title as CategoryName,
+                                SUM(ps.quantity) OVER(PARTITION BY p.id) as Quantity
+                            FROM [dbo].[product] p
+                                     JOIN [dbo].[category] c ON p.category_id = c.id
+                                     LEFT JOIN [dbo].[product_storage] ps ON p.id = ps.product_id
                             ";
         
         return await _dbConnection.QueryAsync<Product>(sql);
@@ -35,9 +36,18 @@ public class ProductRepository : IProductRepository
     public async Task<Product> GetProductByIdAsync(Guid id)
     {
         string sql = $@"
-                            SELECT *
-                                FROM [dbo].[product]
-                                WHERE id = '{id}'
+                            SELECT DISTINCT
+                                p.id,
+                                p.category_id,
+                                p.title,
+                                p.description,
+                                p.price,
+                                c.title as CategoryName,
+                                SUM(ps.quantity) OVER(PARTITION BY p.id) as Quantity
+                            FROM [dbo].[product] p
+                                     JOIN [dbo].[category] c ON p.category_id = c.id
+                                     LEFT JOIN [dbo].[product_storage] ps ON p.id = ps.product_id
+                                WHERE p.id = '{id}'
                             ";
         
         return await _dbConnection.QueryFirstAsync<Product>(sql);
@@ -50,7 +60,7 @@ public class ProductRepository : IProductRepository
                                 (title, description, price, id, category_id)
                             VALUES(@title, @description, @price, @id, @category_id)
                             ";
-        var result =  await _dbConnection.ExecuteAsync(sql, product);
+        int result =  await _dbConnection.ExecuteAsync(sql, product);
         
         return result > 0;
     }
@@ -66,7 +76,7 @@ public class ProductRepository : IProductRepository
                                 category_id = @category_id
                             WHERE id = '{id}'
                             ";
-        var result = await _dbConnection.ExecuteAsync(sql, product);
+        int result = await _dbConnection.ExecuteAsync(sql, product);
 
         return result > 0;
     }
@@ -77,7 +87,7 @@ public class ProductRepository : IProductRepository
                         DELETE FROM [dbo].[product]
                             WHERE id = '{id}'
                         ";
-        var result = await _dbConnection.ExecuteAsync(sql);
+        int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;
     }

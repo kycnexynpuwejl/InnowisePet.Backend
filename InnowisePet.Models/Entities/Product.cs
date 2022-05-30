@@ -8,6 +8,7 @@
         public string description { get; set; }
         public double price { get; set; }
         public string CategoryName { get; set; }
+        public int Quantity { get; set; }
 
     }
 }

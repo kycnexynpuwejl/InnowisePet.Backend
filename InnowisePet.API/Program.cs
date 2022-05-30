@@ -5,7 +5,7 @@ using InnowisePet.DAL.Repo.Implementations;
 using InnowisePet.DAL.Repo.Interfaces;
 using Microsoft.Data.SqlClient;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
@@ -25,7 +25,7 @@ builder.Services.AddScoped<IProductStorageRepository, ProductStorageRepository>(
 builder.Services.AddScoped<IProductStorageService, ProductStorageService>();
 builder.Services.AddTransient<IDbConnection>(_ => new SqlConnection(builder.Configuration.GetConnectionString("DbConnection")));
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 
 if (app.Environment.IsDevelopment())
