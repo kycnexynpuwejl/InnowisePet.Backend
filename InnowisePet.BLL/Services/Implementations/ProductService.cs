@@ -4,12 +4,11 @@ using InnowisePet.DAL.Repo.Interfaces;
 using InnowisePet.DTO.DTO;
 using InnowisePet.Models.Entities;
 
-namespace InnowisePet.BLL.Services.Interfaces;
+namespace InnowisePet.BLL.Services.Implementations;
 
 public class ProductService : IProductService
 {
     private readonly IProductRepository _productRepository;
-    private readonly ICategoryRepository _categoryRepository;
     private readonly IMapper _mapper;
     
     public ProductService(IProductRepository productRepository, IMapper mapper, ICategoryRepository categoryRepository)

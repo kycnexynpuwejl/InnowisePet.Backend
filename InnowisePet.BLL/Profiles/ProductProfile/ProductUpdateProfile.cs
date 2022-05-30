@@ -2,7 +2,7 @@ using AutoMapper;
 using InnowisePet.DTO.DTO;
 using InnowisePet.Models.Entities;
 
-namespace InnowisePet.BLL.Profiles;
+namespace InnowisePet.BLL.Profiles.ProductProfile;
 
 public class ProductUpdateProfile : Profile
 {

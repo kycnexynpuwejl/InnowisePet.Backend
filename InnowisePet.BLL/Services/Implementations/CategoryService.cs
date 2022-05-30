@@ -4,7 +4,7 @@ using InnowisePet.DAL.Repo.Interfaces;
 using InnowisePet.DTO.DTO;
 using InnowisePet.Models.Entities;
 
-namespace InnowisePet.BLL.Services.Interfaces;
+namespace InnowisePet.BLL.Services.Implementations;
 
 public class CategoryService : ICategoryService
 {

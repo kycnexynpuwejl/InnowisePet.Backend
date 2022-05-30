@@ -2,13 +2,14 @@ using AutoMapper;
 using InnowisePet.DTO.DTO;
 using InnowisePet.Models.Entities;
 
-namespace InnowisePet.BLL.Profiles;
+namespace InnowisePet.BLL.Profiles.StorageProfile;
 
-public class StorageUpdateProfile : Profile
+public class StorageCreateProfile : Profile
 {
-    public StorageUpdateProfile()
+    public StorageCreateProfile()
     {
-        CreateMap<StorageUpdateDto, Storage>()
+        CreateMap<StorageCreateDto, Storage>()
+            .ForMember(s => s.id, opt => opt.MapFrom(s => Guid.NewGuid()))
             .ForMember(s => s.location_id, opt => opt.MapFrom(s => s.LocationId))
             .ForMember(s => s.title, opt => opt.MapFrom(s => s.Title));
     }
