@@ -28,6 +28,7 @@ public class ProductRepository : IProductRepository
                                 JOIN [dbo].[category] c
                                 ON p.category_id = c.id
                             ";
+        
         return await _dbConnection.QueryAsync<Product>(sql);
     }
 
@@ -38,6 +39,7 @@ public class ProductRepository : IProductRepository
                                 FROM [dbo].[product]
                                 WHERE id = '{id}'
                             ";
+        
         return await _dbConnection.QueryFirstAsync<Product>(sql);
     }
 
