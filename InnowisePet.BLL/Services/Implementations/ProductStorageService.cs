@@ -38,4 +38,16 @@ public class ProductStorageService : IProductStorageService
 
         return await _productStorageRepository.CreateProductStorageAsync(productStorage);
     }
+
+    public async Task<bool> UpdateProductStorageAsync(Guid id, ProductStorageUpdateDto productStorageUpdateDto)
+    {
+        ProductStorage? product = _mapper.Map<ProductStorage>(productStorageUpdateDto);
+
+        return await _productStorageRepository.UpdateProductStorageAsync(id, product);
+    }
+
+    public async Task<bool> DeleteProductStorageAsync(Guid id)
+    {
+        return await _productStorageRepository.DeleteProductStorageAsync(id);
+    }
 }

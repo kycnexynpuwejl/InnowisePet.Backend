@@ -71,8 +71,10 @@ public class ProductStorageRepository : IProductStorageRepository
     {
         string sql = $@"
                             UPDATE [dbo].[product_storage] 
-                                (product_id, storage_id, quantity)
-                            SET (@product_id, @storage_id, @quantity)
+                            SET 
+                                product_id = @product_id,
+                                storage_id = @storage_id,
+                                quantity = @quantity
                             WHERE id = '{id}'
                             ";
         int result =  await _dbConnection.ExecuteAsync(sql, productStorage);

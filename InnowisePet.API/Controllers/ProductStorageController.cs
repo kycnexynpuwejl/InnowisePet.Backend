@@ -28,8 +28,20 @@ public class ProductStorageController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateProductAsync(ProductStorageCreateDto productStorageCreateDto)
+    public async Task<IActionResult> CreateProductStorageAsync(ProductStorageCreateDto productStorageCreateDto)
     {
         return Ok(await _productStorageService.CreateProductStorageAsync(productStorageCreateDto));
+    }
+    
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateProductStorageAsync([FromRoute] Guid id, [FromBody] ProductStorageUpdateDto productUpdateDto)
+    {
+        return Ok(await _productStorageService.UpdateProductStorageAsync(id, productUpdateDto));
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteProductStorageAsync([FromRoute] Guid id)
+    {
+        return Ok(await _productStorageService.DeleteProductStorageAsync(id));
     }
 }
