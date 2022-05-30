@@ -21,6 +21,8 @@ builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<IStorageRepository, StorageRepository>();
 builder.Services.AddScoped<IStorageService, StorageService>();
+builder.Services.AddScoped<IProductStorageRepository, ProductStorageRepository>();
+builder.Services.AddScoped<IProductStorageService, ProductStorageService>();
 builder.Services.AddTransient<IDbConnection>(_ => new SqlConnection(builder.Configuration.GetConnectionString("DbConnection")));
 
 var app = builder.Build();
