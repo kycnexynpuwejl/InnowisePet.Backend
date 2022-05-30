@@ -18,7 +18,7 @@ public class CategoryRepository : ICategoryRepository
     {
         const string sql = @"
                             SELECT *
-                                From [dbo].[category]
+                                FROM [dbo].[category]
                             ";
 
         return await _dbConnection.QueryAsync<Category>(sql);
@@ -27,10 +27,10 @@ public class CategoryRepository : ICategoryRepository
     public async Task<Category> GetCategoryById(Guid id)
     {
         string sql = $@"
-                            SELECT *
-                                FROM [dbo].[category]
-                                WHERE id = '{id}'
-                            ";
+                        SELECT *
+                            FROM [dbo].[category]
+                            WHERE id = '{id}'
+                        ";
 
         return await _dbConnection.QueryFirstOrDefaultAsync<Category>(sql);
     }
@@ -51,8 +51,8 @@ public class CategoryRepository : ICategoryRepository
     {
         string sql = $@"
                         UPDATE [dbo].[category]
-                        SET title = @title
-                        WHERE id = '{id}'
+                            SET title = @title
+                            WHERE id = '{id}'
                         ";
         var result = await _dbConnection.ExecuteAsync(sql, category);
 
@@ -63,7 +63,7 @@ public class CategoryRepository : ICategoryRepository
     {
         string sql = $@"
                         DELETE FROM [dbo].[category]
-                        WHERE id = '{id}'
+                            WHERE id = '{id}'
                         ";
         var result = await _dbConnection.ExecuteAsync(sql);
 

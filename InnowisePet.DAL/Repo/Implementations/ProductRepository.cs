@@ -73,7 +73,7 @@ public class ProductRepository : IProductRepository
     {
         string sql = $@"
                         DELETE FROM [dbo].[product]
-                        WHERE id = '{id}'
+                            WHERE id = '{id}'
                         ";
         var result = await _dbConnection.ExecuteAsync(sql);
 
