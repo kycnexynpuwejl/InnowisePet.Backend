@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.DTO", "Innowise
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.IdentityServer", "InnowisePet.IdentityServer\InnowisePet.IdentityServer.csproj", "{6911F9DD-4A94-410F-8DA2-C4EE23FE638B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.IdentityServerTest", "InnowisePet.IdentityServerTest\InnowisePet.IdentityServerTest.csproj", "{2B8EC057-9591-4803-A216-72393BD7289E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,5 +45,9 @@ Global
 		{6911F9DD-4A94-410F-8DA2-C4EE23FE638B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6911F9DD-4A94-410F-8DA2-C4EE23FE638B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6911F9DD-4A94-410F-8DA2-C4EE23FE638B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B8EC057-9591-4803-A216-72393BD7289E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8EC057-9591-4803-A216-72393BD7289E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8EC057-9591-4803-A216-72393BD7289E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8EC057-9591-4803-A216-72393BD7289E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
