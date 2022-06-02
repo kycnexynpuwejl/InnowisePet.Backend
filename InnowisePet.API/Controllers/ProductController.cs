@@ -1,11 +1,13 @@
 using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DTO.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ProductController : Controller
 {
     private readonly IProductService _productService;

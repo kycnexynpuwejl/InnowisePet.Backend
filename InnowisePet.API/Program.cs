@@ -3,6 +3,7 @@ using InnowisePet.BLL.Services.Implementations;
 using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DAL.Repo.Implementations;
 using InnowisePet.DAL.Repo.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Data.SqlClient;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,19 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddTransient<IDbConnection>(_ => new SqlConnection(builder.Configuration.GetConnectionString("DbConnection")));
 
+builder.Services.AddAuthentication(config =>
+{
+    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = "https://localhost:7055/";
+        options.Audience = "InnowisePetWebAPI";
+        options.RequireHttpsMetadata = false;
+    });
+builder.Services.AddCors();
+
 WebApplication app = builder.Build();
 
 
@@ -39,9 +53,10 @@ if (app.Environment.IsDevelopment())
 }
 
 
-
+app.UseCors();
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
