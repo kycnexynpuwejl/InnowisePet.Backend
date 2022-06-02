@@ -1,5 +1,7 @@
 using InnowisePet.Identity.Data;
 using InnowisePet.Identity.Models;
+using InnowisePet.Identity.Services.Implementations;
+using InnowisePet.Identity.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
 namespace InnowisePet.Identity.Extensions;
@@ -31,5 +33,11 @@ public static class ServiceExtensions
             config.Cookie.Name = "InnowisePet.Identity.Cookie";
             config.LoginPath = "/Account/Login";
         });
+    }
+    
+    public static void ConfigureServices(this IServiceCollection services)
+    {
+        services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+        services.AddScoped<IAccountService, AccountService>();
     }
 }

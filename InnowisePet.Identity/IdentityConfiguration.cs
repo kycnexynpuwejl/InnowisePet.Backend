@@ -8,7 +8,7 @@ namespace InnowisePet.Identity
 {
     public static class IdentityConfiguration
     {
-        public static string ScopeAPI => "Logistics.API";
+        public static string ScopeAPI => "InnowisePet.API";
         public static string ScopeRoles => "roles";
 
         public static IEnumerable<Client> BuildClients(IConfiguration configuration)

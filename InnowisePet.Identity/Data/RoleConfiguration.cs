@@ -1,4 +1,3 @@
-using InnowisePet.Identity.Models;
 using InnowisePet.Identity.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -6,16 +5,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace InnowisePet.Identity.Data;
 
-public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
+public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
 {
-    public void Configure(EntityTypeBuilder<AppUser> builder)
+    public void Configure(EntityTypeBuilder<IdentityRole> builder)
     {
         builder.HasData
         (
             new IdentityRole
             {
-                Name = nameof(UserRole.Manager),
-                NormalizedName = nameof(UserRole.Manager).ToUpper()
+                Name = nameof(UserRole.Customer),
+                NormalizedName = nameof(UserRole.Customer).ToUpper()
             },
             new IdentityRole
             {
