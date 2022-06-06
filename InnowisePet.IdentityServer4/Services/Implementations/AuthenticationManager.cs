@@ -1,4 +1,5 @@
 using IdentityModel.Client;
+using IdentityServer4;
 using Microsoft.AspNetCore.Identity;
 using InnowisePet.IdentityServer4.Models;
 using InnowisePet.IdentityServer4.Models.DTO;
@@ -39,7 +40,7 @@ public class AuthenticationManager : IAuthenticationManager
         {
             Address = "https://localhost:7000/connect/token",
             ClientId = "APIClient",
-            Scope = "APIClient",
+            Scope = IdentityServerConstants.StandardScopes.OfflineAccess,
             UserName = user.UserName,
             Password = user.Password,
         };

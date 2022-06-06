@@ -6,7 +6,7 @@ namespace InnowisePet.IdentityServer4.Configurations;
 
 public static class IdentityConfiguration
 {
-    public static string ScopeAPI => "APIClient";
+    public static string ScopeAPI => "APIScope";
     public static string ScopeRoles => "roles";
 
     public static IEnumerable<Client> Clients()
@@ -27,7 +27,7 @@ public static class IdentityConfiguration
                     ScopeAPI,
                 },
 
-                AllowOfflineAccess = true,
+                AllowOfflineAccess = true
             }
         };
     }
