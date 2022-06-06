@@ -11,7 +11,7 @@ public class ProductStorageService : IProductStorageService
     private readonly IProductStorageRepository _productStorageRepository;
     private readonly IMapper _mapper;
 
-    public ProductStorageService(IProductStorageRepository productStorageRepository, IMapper mapper, IStorageRepository storageRepository, IProductRepository productRepository)
+    public ProductStorageService(IProductStorageRepository productStorageRepository, IMapper mapper)
     {
         _productStorageRepository = productStorageRepository;
         _mapper = mapper;

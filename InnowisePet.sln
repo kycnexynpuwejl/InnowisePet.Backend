@@ -13,6 +13,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.DTO", "Innowise
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.IdentityServer4", "InnowisePet.IdentityServer4\InnowisePet.IdentityServer4.csproj", "{F87BE861-745C-453C-96F2-8DA70F6363B4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnowisePet.Order", "InnowisePet.Order", "{FDA2182E-FF7A-4B23-BB9B-E820CCCBDEB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.Order.Microservice", "InnowisePet.Order.Microservice\InnowisePet.Order.Microservice.csproj", "{CD55F8A1-1D62-4EFF-8E91-E274DB73D21A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnowisePet.Report", "InnowisePet.Report", "{FBD732F1-9D91-462D-84BB-0308DB7D7F3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.Report.Microservice", "InnowisePet.Report.Microservice\InnowisePet.Report.Microservice.csproj", "{7B272024-F626-48A3-B338-288725CBB838}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnowisePet.IdentityServer4", "InnowisePet.IdentityServer4", "{7B5AE6E3-CB59-43A2-929D-AF7EEE5EE113}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,5 +53,18 @@ Global
 		{F87BE861-745C-453C-96F2-8DA70F6363B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F87BE861-745C-453C-96F2-8DA70F6363B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F87BE861-745C-453C-96F2-8DA70F6363B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD55F8A1-1D62-4EFF-8E91-E274DB73D21A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD55F8A1-1D62-4EFF-8E91-E274DB73D21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD55F8A1-1D62-4EFF-8E91-E274DB73D21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD55F8A1-1D62-4EFF-8E91-E274DB73D21A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B272024-F626-48A3-B338-288725CBB838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B272024-F626-48A3-B338-288725CBB838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B272024-F626-48A3-B338-288725CBB838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B272024-F626-48A3-B338-288725CBB838}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CD55F8A1-1D62-4EFF-8E91-E274DB73D21A} = {FDA2182E-FF7A-4B23-BB9B-E820CCCBDEB3}
+		{7B272024-F626-48A3-B338-288725CBB838} = {FBD732F1-9D91-462D-84BB-0308DB7D7F3C}
+		{F87BE861-745C-453C-96F2-8DA70F6363B4} = {7B5AE6E3-CB59-43A2-929D-AF7EEE5EE113}
 	EndGlobalSection
 EndGlobal

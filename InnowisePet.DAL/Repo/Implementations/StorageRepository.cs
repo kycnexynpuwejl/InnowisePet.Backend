@@ -48,6 +48,7 @@ public class StorageRepository : IStorageRepository
                                 (id, location_id, title)
                             VALUES(@id, @location_id, @title)
                             ";
+        
         int result =  await _dbConnection.ExecuteAsync(sql, storage);
         
         return result > 0;
@@ -62,6 +63,7 @@ public class StorageRepository : IStorageRepository
                                 title = @title
                             WHERE id = '{id}'
                             ";
+        
         int result = await _dbConnection.ExecuteAsync(sql, storage);
 
         return result > 0;
@@ -73,6 +75,7 @@ public class StorageRepository : IStorageRepository
                         DELETE FROM [dbo].[storage]
                             WHERE id = '{id}'
                         ";
+        
         int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;

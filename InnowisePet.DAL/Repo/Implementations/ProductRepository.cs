@@ -60,6 +60,7 @@ public class ProductRepository : IProductRepository
                                 (title, description, price, id, category_id)
                             VALUES(@title, @description, @price, @id, @category_id)
                             ";
+        
         int result =  await _dbConnection.ExecuteAsync(sql, product);
         
         return result > 0;
@@ -76,6 +77,7 @@ public class ProductRepository : IProductRepository
                                 category_id = @category_id
                             WHERE id = '{id}'
                             ";
+        
         int result = await _dbConnection.ExecuteAsync(sql, product);
 
         return result > 0;
@@ -87,6 +89,7 @@ public class ProductRepository : IProductRepository
                         DELETE FROM [dbo].[product]
                             WHERE id = '{id}'
                         ";
+        
         int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;

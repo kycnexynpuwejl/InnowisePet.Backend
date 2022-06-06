@@ -52,6 +52,7 @@ public class UserRepository : IUserRepository
                                 (id, firstname, lastname, email, mobile, password_hash)
                             VALUES(@id, @firstname, @lastname, @email, @mobile, @password_hash)
                             ";
+        
         int result =  await _dbConnection.ExecuteAsync(sql, user);
         
         return result > 0;
@@ -69,6 +70,7 @@ public class UserRepository : IUserRepository
                                 password_hash = password_hash
                             WHERE id = '{id}'
                             ";
+        
         int result = await _dbConnection.ExecuteAsync(sql, user);
 
         return result > 0;
@@ -80,6 +82,7 @@ public class UserRepository : IUserRepository
                         DELETE FROM [dbo].[user]
                             WHERE id = '{id}'
                         ";
+        
         int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;

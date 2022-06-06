@@ -62,6 +62,7 @@ public class ProductStorageRepository : IProductStorageRepository
                                 (id, product_id, storage_id, quantity)
                             VALUES(@id, @product_id, @storage_id, @quantity)
                             ";
+        
         int result =  await _dbConnection.ExecuteAsync(sql, productStorage);
         
         return result > 0;
@@ -77,6 +78,7 @@ public class ProductStorageRepository : IProductStorageRepository
                                 quantity = @quantity
                             WHERE id = '{id}'
                             ";
+        
         int result =  await _dbConnection.ExecuteAsync(sql, productStorage);
         
         return result > 0;
@@ -88,6 +90,7 @@ public class ProductStorageRepository : IProductStorageRepository
                         DELETE FROM [dbo].[product_storage]
                             WHERE id = '{id}'
                         ";
+        
         int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;

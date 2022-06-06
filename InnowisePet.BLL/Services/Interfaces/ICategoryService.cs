@@ -9,5 +9,5 @@ public interface ICategoryService
     Task<Category> GetCategoryByIdAsync(Guid id);
     Task<bool> CreateCategoryAsync(CategoryCreateDto categoryCreateDto);
     Task<bool> UpdateCategoryAsync(Guid id, CategoryUpdateDto categoryUpdateDto);
-    Task<bool> DelateCategoryAsync(Guid id);
+    Task<bool> DeleteCategoryAsync(Guid id);
 }

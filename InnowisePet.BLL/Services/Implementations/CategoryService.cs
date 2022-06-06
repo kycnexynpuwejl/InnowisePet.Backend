@@ -24,7 +24,7 @@ public class CategoryService : ICategoryService
 
     public async Task<Category> GetCategoryByIdAsync(Guid id)
     {
-        return await _categoryRepository.GetCategoryById(id);
+        return await _categoryRepository.GetCategoryByIdAsync(id);
     }
 
     public async Task<bool> CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
@@ -41,7 +41,7 @@ public class CategoryService : ICategoryService
         return await _categoryRepository.UpdateCategoryAsync(id, category);
     }
 
-    public async Task<bool> DelateCategoryAsync(Guid id)
+    public async Task<bool> DeleteCategoryAsync(Guid id)
     {
         return await _categoryRepository.DeleteCategoryAsync(id);
     }
