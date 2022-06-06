@@ -7,5 +7,6 @@ namespace InnowisePet.IdentityServer4.Services.Interfaces
         public Task<AuthenticatedUserInfo> AuthenticateUser(UserForAuthenticationDto user);
         public Task CreateUser(UserForCreationDto userForCreation);
         public Task AddRoleToUser(string login, string role);
+        public Task RemoveRoleFromUser(string login, string role);
     }
 }

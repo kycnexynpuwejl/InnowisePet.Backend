@@ -34,6 +34,19 @@ public class AccountService : IAccountService
 
         await _userManager.AddToRoleAsync(user, role);
     }
+    
+    public async Task RemoveRoleFromUser(string login, string role)
+    {
+        var user = await _userManager.FindByNameAsync(login);
+
+        if (user == null)
+            throw new Exception("User not found");
+
+        if (!await _roleManager.RoleExistsAsync(role))
+            throw new Exception("Role not exists");
+
+        await _userManager.RemoveFromRoleAsync(user, role);
+    }
 
     public async Task<AuthenticatedUserInfo> AuthenticateUser(UserForAuthenticationDto user)
     {

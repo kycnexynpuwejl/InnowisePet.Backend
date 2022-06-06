@@ -45,6 +45,21 @@ public class AuthenticationController : Controller
     }
     
     /// <summary>
+    /// Remove role from user
+    /// | Required role: Administrator
+    /// </summary>
+    /// <param name="login"></param>
+    /// <param name="role"></param>
+    [HttpPost]
+    [Route("removerole")]
+    [Authorize]
+    public async Task<IActionResult> RemoveRoleFromUser([FromQuery] string login, [FromQuery] string role)
+    {
+        await _accountService.RemoveRoleFromUser(login, role);
+        return Ok();
+    }
+    
+    /// <summary>
     /// Authenticate user by username and password
     /// </summary>
     /// <param name="user"></param>

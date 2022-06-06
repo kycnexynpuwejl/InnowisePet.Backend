@@ -40,7 +40,7 @@ public class AuthenticationManager : IAuthenticationManager
         {
             Address = "https://localhost:7000/connect/token",
             ClientId = "APIClient",
-            Scope = IdentityServerConstants.StandardScopes.OfflineAccess,
+            Scope = "APIScope offline_access",
             UserName = user.UserName,
             Password = user.Password,
         };
