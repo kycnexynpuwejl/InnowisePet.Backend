@@ -1,0 +1,23 @@
+create table cart_item
+(
+    quantity   int      default 0 not null,
+    status     smallint default 0 not null,
+    id         uniqueidentifier   not null
+        constraint cart_item_pk
+            primary key,
+    product_id uniqueidentifier   not null
+        constraint cart_item_product__fk
+            references product,
+    order_id   uniqueidentifier
+        constraint cart_item_order__fk
+            references [order],
+    cart_id    uniqueidentifier   not null
+        constraint cart_item_cart__fk
+            references cart
+)
+go
+
+create unique index cart_item_id_uindex
+    on cart_item (id)
+go
+

@@ -1,0 +1,15 @@
+create table storage
+(
+    title       varchar(50)      not null,
+    id          uniqueidentifier not null
+        constraint storage_pk
+            primary key,
+    location_id uniqueidentifier not null
+        constraint storage_location__fk
+            references location
+)
+go
+
+create unique index storage_id_uindex
+    on storage (id)
+go

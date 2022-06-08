@@ -1,0 +1,17 @@
+create table product
+(
+    title       varchar(50)      not null,
+    description varchar(300),
+    price       float default 0  not null,
+    id          uniqueidentifier not null
+        constraint product_pk
+            primary key,
+    category_id uniqueidentifier not null
+        constraint product_category__fk
+            references category
+)
+go
+
+create unique index product_id_uindex
+    on product (id)
+go

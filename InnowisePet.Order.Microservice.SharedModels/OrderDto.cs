@@ -1,8 +1,7 @@
-﻿namespace InnowisePet.Models.Entities;
+namespace InnowisePet.Order.Microservice.SharedModels;
 
-public class Order
+public class OrderDto
 {
-    public Guid id { get; set; }
     public string firstname { get; set; }
     public string lastname { get; set; }
     public string address { get; set; }
