@@ -2,7 +2,7 @@ using InnowisePet.DTO.DTO.Order;
 using InnowisePet.Services.Order.BLL;
 using MassTransit;
 
-namespace InnowisePet.Services.Order.API;
+namespace InnowisePet.Services.Order.API.Consumers;
 
 public class OrderDeleteConsumer : IConsumer<OrderDeleteDto>
 {

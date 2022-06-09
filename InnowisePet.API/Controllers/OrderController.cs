@@ -7,13 +7,20 @@ namespace InnowisePet.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[AllowAnonymous]
 public class OrderController : ControllerBase
 {
     private readonly IPublishEndpoint _publishEndpoint;
     public OrderController(IPublishEndpoint publishEndpoint)
     {
         _publishEndpoint = publishEndpoint;
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetOrdersAsync()
+    {
+        await _publishEndpoint.Publish("");
+        
+        return Ok();
     }
     
     [HttpPost]

@@ -1,15 +1,18 @@
+using InnowisePet.Services.Order.API.Consumers;
 using MassTransit;
 
-namespace InnowisePet.Services.Order.API;
+namespace InnowisePet.Services.Order.API.Extensions;
 
 public static class ServiceExtensions
 {
     public static void ConfigureMassTransit(this IServiceCollection services)
     {
         services.AddMassTransit(x => {
+            
             x.AddConsumer<OrderCreateConsumer>();
             x.AddConsumer<OrderUpdateConsumer>();
             x.AddConsumer<OrderDeleteConsumer>();
+            
             x.UsingRabbitMq((context, cfg) =>
             {
                 cfg.ReceiveEndpoint("OrderCreateQueue", e =>
