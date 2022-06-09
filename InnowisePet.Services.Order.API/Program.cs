@@ -11,15 +11,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMassTransit(x => {
     x.AddConsumer<OrderCreateConsumer>();
     x.AddConsumer<OrderUpdateConsumer>();
+    x.AddConsumer<OrderDeleteConsumer>();
     x.UsingRabbitMq((context, cfg) =>
     {
+        cfg.ReceiveEndpoint("OrderCreateQueue", e =>
+        {
+            e.ConfigureConsumer<OrderCreateConsumer>(context);
+        });
         cfg.ReceiveEndpoint("OrderUpdateQueue", e =>
         {
             e.ConfigureConsumer<OrderUpdateConsumer>(context);
         });
-        cfg.ReceiveEndpoint("OrderCreateQueue", e =>
+        cfg.ReceiveEndpoint("OrderDeleteQueue", e =>
         {
-            e.ConfigureConsumer<OrderCreateConsumer>(context);
+            e.ConfigureConsumer<OrderDeleteConsumer>(context);
         });
     });
 });
