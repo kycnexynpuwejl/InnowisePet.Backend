@@ -1,4 +1,5 @@
 using InnowisePet.DTO.DTO;
+using InnowisePet.DTO.DTO.Product;
 
 namespace InnowisePet.BLL.Services.Interfaces;
 

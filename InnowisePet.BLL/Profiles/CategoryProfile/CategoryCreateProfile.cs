@@ -1,5 +1,6 @@
 using AutoMapper;
 using InnowisePet.DTO.DTO;
+using InnowisePet.DTO.DTO.Category;
 using InnowisePet.Models.Entities;
 
 namespace InnowisePet.BLL.Profiles.CategoryProfile;

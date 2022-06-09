@@ -1,8 +1,8 @@
-using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DTO.DTO.Order;
+using InnowisePet.Services.Order.BLL;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InnowisePet.API.Controllers;
+namespace InnowisePet.Services.Order.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -30,18 +30,24 @@ public class OrderController : Controller
     [HttpPost]
     public async Task<IActionResult> CreateOrderAsync(OrderCreateDto orderCreateDto)
     {
-        return Ok(await _orderService.CreateOrderAsync(orderCreateDto));
+        await _orderService.CreateOrderAsync(orderCreateDto);
+        
+        return Ok();
     }
     
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateOrderAsync(Guid id, OrderUpdateDto orderUpdateDto)
     {
-        return Ok(await _orderService.UpdateOrderAsync(id, orderUpdateDto));
+        await _orderService.UpdateOrderAsync(id, orderUpdateDto);
+        
+        return Ok();
     }
     
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteOrderAsync(Guid id)
     {
-        return Ok(await _orderService.DeleteOrderAsync(id));
+        await _orderService.DeleteOrderAsync(id);
+        
+        return Ok();
     }
 }

@@ -1,5 +1,6 @@
 using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DTO.DTO;
+using InnowisePet.DTO.DTO.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

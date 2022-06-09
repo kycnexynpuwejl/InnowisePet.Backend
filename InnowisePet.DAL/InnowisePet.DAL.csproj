@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputType>Library</OutputType>
+        <RootNamespace>InnowisePet.DAL</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

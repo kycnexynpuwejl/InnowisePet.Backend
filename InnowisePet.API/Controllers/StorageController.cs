@@ -1,5 +1,6 @@
 using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DTO.DTO;
+using InnowisePet.DTO.DTO.Storage;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.API.Controllers;

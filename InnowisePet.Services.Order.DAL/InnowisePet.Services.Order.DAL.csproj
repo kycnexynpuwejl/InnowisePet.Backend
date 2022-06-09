@@ -3,12 +3,11 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <RootNamespace>Report.Microservice</RootNamespace>
+        <Nullable>disable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MassTransit" Version="8.0.3" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
     </ItemGroup>
 
 </Project>

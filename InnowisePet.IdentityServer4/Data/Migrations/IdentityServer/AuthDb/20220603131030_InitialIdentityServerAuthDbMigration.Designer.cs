@@ -19,7 +19,7 @@ namespace InnowisePet.IdentityServer4.Data.Migrations.IdentityServer.AuthDb
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
 
-            modelBuilder.Entity("InnowisePet.IdentityServer4.Models.AppUser", b =>
+            modelBuilder.Entity("InnowisePet.IdentityServer4.InnowisePet.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -244,7 +244,7 @@ namespace InnowisePet.IdentityServer4.Data.Migrations.IdentityServer.AuthDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("InnowisePet.IdentityServer4.Models.AppUser", null)
+                    b.HasOne("InnowisePet.IdentityServer4.InnowisePet.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -253,7 +253,7 @@ namespace InnowisePet.IdentityServer4.Data.Migrations.IdentityServer.AuthDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("InnowisePet.IdentityServer4.Models.AppUser", null)
+                    b.HasOne("InnowisePet.IdentityServer4.InnowisePet.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -268,7 +268,7 @@ namespace InnowisePet.IdentityServer4.Data.Migrations.IdentityServer.AuthDb
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InnowisePet.IdentityServer4.Models.AppUser", null)
+                    b.HasOne("InnowisePet.IdentityServer4.InnowisePet.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -277,7 +277,7 @@ namespace InnowisePet.IdentityServer4.Data.Migrations.IdentityServer.AuthDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("InnowisePet.IdentityServer4.Models.AppUser", null)
+                    b.HasOne("InnowisePet.IdentityServer4.InnowisePet.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

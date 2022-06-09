@@ -2,6 +2,7 @@ using AutoMapper;
 using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DAL.Repo.Interfaces;
 using InnowisePet.DTO.DTO;
+using InnowisePet.DTO.DTO.Product;
 using InnowisePet.Models.Entities;
 
 namespace InnowisePet.BLL.Services.Implementations;

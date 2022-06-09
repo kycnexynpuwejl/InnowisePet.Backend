@@ -1,4 +1,4 @@
-namespace InnowisePet.DTO.DTO;
+namespace InnowisePet.DTO.DTO.Category;
 
 public class CategoryUpdateDto
 {

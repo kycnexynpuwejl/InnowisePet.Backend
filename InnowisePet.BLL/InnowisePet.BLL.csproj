@@ -5,6 +5,7 @@
         <Nullable>disable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputType>Library</OutputType>
+        <RootNamespace>InnowisePet.BLL</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

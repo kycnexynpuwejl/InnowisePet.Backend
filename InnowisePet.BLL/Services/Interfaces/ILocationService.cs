@@ -1,4 +1,5 @@
 using InnowisePet.DTO.DTO;
+using InnowisePet.DTO.DTO.Location;
 using InnowisePet.Models.Entities;
 
 namespace InnowisePet.BLL.Services.Interfaces;
