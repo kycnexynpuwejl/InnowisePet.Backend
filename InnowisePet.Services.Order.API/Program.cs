@@ -8,26 +8,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMassTransit(x => {
-    x.AddConsumer<OrderCreateConsumer>();
-    x.AddConsumer<OrderUpdateConsumer>();
-    x.AddConsumer<OrderDeleteConsumer>();
-    x.UsingRabbitMq((context, cfg) =>
-    {
-        cfg.ReceiveEndpoint("OrderCreateQueue", e =>
-        {
-            e.ConfigureConsumer<OrderCreateConsumer>(context);
-        });
-        cfg.ReceiveEndpoint("OrderUpdateQueue", e =>
-        {
-            e.ConfigureConsumer<OrderUpdateConsumer>(context);
-        });
-        cfg.ReceiveEndpoint("OrderDeleteQueue", e =>
-        {
-            e.ConfigureConsumer<OrderDeleteConsumer>(context);
-        });
-    });
-});
+
+builder.Services.ConfigureMassTransit();
 
 
 builder.Services.AddControllers();
