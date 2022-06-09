@@ -8,7 +8,6 @@ public class OrderUpdateProfile : Profile
     public OrderUpdateProfile()
     {
         CreateMap<OrderUpdateDto, DAL.Order>()
-            .ForMember(p => p.Id, opt => opt.MapFrom(p => Guid.NewGuid()))
             .ForMember(p => p.Firstname, opt => opt.MapFrom(p => p.Firstname))
             .ForMember(p => p.Lastname, opt => opt.MapFrom(p => p.Lastname))
             .ForMember(p => p.Address, opt => opt.MapFrom(p => p.Address))

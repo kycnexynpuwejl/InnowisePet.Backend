@@ -1,9 +1,28 @@
+using InnowisePet.DTO.DTO.Order;
+using InnowisePet.Services.Order.API;
 using InnowisePet.Services.Order.BLL;
 using InnowisePet.Services.Order.DAL;
 using InnowisePet.Services.Order.DAL.Repo;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMassTransit(x => {
+    x.AddConsumer<OrderCreateConsumer>();
+    x.AddConsumer<OrderUpdateConsumer>();
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.ReceiveEndpoint("OrderUpdateQueue", e =>
+        {
+            e.ConfigureConsumer<OrderUpdateConsumer>(context);
+        });
+        cfg.ReceiveEndpoint("OrderCreateQueue", e =>
+        {
+            e.ConfigureConsumer<OrderCreateConsumer>(context);
+        });
+    });
+});
 
 
 builder.Services.AddControllers();
