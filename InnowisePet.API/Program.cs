@@ -19,6 +19,7 @@ builder.Services.AddMassTransit(x =>
     x.UsingRabbitMq();
 });
 
+builder.Services.AddScoped<HttpClient>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();

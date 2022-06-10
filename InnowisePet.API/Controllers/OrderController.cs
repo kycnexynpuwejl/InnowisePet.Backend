@@ -1,3 +1,4 @@
+using System.Text.Json;
 using InnowisePet.DTO.DTO.Order;
 using MassTransit;
 using Microsoft.AspNetCore.Authorization;
@@ -10,17 +11,26 @@ namespace InnowisePet.API.Controllers;
 public class OrderController : ControllerBase
 {
     private readonly IPublishEndpoint _publishEndpoint;
-    public OrderController(IPublishEndpoint publishEndpoint)
+    private readonly HttpClient _httpClient;
+    
+    public OrderController(IPublishEndpoint publishEndpoint, HttpClient httpClient)
     {
         _publishEndpoint = publishEndpoint;
+        _httpClient = httpClient;
     }
     
     [HttpGet]
     public async Task<IActionResult> GetOrdersAsync()
     {
-        await _publishEndpoint.Publish("");
-        
-        return Ok();
+        HttpResponseMessage result = await _httpClient.GetAsync("https://localhost:7258/api/order");
+        return Ok(await result.Content.ReadAsStringAsync());
+    }
+    
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetOrderByIdAsync([FromRoute]Guid id)
+    {
+        HttpResponseMessage result = await _httpClient.GetAsync($"https://localhost:7258/api/order/{id}");
+        return Ok(await result.Content.ReadAsStringAsync());
     }
     
     [HttpPost]
