@@ -22,9 +22,9 @@ public class AuthenticationManager : IAuthenticationManager
 
     public async Task<AppUser> ReturnUserIfValid(UserForAuthenticationDto userForAuth)
     {
-        var user = await _userManager.FindByNameAsync(userForAuth.UserName);
+        AppUser user = await _userManager.FindByNameAsync(userForAuth.UserName);
 
-        var res = await _signInManager.PasswordSignInAsync(userForAuth.UserName, userForAuth.Password, false, false);
+        SignInResult res = await _signInManager.PasswordSignInAsync(userForAuth.UserName, userForAuth.Password, false, false);
 
         if (res.Succeeded)
         {
@@ -35,7 +35,7 @@ public class AuthenticationManager : IAuthenticationManager
 
     public async Task<(string accessToken, string refreshToken)> GetTokens(UserForAuthenticationDto user)
     {
-        var client = _httpClientFactory.CreateClient();
+        HttpClient client = _httpClientFactory.CreateClient();
         PasswordTokenRequest tokenRequest = new PasswordTokenRequest()
         {
             Address = "https://localhost:7000/connect/token",
@@ -44,7 +44,7 @@ public class AuthenticationManager : IAuthenticationManager
             UserName = user.UserName,
             Password = user.Password,
         };
-        var tokenResponse = await client.RequestPasswordTokenAsync(tokenRequest);
+        TokenResponse tokenResponse = await client.RequestPasswordTokenAsync(tokenRequest);
 
         return (tokenResponse.AccessToken, tokenResponse.RefreshToken);
     }

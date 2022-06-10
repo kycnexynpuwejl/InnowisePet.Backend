@@ -1,4 +1,4 @@
-namespace InnowisePet.Services.Order.DAL;
+namespace InnowisePet.Services.Order.DAL.Repo;
 
 public interface IOrderRepository
 {

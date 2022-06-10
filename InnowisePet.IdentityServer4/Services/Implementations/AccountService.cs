@@ -24,7 +24,7 @@ public class AccountService : IAccountService
 
     public async Task AddRoleToUser(string login, string role)
     {
-        var user = await _userManager.FindByNameAsync(login);
+        AppUser user = await _userManager.FindByNameAsync(login);
 
         if (user == null)
             throw new Exception("User not found");
@@ -37,7 +37,7 @@ public class AccountService : IAccountService
     
     public async Task RemoveRoleFromUser(string login, string role)
     {
-        var user = await _userManager.FindByNameAsync(login);
+        AppUser user = await _userManager.FindByNameAsync(login);
 
         if (user == null)
             throw new Exception("User not found");
@@ -50,14 +50,14 @@ public class AccountService : IAccountService
 
     public async Task<AuthenticatedUserInfo> AuthenticateUser(UserForAuthenticationDto user)
     {
-        var validUser = await _authManager.ReturnUserIfValid(user);
+        AppUser validUser = await _authManager.ReturnUserIfValid(user);
 
         if (validUser == null)
         {
             throw new Exception("Unauthorized");
         }
 
-        var tokens = await _authManager.GetTokens(user);
+        (string accessToken, string refreshToken) tokens = await _authManager.GetTokens(user);
 
         return new AuthenticatedUserInfo
         {
@@ -69,14 +69,14 @@ public class AccountService : IAccountService
 
     public async Task CreateUser(UserForCreationDto userForCreation)
     {
-        var user = _mapper.Map<AppUser>(userForCreation);
+        AppUser user = _mapper.Map<AppUser>(userForCreation);
 
-        var result = await _userManager.CreateAsync(user, userForCreation.Password);
+        IdentityResult result = await _userManager.CreateAsync(user, userForCreation.Password);
 
         if (!result.Succeeded)
         {
-            var errors = "";
-            foreach (var error in result.Errors)
+            string errors = "";
+            foreach (IdentityError error in result.Errors)
             {
                 errors += $"{error.Code}: {error.Description}\n";
             }

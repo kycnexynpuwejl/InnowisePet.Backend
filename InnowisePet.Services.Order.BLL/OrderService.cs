@@ -1,6 +1,6 @@
 using AutoMapper;
 using InnowisePet.DTO.DTO.Order;
-using InnowisePet.Services.Order.DAL;
+using InnowisePet.Services.Order.DAL.Repo;
 
 namespace InnowisePet.Services.Order.BLL;
 
@@ -17,30 +17,30 @@ public class OrderService : IOrderService
 
     public async Task<IEnumerable<OrderGetDto>> GetOrdersAsync()
     {
-        var result = await _orderRepository.GetOrdersAsync();
+        IEnumerable<DAL.Order> result = await _orderRepository.GetOrdersAsync();
         
         return _mapper.Map<IEnumerable<OrderGetDto>>(result);
     }
     
     public async Task<OrderGetDto> GetOrderByIdAsync(Guid id)
     {
-        var result = await _orderRepository.GetOrderByIdAsync(id);
+        DAL.Order order = await _orderRepository.GetOrderByIdAsync(id);
 
-        return _mapper.Map<OrderGetDto>(result);
+        return _mapper.Map<OrderGetDto>(order);
     }
     
     public async Task CreateOrderAsync(OrderCreateDto orderCreateDto)
     {
-        var order = _mapper.Map<DAL.Order>(orderCreateDto);
+        DAL.Order order = _mapper.Map<DAL.Order>(orderCreateDto);
 
         await _orderRepository.CreateOrderAsync(order);
     }
     
     public async Task UpdateOrderAsync(Guid id, OrderUpdateDto orderUpdateDto)
     {
-        DAL.Order product = _mapper.Map<DAL.Order>(orderUpdateDto);
+        DAL.Order order = _mapper.Map<DAL.Order>(orderUpdateDto);
 
-        await _orderRepository.UpdateOrderAsync(id, product);
+        await _orderRepository.UpdateOrderAsync(id, order);
     }
     
     public async Task DeleteOrderAsync(Guid id)

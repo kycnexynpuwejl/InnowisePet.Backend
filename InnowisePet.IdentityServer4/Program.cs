@@ -3,9 +3,9 @@ using InnowisePet.IdentityServer4.Extensions;
 using InnowisePet.IdentityServer4.Services;
 using Microsoft.EntityFrameworkCore;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+string connString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<AuthDbContext>(options =>
     options.UseSqlite(connString));
@@ -15,7 +15,7 @@ builder.Services.ConfigureServices();
 builder.Services.AddControllers();
 
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.UseRouting();
 app.UseIdentityServer();

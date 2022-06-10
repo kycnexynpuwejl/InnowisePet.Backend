@@ -1,8 +1,7 @@
 using InnowisePet.DTO.DTO.Order;
-using InnowisePet.Services.Order.BLL;
 using MassTransit;
 
-namespace InnowisePet.Services.Order.API;
+namespace InnowisePet.Services.Order.BLL.Consumers;
 
 public class OrderUpdateConsumer : IConsumer<OrderUpdateDto>
 {

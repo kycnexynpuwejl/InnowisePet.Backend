@@ -1,4 +1,4 @@
-using InnowisePet.Services.Order.API.Consumers;
+using InnowisePet.Services.Order.BLL.Consumers;
 using MassTransit;
 
 namespace InnowisePet.Services.Order.API.Extensions;

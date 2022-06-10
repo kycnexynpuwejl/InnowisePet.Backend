@@ -29,7 +29,7 @@ namespace InnowisePet.Services.Order.DAL.Repo
 
         public async Task UpdateOrderAsync(Guid id, Order order)
         {
-            var orderFromDb = await _context.Orders.FindAsync(id);
+            Order orderFromDb = await _context.Orders.FindAsync(id);
 
             if (orderFromDb == null) return;
 
@@ -44,7 +44,7 @@ namespace InnowisePet.Services.Order.DAL.Repo
 
         public async Task DeleteOrderAsync(Guid id)
         {
-            var orderFromDb = await _context.Orders.FindAsync(id);
+            Order orderFromDb = await _context.Orders.FindAsync(id);
 
             if (orderFromDb == null) return;
 

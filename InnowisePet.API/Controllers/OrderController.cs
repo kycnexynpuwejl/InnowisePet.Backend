@@ -39,8 +39,8 @@ public class OrderController : ControllerBase
         return Ok();
     }
     
-    [HttpDelete]
-    public async Task<IActionResult> DeleteOrderAsync(Guid id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteOrderAsync([FromRoute]Guid id)
     {
         OrderDeleteDto orderDeleteDto = new OrderDeleteDto { Id = id };
         await _publishEndpoint.Publish<OrderDeleteDto>(orderDeleteDto);

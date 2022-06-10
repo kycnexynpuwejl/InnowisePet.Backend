@@ -67,7 +67,7 @@ public class AuthenticationController : Controller
     [HttpPost("login")]
     public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
     {
-        var userInfo = await _accountService.AuthenticateUser(user);
+        AuthenticatedUserInfo userInfo = await _accountService.AuthenticateUser(user);
         return Ok(userInfo);
     }
 }
