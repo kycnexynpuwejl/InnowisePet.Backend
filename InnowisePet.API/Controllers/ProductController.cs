@@ -1,5 +1,5 @@
+using System.Security.Claims;
 using InnowisePet.BLL.Services.Interfaces;
-using InnowisePet.DTO.DTO;
 using InnowisePet.DTO.DTO.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +21,8 @@ public class ProductController : Controller
     [HttpGet("list")]
     public async Task<IActionResult> GetProductsAsync()
     {
+        string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        
         return Ok(await _productService.GetProductsAsync());
     }
 
