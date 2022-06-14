@@ -1,6 +1,6 @@
 using System.Security.Claims;
 using InnowisePet.DTO.DTO.Order;
-using InnowisePet.HttpClients;
+using InnowisePet.HttpClient;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,6 +45,15 @@ public class OrderController : ControllerBase
     public async Task<IActionResult> UpdateOrderAsync(OrderUpdateDto orderUpdateDto)
     {
         await _publishEndpoint.Publish(orderUpdateDto);
+
+        return Ok();
+    }
+    
+    [HttpPut("list")]
+    public async Task<IActionResult> UpdateOrdersAsync(IEnumerable<OrderUpdateDto> orderUpdateDtoList)
+    {
+        var list = new OrderUpdateDtoList() { List = orderUpdateDtoList };
+        await _publishEndpoint.Publish(list);
 
         return Ok();
     }

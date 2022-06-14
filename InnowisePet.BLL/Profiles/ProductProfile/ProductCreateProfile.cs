@@ -9,10 +9,10 @@ public class ProductCreateProfile : Profile
     public ProductCreateProfile()
     {
         CreateMap<ProductCreateDto, Product>()
-            .ForMember(p => p.id, opt => opt.MapFrom(p => Guid.NewGuid()))
-            .ForMember(p => p.category_id, opt => opt.MapFrom(p => p.CategoryId))
-            .ForMember(p => p.title, opt => opt.MapFrom(p => p.Title))
-            .ForMember(p => p.description, opt => opt.MapFrom(p => p.Description))
-            .ForMember(p => p.price, opt => opt.MapFrom(p => p.Price));
+            .ForMember(p => p.Id, opt => opt.MapFrom(p => Guid.NewGuid()))
+            .ForMember(p => p.CategoryId, opt => opt.MapFrom(p => p.CategoryId))
+            .ForMember(p => p.Title, opt => opt.MapFrom(p => p.Title))
+            .ForMember(p => p.Description, opt => opt.MapFrom(p => p.Description))
+            .ForMember(p => p.Price, opt => opt.MapFrom(p => p.Price));
     }
 }

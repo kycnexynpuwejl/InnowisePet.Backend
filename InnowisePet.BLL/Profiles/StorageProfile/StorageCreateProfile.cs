@@ -9,8 +9,8 @@ public class StorageCreateProfile : Profile
     public StorageCreateProfile()
     {
         CreateMap<StorageCreateDto, Storage>()
-            .ForMember(s => s.id, opt => opt.MapFrom(s => Guid.NewGuid()))
-            .ForMember(s => s.location_id, opt => opt.MapFrom(s => s.LocationId))
-            .ForMember(s => s.title, opt => opt.MapFrom(s => s.Title));
+            .ForMember(s => s.Id, opt => opt.MapFrom(s => Guid.NewGuid()))
+            .ForMember(s => s.LocationId, opt => opt.MapFrom(s => s.LocationId))
+            .ForMember(s => s.Title, opt => opt.MapFrom(s => s.Title));
     }
 }

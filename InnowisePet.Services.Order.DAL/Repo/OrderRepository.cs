@@ -27,12 +27,15 @@ public class OrderRepository : IOrderRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateOrderAsync(Guid id, Order order)
+    public async Task UpdateOrderAsync(Order order)
     {
-        Order orderFromDb = await _context.Orders.FindAsync(id);
+        Order orderFromDb = await _context.Orders.FindAsync(order.Id);
 
         if (orderFromDb == null) return;
 
+        orderFromDb.ProductId = order.ProductId;
+        orderFromDb.Quantity = order.Quantity;
+        orderFromDb.OrderStatus = order.OrderStatus;
         orderFromDb.Firstname = order.Firstname;
         orderFromDb.Lastname = order.Lastname;
         orderFromDb.Address = order.Address;

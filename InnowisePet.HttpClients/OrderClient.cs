@@ -1,14 +1,14 @@
 using InnowisePet.DTO.DTO.Order;
 
-namespace InnowisePet.HttpClients;
+namespace InnowisePet.HttpClient;
 
 public class OrderClient
 {
-    private const string Url = "api/order";
+    private const string Url = "api/order/";
 
-    private readonly HttpClient _httpClient;
+    private readonly System.Net.Http.HttpClient _httpClient;
 
-    public OrderClient(HttpClient httpClient)
+    public OrderClient(System.Net.Http.HttpClient httpClient)
     {
         _httpClient = httpClient;
     }
@@ -22,7 +22,7 @@ public class OrderClient
 
     public async Task<OrderGetDto> GetOrderByIdAsync(Guid id)
     {
-        HttpResponseMessage result = await _httpClient.GetAsync(Url + "{id}");
+        HttpResponseMessage result = await _httpClient.GetAsync(Url + $"{id}");
 
         return await CommonHttpClientExtensions.Deserialize<OrderGetDto>(result);
     }

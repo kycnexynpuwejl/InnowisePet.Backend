@@ -9,6 +9,6 @@ public class CategoryUpdateProfile : Profile
     public CategoryUpdateProfile()
     {
         CreateMap<CategoryUpdateDto, Category>()
-            .ForMember(c => c.title, opt => opt.MapFrom(c => c.Title));
+            .ForMember(c => c.Title, opt => opt.MapFrom(c => c.Title));
     }
 }

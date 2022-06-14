@@ -29,9 +29,9 @@ public class StorageService : IStorageService
     public async Task<StorageGetDto> GetStorageByIdAsync(Guid id)
     {
         Storage result = await _storageRepository.GetStorageByIdAsync(id);
-        Location location = await _locationRepository.GetLocationByIdAsync(result.location_id);
+        Location location = await _locationRepository.GetLocationByIdAsync(result.LocationId);
         StorageGetDto mappedResult = _mapper.Map<StorageGetDto>(result);
-        mappedResult.LocationName = location.city;
+        mappedResult.LocationName = location.City;
 
         return mappedResult;
     }

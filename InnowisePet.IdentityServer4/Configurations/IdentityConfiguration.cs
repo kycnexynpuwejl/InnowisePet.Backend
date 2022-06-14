@@ -6,7 +6,7 @@ namespace InnowisePet.IdentityServer4.Configurations;
 
 public static class IdentityConfiguration
 {
-    public static string ScopeAPI => "APIScope";
+    public static string ScopeApi => "APIScope";
     public static string ScopeRoles => "roles";
 
     public static IEnumerable<Client> Clients()
@@ -24,7 +24,7 @@ public static class IdentityConfiguration
                     IdentityServerConstants.StandardScopes.OfflineAccess,
                     IdentityServerConstants.StandardScopes.Profile,
                     IdentityServerConstants.StandardScopes.OpenId,
-                    ScopeAPI
+                    ScopeApi
                 },
 
                 AllowOfflineAccess = true
@@ -36,11 +36,11 @@ public static class IdentityConfiguration
     {
         return new List<ApiResource>
         {
-            new(ScopeAPI, new[] { JwtClaimTypes.Name, JwtClaimTypes.Role })
+            new(ScopeApi, new[] { JwtClaimTypes.Name, JwtClaimTypes.Role })
             {
                 Scopes =
                 {
-                    ScopeAPI,
+                    ScopeApi,
                     ScopeRoles,
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.OfflineAccess,
@@ -64,7 +64,7 @@ public static class IdentityConfiguration
     {
         return new List<ApiScope>
         {
-            new(ScopeAPI)
+            new(ScopeApi)
         };
     }
 }

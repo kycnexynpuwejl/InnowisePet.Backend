@@ -11,8 +11,8 @@ public class ReportController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        HtmlToPdf Renderer = new();
-        PdfDocument? pdf = Renderer.RenderHtmlAsPdf("<h1>Hello World<h1>").SaveAs("html-string.pdf");
+        HtmlToPdf renderer = new();
+        PdfDocument? pdf = renderer.RenderHtmlAsPdf("<h1>Hello World<h1>").SaveAs("html-string.pdf");
         string connectionString = "mongodb://localhost:27017";
         MongoClient client = new(connectionString);
         IMongoDatabase database = client.GetDatabase("test");

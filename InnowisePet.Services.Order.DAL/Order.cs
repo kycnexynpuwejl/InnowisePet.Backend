@@ -1,4 +1,4 @@
-using InnowisePet.Common;
+using InnowisePet.Models.Enums;
 
 namespace InnowisePet.Services.Order.DAL;
 

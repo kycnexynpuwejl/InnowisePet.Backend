@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace InnowisePet.HttpClients;
+namespace InnowisePet.HttpClient;
 
 public static class CommonHttpClientExtensions
 {

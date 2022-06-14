@@ -9,9 +9,9 @@ public class ProductStorageCreateProfile : Profile
     public ProductStorageCreateProfile()
     {
         CreateMap<ProductStorageCreateDto, ProductStorage>()
-            .ForMember(ps => ps.id, opt => opt.MapFrom(ps => Guid.NewGuid()))
-            .ForMember(ps => ps.product_id, opt => opt.MapFrom(ps => ps.ProductId))
-            .ForMember(ps => ps.storage_id, opt => opt.MapFrom(ps => ps.StorageId))
-            .ForMember(ps => ps.quantity, opt => opt.MapFrom(ps => ps.Quantity));
+            .ForMember(ps => ps.Id, opt => opt.MapFrom(ps => Guid.NewGuid()))
+            .ForMember(ps => ps.ProductId, opt => opt.MapFrom(ps => ps.ProductId))
+            .ForMember(ps => ps.StorageId, opt => opt.MapFrom(ps => ps.StorageId))
+            .ForMember(ps => ps.Quantity, opt => opt.MapFrom(ps => ps.Quantity));
     }
 }

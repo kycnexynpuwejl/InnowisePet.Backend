@@ -9,16 +9,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
-        <PackageReference Include="MassTransit" Version="8.0.3"/>
-        <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.3"/>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+        <PackageReference Include="MassTransit" Version="8.0.3" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\InnowisePet.BLL\InnowisePet.BLL.csproj"/>
-        <ProjectReference Include="..\InnowisePet.HttpClients\InnowisePet.HttpClients.csproj"/>
+        <ProjectReference Include="..\InnowisePet.BLL\InnowisePet.BLL.csproj" />
+        <ProjectReference Include="..\InnowisePet.HttpClients\InnowisePet.HttpClients.csproj" />
     </ItemGroup>
 
 </Project>

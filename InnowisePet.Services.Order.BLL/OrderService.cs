@@ -36,11 +36,11 @@ public class OrderService : IOrderService
         await _orderRepository.CreateOrderAsync(order);
     }
 
-    public async Task UpdateOrderAsync(Guid id, OrderUpdateDto orderUpdateDto)
+    public async Task UpdateOrderAsync(OrderUpdateDto orderUpdateDto)
     {
         DAL.Order order = _mapper.Map<DAL.Order>(orderUpdateDto);
 
-        await _orderRepository.UpdateOrderAsync(id, order);
+        await _orderRepository.UpdateOrderAsync(order);
     }
 
     public async Task DeleteOrderAsync(Guid id)

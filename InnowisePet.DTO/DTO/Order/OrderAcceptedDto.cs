@@ -1,18 +1,10 @@
-using InnowisePet.Models.Enums;
-
 namespace InnowisePet.DTO.DTO.Order;
 
-public class OrderUpdateDto
+public class OrderAcceptedDto
 {
-    public Guid Id { get; set; }
-
-    public Guid UserId { get; set; }
-
     public int Quantity { get; set; }
 
     public Guid ProductId { get; set; }
-
-    public OrderStatus OrderStatus { get; set; }
     
     public string Firstname { get; set; }
     

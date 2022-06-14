@@ -2,10 +2,10 @@
 
 public class User
 {
-    public Guid id { get; set; }
-    public string firstname { get; set; }
-    public string lastname { get; set; }
-    public string email { get; set; }
-    public string password_hash { get; set; }
-    public string mobile { get; set; }
+    public Guid Id { get; set; }
+    public string Firstname { get; set; }
+    public string Lastname { get; set; }
+    public string Username { get; set; }
+    public string Email { get; set; }
+    public string Mobile { get; set; }
 }

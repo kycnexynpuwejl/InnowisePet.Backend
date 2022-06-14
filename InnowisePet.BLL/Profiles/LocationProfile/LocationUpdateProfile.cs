@@ -9,6 +9,6 @@ public class LocationUpdateProfile : Profile
     public LocationUpdateProfile()
     {
         CreateMap<LocationUpdateDto, Location>()
-            .ForMember(l => l.city, opt => opt.MapFrom(l => l.City));
+            .ForMember(l => l.City, opt => opt.MapFrom(l => l.City));
     }
 }

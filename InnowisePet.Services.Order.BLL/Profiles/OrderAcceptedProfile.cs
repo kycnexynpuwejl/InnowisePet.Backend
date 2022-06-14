@@ -3,13 +3,12 @@ using InnowisePet.DTO.DTO.Order;
 
 namespace InnowisePet.Services.Order.BLL.Profiles;
 
-public class OrderUpdateProfile : Profile
+public class OrderAcceptedProfile : Profile
 {
-    public OrderUpdateProfile()
+    public OrderAcceptedProfile()
     {
-        CreateMap<OrderUpdateDto, DAL.Order>()
+        CreateMap<OrderUpdateDto, OrderAcceptedDto>()
             .ForMember(p => p.Quantity, opt => opt.MapFrom(p => p.Quantity))
-            .ForMember(p => p.OrderStatus, opt => opt.MapFrom(p => p.OrderStatus))
             .ForMember(p => p.ProductId, opt => opt.MapFrom(p => p.ProductId))
             .ForMember(p => p.Firstname, opt => opt.MapFrom(p => p.Firstname))
             .ForMember(p => p.Lastname, opt => opt.MapFrom(p => p.Lastname))

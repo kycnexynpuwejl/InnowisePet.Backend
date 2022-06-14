@@ -9,7 +9,7 @@ public class StorageUpdateProfile : Profile
     public StorageUpdateProfile()
     {
         CreateMap<StorageUpdateDto, Storage>()
-            .ForMember(s => s.location_id, opt => opt.MapFrom(s => s.LocationId))
-            .ForMember(s => s.title, opt => opt.MapFrom(s => s.Title));
+            .ForMember(s => s.LocationId, opt => opt.MapFrom(s => s.LocationId))
+            .ForMember(s => s.Title, opt => opt.MapFrom(s => s.Title));
     }
 }
