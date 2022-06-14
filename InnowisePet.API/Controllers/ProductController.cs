@@ -22,7 +22,7 @@ public class ProductController : Controller
     public async Task<IActionResult> GetProductsAsync()
     {
         string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        
+
         return Ok(await _productService.GetProductsAsync());
     }
 
@@ -39,7 +39,8 @@ public class ProductController : Controller
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProductAsync([FromRoute] Guid id, [FromBody] ProductUpdateDto productUpdateDto)
+    public async Task<IActionResult> UpdateProductAsync([FromRoute] Guid id,
+        [FromBody] ProductUpdateDto productUpdateDto)
     {
         return Ok(await _productService.UpdateProductAsync(id, productUpdateDto));
     }

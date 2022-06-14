@@ -1,11 +1,9 @@
-using System.Reflection;
 using InnowisePet.IdentityServer4.Configurations;
 using InnowisePet.IdentityServer4.Data;
 using InnowisePet.IdentityServer4.Models;
 using InnowisePet.IdentityServer4.Services.Implementations;
 using InnowisePet.IdentityServer4.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace InnowisePet.IdentityServer4.Extensions;
 
@@ -21,7 +19,6 @@ public static class ServiceExtensions
                 config.Password.RequireLowercase = false;
                 config.Password.RequiredUniqueChars = 0;
                 config.Password.RequiredLength = 1;
-
             }).AddEntityFrameworkStores<AuthDbContext>()
             .AddDefaultTokenProviders();
 
@@ -33,11 +30,10 @@ public static class ServiceExtensions
             .AddInMemoryApiScopes(IdentityConfiguration.ApiScopes())
             .AddDeveloperSigningCredential();
     }
-    
+
     public static void ConfigureServices(this IServiceCollection services)
     {
         services.AddScoped<IAuthenticationManager, AuthenticationManager>();
         services.AddScoped<IAccountService, AccountService>();
     }
 }
-

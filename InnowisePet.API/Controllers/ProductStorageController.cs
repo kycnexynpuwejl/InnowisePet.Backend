@@ -1,5 +1,4 @@
 using InnowisePet.BLL.Services.Interfaces;
-using InnowisePet.DTO.DTO;
 using InnowisePet.DTO.DTO.ProductStorage;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,12 +9,12 @@ namespace InnowisePet.API.Controllers;
 public class ProductStorageController : Controller
 {
     private readonly IProductStorageService _productStorageService;
-    
+
     public ProductStorageController(IProductStorageService productStorageService)
     {
         _productStorageService = productStorageService;
     }
-    
+
     [HttpGet("list")]
     public async Task<IActionResult> GetProductStoragesAsync()
     {
@@ -33,9 +32,10 @@ public class ProductStorageController : Controller
     {
         return Ok(await _productStorageService.CreateProductStorageAsync(productStorageCreateDto));
     }
-    
+
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProductStorageAsync([FromRoute] Guid id, [FromBody] ProductStorageUpdateDto productUpdateDto)
+    public async Task<IActionResult> UpdateProductStorageAsync([FromRoute] Guid id,
+        [FromBody] ProductStorageUpdateDto productUpdateDto)
     {
         return Ok(await _productStorageService.UpdateProductStorageAsync(id, productUpdateDto));
     }

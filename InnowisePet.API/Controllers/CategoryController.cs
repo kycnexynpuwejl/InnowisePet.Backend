@@ -1,5 +1,4 @@
 using InnowisePet.BLL.Services.Interfaces;
-using InnowisePet.DTO.DTO;
 using InnowisePet.DTO.DTO.Category;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +9,7 @@ namespace InnowisePet.API.Controllers;
 public class CategoryController : Controller
 {
     private readonly ICategoryService _categoryService;
-    
+
     public CategoryController(ICategoryService categoryService)
     {
         _categoryService = categoryService;

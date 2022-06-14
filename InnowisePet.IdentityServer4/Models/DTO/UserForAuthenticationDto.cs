@@ -9,5 +9,4 @@ public class UserForAuthenticationDto
 
     [Required(ErrorMessage = "Password - required field")]
     public string Password { get; set; }
-
 }

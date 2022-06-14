@@ -29,7 +29,7 @@ public class StorageRepository : IStorageRepository
 
         return await _dbConnection.QueryAsync<Storage>(sql);
     }
-    
+
     public async Task<Storage> GetStorageByIdAsync(Guid id)
     {
         string sql = $@"
@@ -37,10 +37,10 @@ public class StorageRepository : IStorageRepository
                                 FROM [dbo].[storage]
                                 WHERE id = '{id}'
                             ";
-        
+
         return await _dbConnection.QueryFirstAsync<Storage>(sql);
     }
-    
+
     public async Task<bool> CreateStorageAsync(Storage storage)
     {
         const string sql = @"
@@ -48,12 +48,12 @@ public class StorageRepository : IStorageRepository
                                 (id, location_id, title)
                             VALUES(@id, @location_id, @title)
                             ";
-        
-        int result =  await _dbConnection.ExecuteAsync(sql, storage);
-        
+
+        int result = await _dbConnection.ExecuteAsync(sql, storage);
+
         return result > 0;
     }
-    
+
     public async Task<bool> UpdateStorageAsync(Guid id, Storage storage)
     {
         string sql = $@"
@@ -63,19 +63,19 @@ public class StorageRepository : IStorageRepository
                                 title = @title
                             WHERE id = '{id}'
                             ";
-        
+
         int result = await _dbConnection.ExecuteAsync(sql, storage);
 
         return result > 0;
     }
-    
+
     public async Task<bool> DeleteStorageAsync(Guid id)
     {
         string sql = $@"
                         DELETE FROM [dbo].[storage]
                             WHERE id = '{id}'
                         ";
-        
+
         int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;

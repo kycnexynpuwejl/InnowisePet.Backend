@@ -7,4 +7,8 @@
         <RootNamespace>InnowisePet.DTO</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\InnowisePet.Models\InnowisePet.Models.csproj"/>
+    </ItemGroup>
+
 </Project>

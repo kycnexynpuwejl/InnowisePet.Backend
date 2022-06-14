@@ -7,28 +7,19 @@ public static class ServiceExtensions
 {
     public static void ConfigureMassTransit(this IServiceCollection services)
     {
-        services.AddMassTransit(x => {
-            
+        services.AddMassTransit(x =>
+        {
             x.AddConsumer<OrderCreateConsumer>();
             x.AddConsumer<OrderUpdateConsumer>();
             x.AddConsumer<OrderDeleteConsumer>();
-            
+
+
             x.UsingRabbitMq((context, cfg) =>
             {
-                cfg.ReceiveEndpoint("OrderCreateQueue", e =>
-                {
-                    e.ConfigureConsumer<OrderCreateConsumer>(context);
-                });
-                cfg.ReceiveEndpoint("OrderUpdateQueue", e =>
-                {
-                    e.ConfigureConsumer<OrderUpdateConsumer>(context);
-                });
-                cfg.ReceiveEndpoint("OrderDeleteQueue", e =>
-                {
-                    e.ConfigureConsumer<OrderDeleteConsumer>(context);
-                });
+                cfg.ReceiveEndpoint("OrderCreateQueue", e => { e.ConfigureConsumer<OrderCreateConsumer>(context); });
+                cfg.ReceiveEndpoint("OrderUpdateQueue", e => { e.ConfigureConsumer<OrderUpdateConsumer>(context); });
+                cfg.ReceiveEndpoint("OrderDeleteQueue", e => { e.ConfigureConsumer<OrderDeleteConsumer>(context); });
             });
         });
     }
-
 }

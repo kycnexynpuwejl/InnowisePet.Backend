@@ -25,7 +25,7 @@ public class UserRepository : IUserRepository
                                 u.mobile
                             FROM [dbo].[user] u
                             ";
-        
+
         return await _dbConnection.QueryAsync<User>(sql);
     }
 
@@ -44,7 +44,7 @@ public class UserRepository : IUserRepository
 
         return await _dbConnection.QueryFirstAsync<User>(sql);
     }
-    
+
     public async Task<bool> CreateUserAsync(User user)
     {
         const string sql = @"
@@ -52,12 +52,12 @@ public class UserRepository : IUserRepository
                                 (id, firstname, lastname, email, mobile, password_hash)
                             VALUES(@id, @firstname, @lastname, @email, @mobile, @password_hash)
                             ";
-        
-        int result =  await _dbConnection.ExecuteAsync(sql, user);
-        
+
+        int result = await _dbConnection.ExecuteAsync(sql, user);
+
         return result > 0;
     }
-    
+
     public async Task<bool> UpdateUserAsync(Guid id, User user)
     {
         string sql = $@"
@@ -70,19 +70,19 @@ public class UserRepository : IUserRepository
                                 password_hash = password_hash
                             WHERE id = '{id}'
                             ";
-        
+
         int result = await _dbConnection.ExecuteAsync(sql, user);
 
         return result > 0;
     }
-    
+
     public async Task<bool> DeleteUserAsync(Guid id)
     {
         string sql = $@"
                         DELETE FROM [dbo].[user]
                             WHERE id = '{id}'
                         ";
-        
+
         int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;

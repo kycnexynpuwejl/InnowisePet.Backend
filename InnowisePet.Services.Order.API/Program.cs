@@ -1,10 +1,7 @@
-using InnowisePet.DTO.DTO.Order;
-using InnowisePet.Services.Order.API;
 using InnowisePet.Services.Order.API.Extensions;
 using InnowisePet.Services.Order.BLL;
 using InnowisePet.Services.Order.DAL;
 using InnowisePet.Services.Order.DAL.Repo;
-using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

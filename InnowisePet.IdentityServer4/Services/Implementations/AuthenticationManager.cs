@@ -1,19 +1,19 @@
 using IdentityModel.Client;
-using IdentityServer4;
-using Microsoft.AspNetCore.Identity;
 using InnowisePet.IdentityServer4.Models;
 using InnowisePet.IdentityServer4.Models.DTO;
 using InnowisePet.IdentityServer4.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace InnowisePet.IdentityServer4.Services.Implementations;
 
 public class AuthenticationManager : IAuthenticationManager
 {
-    private readonly UserManager<AppUser> _userManager;
-    private readonly SignInManager<AppUser> _signInManager;
     private readonly IHttpClientFactory _httpClientFactory;
+    private readonly SignInManager<AppUser> _signInManager;
+    private readonly UserManager<AppUser> _userManager;
 
-    public AuthenticationManager(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IHttpClientFactory httpClientFactory)
+    public AuthenticationManager(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
+        IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
         _signInManager = signInManager;
@@ -24,29 +24,26 @@ public class AuthenticationManager : IAuthenticationManager
     {
         AppUser user = await _userManager.FindByNameAsync(userForAuth.UserName);
 
-        SignInResult res = await _signInManager.PasswordSignInAsync(userForAuth.UserName, userForAuth.Password, false, false);
+        SignInResult res =
+            await _signInManager.PasswordSignInAsync(userForAuth.UserName, userForAuth.Password, false, false);
 
-        if (res.Succeeded)
-        {
-            return user;
-        }
+        if (res.Succeeded) return user;
         return null;
     }
 
     public async Task<(string accessToken, string refreshToken)> GetTokens(UserForAuthenticationDto user)
     {
         HttpClient client = _httpClientFactory.CreateClient();
-        PasswordTokenRequest tokenRequest = new PasswordTokenRequest()
+        PasswordTokenRequest tokenRequest = new()
         {
             Address = "https://localhost:7000/connect/token",
             ClientId = "APIClient",
             Scope = "APIScope offline_access",
             UserName = user.UserName,
-            Password = user.Password,
+            Password = user.Password
         };
         TokenResponse tokenResponse = await client.RequestPasswordTokenAsync(tokenRequest);
 
         return (tokenResponse.AccessToken, tokenResponse.RefreshToken);
     }
 }
-

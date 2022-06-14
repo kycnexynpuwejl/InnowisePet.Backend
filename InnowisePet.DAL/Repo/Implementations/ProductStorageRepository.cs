@@ -13,7 +13,7 @@ public class ProductStorageRepository : IProductStorageRepository
     {
         _dbConnection = dbConnection;
     }
-    
+
     public async Task<IEnumerable<ProductStorage>> GetProductStoragesAsync()
     {
         const string sql = @"
@@ -30,10 +30,10 @@ public class ProductStorageRepository : IProductStorageRepository
                                 JOIN [dbo].[storage] s
                                 ON s.id = ps.storage_id
                             ";
-        
+
         return await _dbConnection.QueryAsync<ProductStorage>(sql);
     }
-    
+
     public async Task<ProductStorage> GetProductStorageByIdAsync(Guid id)
     {
         string sql = $@"
@@ -51,10 +51,10 @@ public class ProductStorageRepository : IProductStorageRepository
                                 ON s.id = ps.storage_id
                                 WHERE ps.id = '{id}'
                             ";
-        
+
         return await _dbConnection.QueryFirstAsync<ProductStorage>(sql);
     }
-    
+
     public async Task<bool> CreateProductStorageAsync(ProductStorage productStorage)
     {
         const string sql = @"
@@ -62,12 +62,12 @@ public class ProductStorageRepository : IProductStorageRepository
                                 (id, product_id, storage_id, quantity)
                             VALUES(@id, @product_id, @storage_id, @quantity)
                             ";
-        
-        int result =  await _dbConnection.ExecuteAsync(sql, productStorage);
-        
+
+        int result = await _dbConnection.ExecuteAsync(sql, productStorage);
+
         return result > 0;
     }
-    
+
     public async Task<bool> UpdateProductStorageAsync(Guid id, ProductStorage productStorage)
     {
         string sql = $@"
@@ -78,9 +78,9 @@ public class ProductStorageRepository : IProductStorageRepository
                                 quantity = @quantity
                             WHERE id = '{id}'
                             ";
-        
-        int result =  await _dbConnection.ExecuteAsync(sql, productStorage);
-        
+
+        int result = await _dbConnection.ExecuteAsync(sql, productStorage);
+
         return result > 0;
     }
 
@@ -90,7 +90,7 @@ public class ProductStorageRepository : IProductStorageRepository
                         DELETE FROM [dbo].[product_storage]
                             WHERE id = '{id}'
                         ";
-        
+
         int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;

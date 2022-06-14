@@ -8,7 +8,7 @@ namespace InnowisePet.DAL.Repo.Implementations;
 public class CategoryRepository : ICategoryRepository
 {
     private readonly IDbConnection _dbConnection;
-    
+
     public CategoryRepository(IDbConnection dbConnection)
     {
         _dbConnection = dbConnection;
@@ -42,7 +42,7 @@ public class CategoryRepository : ICategoryRepository
                                 (id, title)
                             VALUES(@id, @title)
                             ";
-        
+
         int result = await _dbConnection.ExecuteAsync(sql, category);
 
         return result > 0;
@@ -55,7 +55,7 @@ public class CategoryRepository : ICategoryRepository
                             SET title = @title
                             WHERE id = '{id}'
                         ";
-        
+
         int result = await _dbConnection.ExecuteAsync(sql, category);
 
         return result > 0;
@@ -67,7 +67,7 @@ public class CategoryRepository : ICategoryRepository
                         DELETE FROM [dbo].[category]
                             WHERE id = '{id}'
                         ";
-        
+
         int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;

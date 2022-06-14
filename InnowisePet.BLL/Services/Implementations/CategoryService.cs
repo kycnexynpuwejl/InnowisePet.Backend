@@ -1,7 +1,6 @@
 using AutoMapper;
 using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DAL.Repo.Interfaces;
-using InnowisePet.DTO.DTO;
 using InnowisePet.DTO.DTO.Category;
 using InnowisePet.Models.Entities;
 
@@ -11,7 +10,7 @@ public class CategoryService : ICategoryService
 {
     private readonly ICategoryRepository _categoryRepository;
     private readonly IMapper _mapper;
-    
+
     public CategoryService(ICategoryRepository categoryRepository, IMapper mapper)
     {
         _categoryRepository = categoryRepository;

@@ -16,9 +16,9 @@ public class AuthenticationController : Controller
     {
         _accountService = accountService;
     }
-    
+
     /// <summary>
-    /// Creates a new user
+    ///     Creates a new user
     /// </summary>
     /// <param name="userForCreation"></param>
     [HttpPost]
@@ -28,10 +28,10 @@ public class AuthenticationController : Controller
         await _accountService.CreateUser(userForCreation);
         return Ok();
     }
-    
+
     /// <summary>
-    /// Add role to user
-    /// | Required role: Administrator
+    ///     Add role to user
+    ///     | Required role: Administrator
     /// </summary>
     /// <param name="login"></param>
     /// <param name="role"></param>
@@ -43,10 +43,10 @@ public class AuthenticationController : Controller
         await _accountService.AddRoleToUser(login, role);
         return Ok();
     }
-    
+
     /// <summary>
-    /// Remove role from user
-    /// | Required role: Administrator
+    ///     Remove role from user
+    ///     | Required role: Administrator
     /// </summary>
     /// <param name="login"></param>
     /// <param name="role"></param>
@@ -58,9 +58,9 @@ public class AuthenticationController : Controller
         await _accountService.RemoveRoleFromUser(login, role);
         return Ok();
     }
-    
+
     /// <summary>
-    /// Authenticate user by username and password
+    ///     Authenticate user by username and password
     /// </summary>
     /// <param name="user"></param>
     /// <returns>Returns access token for authenticated user</returns>

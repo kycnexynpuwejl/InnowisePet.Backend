@@ -11,10 +11,10 @@ public class ReportController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        HtmlToPdf Renderer = new HtmlToPdf();
+        HtmlToPdf Renderer = new();
         PdfDocument? pdf = Renderer.RenderHtmlAsPdf("<h1>Hello World<h1>").SaveAs("html-string.pdf");
         string connectionString = "mongodb://localhost:27017";
-        MongoClient client = new MongoClient(connectionString);
+        MongoClient client = new(connectionString);
         IMongoDatabase database = client.GetDatabase("test");
         return Ok();
     }

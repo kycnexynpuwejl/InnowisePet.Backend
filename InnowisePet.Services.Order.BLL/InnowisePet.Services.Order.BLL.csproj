@@ -7,13 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\InnowisePet.DTO\InnowisePet.DTO.csproj" />
-      <ProjectReference Include="..\InnowisePet.Services.Order.DAL\InnowisePet.Services.Order.DAL.csproj" />
+        <ProjectReference Include="..\InnowisePet.DTO\InnowisePet.DTO.csproj"/>
+        <ProjectReference Include="..\InnowisePet.Services.Order.DAL\InnowisePet.Services.Order.DAL.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="AutoMapper" Version="11.0.1" />
-      <PackageReference Include="MassTransit.Abstractions" Version="8.0.3" />
+        <PackageReference Include="AutoMapper" Version="11.0.1"/>
+        <PackageReference Include="MassTransit.Abstractions" Version="8.0.3"/>
     </ItemGroup>
 
 </Project>

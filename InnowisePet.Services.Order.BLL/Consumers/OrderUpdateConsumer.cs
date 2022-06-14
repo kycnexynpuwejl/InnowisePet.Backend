@@ -6,6 +6,7 @@ namespace InnowisePet.Services.Order.BLL.Consumers;
 public class OrderUpdateConsumer : IConsumer<OrderUpdateDto>
 {
     private readonly IOrderService _orderService;
+
     public OrderUpdateConsumer(IOrderService orderService)
     {
         _orderService = orderService;

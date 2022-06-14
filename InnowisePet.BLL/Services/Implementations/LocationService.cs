@@ -1,7 +1,6 @@
 using AutoMapper;
 using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DAL.Repo.Interfaces;
-using InnowisePet.DTO.DTO;
 using InnowisePet.DTO.DTO.Location;
 using InnowisePet.Models.Entities;
 

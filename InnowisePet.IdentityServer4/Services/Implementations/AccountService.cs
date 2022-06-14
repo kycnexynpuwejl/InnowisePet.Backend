@@ -4,17 +4,17 @@ using InnowisePet.IdentityServer4.Models.DTO;
 using InnowisePet.IdentityServer4.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
-
 namespace InnowisePet.IdentityServer4.Services.Implementations;
 
 public class AccountService : IAccountService
 {
-    private readonly UserManager<AppUser> _userManager;
-    private readonly RoleManager<IdentityRole> _roleManager;
     private readonly IAuthenticationManager _authManager;
     private readonly IMapper _mapper;
+    private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly UserManager<AppUser> _userManager;
 
-    public AccountService(UserManager<AppUser> userManager, IMapper mapper, RoleManager<IdentityRole> roleManager, IAuthenticationManager authManager)
+    public AccountService(UserManager<AppUser> userManager, IMapper mapper, RoleManager<IdentityRole> roleManager,
+        IAuthenticationManager authManager)
     {
         _userManager = userManager;
         _roleManager = roleManager;
@@ -34,7 +34,7 @@ public class AccountService : IAccountService
 
         await _userManager.AddToRoleAsync(user, role);
     }
-    
+
     public async Task RemoveRoleFromUser(string login, string role)
     {
         AppUser user = await _userManager.FindByNameAsync(login);
@@ -52,10 +52,7 @@ public class AccountService : IAccountService
     {
         AppUser validUser = await _authManager.ReturnUserIfValid(user);
 
-        if (validUser == null)
-        {
-            throw new Exception("Unauthorized");
-        }
+        if (validUser == null) throw new Exception("Unauthorized");
 
         (string accessToken, string refreshToken) tokens = await _authManager.GetTokens(user);
 
@@ -76,10 +73,7 @@ public class AccountService : IAccountService
         if (!result.Succeeded)
         {
             string errors = "";
-            foreach (IdentityError error in result.Errors)
-            {
-                errors += $"{error.Code}: {error.Description}\n";
-            }
+            foreach (IdentityError error in result.Errors) errors += $"{error.Code}: {error.Description}\n";
             throw new Exception(errors);
         }
     }

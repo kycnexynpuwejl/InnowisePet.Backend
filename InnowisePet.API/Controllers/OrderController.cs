@@ -1,7 +1,7 @@
-using System.Text.Json;
+using System.Security.Claims;
 using InnowisePet.DTO.DTO.Order;
+using InnowisePet.HttpClients;
 using MassTransit;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.API.Controllers;
@@ -10,51 +10,51 @@ namespace InnowisePet.API.Controllers;
 [Route("api/[controller]")]
 public class OrderController : ControllerBase
 {
+    private readonly OrderClient _orderClient;
     private readonly IPublishEndpoint _publishEndpoint;
-    private readonly HttpClient _httpClient;
-    
-    public OrderController(IPublishEndpoint publishEndpoint, HttpClient httpClient)
+
+    public OrderController(IPublishEndpoint publishEndpoint, OrderClient orderClient)
     {
         _publishEndpoint = publishEndpoint;
-        _httpClient = httpClient;
+        _orderClient = orderClient;
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> GetOrdersAsync()
     {
-        HttpResponseMessage result = await _httpClient.GetAsync("https://localhost:7258/api/order");
-        return Ok(await result.Content.ReadAsStringAsync());
+        return Ok(await _orderClient.GetOrdersAsync());
     }
-    
+
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetOrderByIdAsync([FromRoute]Guid id)
+    public async Task<IActionResult> GetOrderByIdAsync([FromRoute] Guid id)
     {
-        HttpResponseMessage result = await _httpClient.GetAsync($"https://localhost:7258/api/order/{id}");
-        return Ok(await result.Content.ReadAsStringAsync());
+        return Ok(await _orderClient.GetOrderByIdAsync(id));
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> CreateOrderAsync(OrderCreateDto orderCreateDto)
     {
-        await _publishEndpoint.Publish<OrderCreateDto>(orderCreateDto);
-        
+        orderCreateDto.UserId = new Guid(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+        await _publishEndpoint.Publish(orderCreateDto);
+
         return Ok();
     }
-    
+
     [HttpPut]
     public async Task<IActionResult> UpdateOrderAsync(OrderUpdateDto orderUpdateDto)
     {
-        await _publishEndpoint.Publish<OrderUpdateDto>(orderUpdateDto);
-        
+        await _publishEndpoint.Publish(orderUpdateDto);
+
         return Ok();
     }
-    
+
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteOrderAsync([FromRoute]Guid id)
+    public async Task<IActionResult> DeleteOrderAsync([FromRoute] Guid id)
     {
-        OrderDeleteDto orderDeleteDto = new OrderDeleteDto { Id = id };
-        await _publishEndpoint.Publish<OrderDeleteDto>(orderDeleteDto);
-        
+        OrderDeleteDto orderDeleteDto = new() { Id = id };
+        await _publishEndpoint.Publish(orderDeleteDto);
+
         return Ok();
     }
 }

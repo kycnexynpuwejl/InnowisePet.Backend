@@ -3,6 +3,7 @@ using InnowisePet.BLL.Services.Implementations;
 using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DAL.Repo.Implementations;
 using InnowisePet.DAL.Repo.Interfaces;
+using InnowisePet.HttpClients;
 using MassTransit;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
@@ -14,12 +15,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddMassTransit(x =>
-{
-    x.UsingRabbitMq();
-});
+builder.Services.AddMassTransit(x => { x.UsingRabbitMq(); });
 
-builder.Services.AddScoped<HttpClient>();
+builder.Services.AddHttpClient<OrderClient>(c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["OrderServiceUri"]);
+});
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
@@ -35,7 +36,8 @@ builder.Services.AddScoped<IProductStorageService, ProductStorageService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
-builder.Services.AddTransient<IDbConnection>(_ => new SqlConnection(builder.Configuration.GetConnectionString("DbConnection")));
+builder.Services.AddTransient<IDbConnection>(_ =>
+    new SqlConnection(builder.Configuration.GetConnectionString("DbConnection")));
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>

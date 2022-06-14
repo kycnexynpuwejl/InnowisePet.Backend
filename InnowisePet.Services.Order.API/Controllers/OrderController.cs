@@ -19,7 +19,7 @@ public class OrderController : Controller
     {
         return Ok(await _orderService.GetOrdersAsync());
     }
-    
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetOrderByIdAsync(Guid id)
     {

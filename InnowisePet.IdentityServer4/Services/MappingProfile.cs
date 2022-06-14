@@ -2,19 +2,17 @@
 using InnowisePet.IdentityServer4.Models;
 using InnowisePet.IdentityServer4.Models.DTO;
 
+namespace InnowisePet.IdentityServer4.Services;
 
-namespace InnowisePet.IdentityServer4.Services
+public class MappingProfile : Profile
 {
-    public class MappingProfile : Profile
+    public MappingProfile()
     {
-        public MappingProfile()
-        {
-            CreateUserMaps();
-        }
+        CreateUserMaps();
+    }
 
-        private void CreateUserMaps()
-        {
-            CreateMap<UserForCreationDto, AppUser>();
-        }
+    private void CreateUserMaps()
+    {
+        CreateMap<UserForCreationDto, AppUser>();
     }
 }

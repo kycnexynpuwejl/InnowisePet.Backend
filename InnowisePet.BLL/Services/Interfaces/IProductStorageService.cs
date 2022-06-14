@@ -1,4 +1,3 @@
-using InnowisePet.DTO.DTO;
 using InnowisePet.DTO.DTO.ProductStorage;
 
 namespace InnowisePet.BLL.Services.Interfaces;

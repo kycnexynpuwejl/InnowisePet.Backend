@@ -1,7 +1,6 @@
 using AutoMapper;
 using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DAL.Repo.Interfaces;
-using InnowisePet.DTO.DTO;
 using InnowisePet.DTO.DTO.Product;
 using InnowisePet.Models.Entities;
 
@@ -9,18 +8,18 @@ namespace InnowisePet.BLL.Services.Implementations;
 
 public class ProductService : IProductService
 {
-    private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
-    
+    private readonly IProductRepository _productRepository;
+
     public ProductService(IProductRepository productRepository, IMapper mapper)
     {
         _productRepository = productRepository;
         _mapper = mapper;
     }
-    
+
     public async Task<IEnumerable<ProductGetDto>> GetProductsAsync()
     {
-        IEnumerable<Product> result =  await _productRepository.GetProductsAsync();
+        IEnumerable<Product> result = await _productRepository.GetProductsAsync();
 
         return _mapper.Map<IEnumerable<ProductGetDto>>(result);
     }

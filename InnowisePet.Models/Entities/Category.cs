@@ -1,8 +1,7 @@
-﻿namespace InnowisePet.Models.Entities
+﻿namespace InnowisePet.Models.Entities;
+
+public class Category
 {
-    public class Category
-    {
-        public Guid id { get; set; }
-        public string title { get; set; }
-    }
+    public Guid id { get; set; }
+    public string title { get; set; }
 }

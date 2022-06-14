@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MongoDB.Driver" Version="2.16.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="MongoDB.Driver" Version="2.16.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\InnowisePet.Services.Report.BLL\InnowisePet.Services.Report.BLL.csproj" />
+        <ProjectReference Include="..\InnowisePet.Services.Report.BLL\InnowisePet.Services.Report.BLL.csproj"/>
     </ItemGroup>
 
 </Project>

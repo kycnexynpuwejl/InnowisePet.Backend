@@ -1,5 +1,4 @@
 using AutoMapper;
-using InnowisePet.DTO.DTO;
 using InnowisePet.DTO.DTO.Category;
 using InnowisePet.Models.Entities;
 

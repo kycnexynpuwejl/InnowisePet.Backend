@@ -13,7 +13,7 @@ public static class IdentityConfiguration
     {
         return new List<Client>
         {
-            new Client
+            new()
             {
                 ClientId = "APIClient",
                 RequireClientSecret = false,
@@ -24,7 +24,7 @@ public static class IdentityConfiguration
                     IdentityServerConstants.StandardScopes.OfflineAccess,
                     IdentityServerConstants.StandardScopes.Profile,
                     IdentityServerConstants.StandardScopes.OpenId,
-                    ScopeAPI,
+                    ScopeAPI
                 },
 
                 AllowOfflineAccess = true
@@ -36,7 +36,7 @@ public static class IdentityConfiguration
     {
         return new List<ApiResource>
         {
-            new ApiResource(ScopeAPI, new []{JwtClaimTypes.Name,  JwtClaimTypes.Role})
+            new(ScopeAPI, new[] { JwtClaimTypes.Name, JwtClaimTypes.Role })
             {
                 Scopes =
                 {
@@ -44,11 +44,10 @@ public static class IdentityConfiguration
                     ScopeRoles,
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.OfflineAccess,
-                    IdentityServerConstants.StandardScopes.Profile,
-                },
-
+                    IdentityServerConstants.StandardScopes.Profile
+                }
             }
-          };
+        };
     }
 
     public static IEnumerable<IdentityResource> IdentityResources()
@@ -57,7 +56,7 @@ public static class IdentityConfiguration
         {
             new IdentityResources.OpenId(),
             new IdentityResources.Profile(),
-            new IdentityResource {Name = ScopeRoles, UserClaims={JwtClaimTypes.Role} }
+            new() { Name = ScopeRoles, UserClaims = { JwtClaimTypes.Role } }
         };
     }
 
@@ -65,7 +64,7 @@ public static class IdentityConfiguration
     {
         return new List<ApiScope>
         {
-            new ApiScope(ScopeAPI)
+            new(ScopeAPI)
         };
     }
 }

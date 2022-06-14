@@ -1,5 +1,4 @@
 using InnowisePet.BLL.Services.Interfaces;
-using InnowisePet.DTO.DTO;
 using InnowisePet.DTO.DTO.Location;
 using Microsoft.AspNetCore.Mvc;
 
