@@ -9,6 +9,8 @@ public class OrderCreateDto
     public int Quantity { get; set; }
 
     public Guid ProductId { get; set; }
+    
+    public string ProductName { get; set; }
 
     public OrderStatus OrderStatus { get; set; }
 }

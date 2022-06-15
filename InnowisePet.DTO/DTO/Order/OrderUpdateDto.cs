@@ -12,6 +12,8 @@ public class OrderUpdateDto
 
     public Guid ProductId { get; set; }
 
+    public string ProductName { get; set; }
+
     public OrderStatus OrderStatus { get; set; }
     
     public string Firstname { get; set; }

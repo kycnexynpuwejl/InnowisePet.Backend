@@ -45,9 +45,9 @@ public class ProductRepository : IProductRepository
                                 c.title as CategoryName,
                                 SUM(ps.quantity) OVER(PARTITION BY p.id) as Quantity
                             FROM [dbo].[product] p
-                                     JOIN [dbo].[category] c ON p.category_id = c.id
-                                     LEFT JOIN [dbo].[product_storage] ps ON p.id = ps.product_id
-                                WHERE p.id = '{id}'
+                                JOIN [dbo].[category] c ON p.category_id = c.id
+                                LEFT JOIN [dbo].[product_storage] ps ON p.id = ps.product_id
+                            WHERE p.id = '{id}'
                             ";
 
         return await _dbConnection.QueryFirstAsync<Product>(sql);
@@ -87,7 +87,7 @@ public class ProductRepository : IProductRepository
     {
         string sql = $@"
                         DELETE FROM [dbo].[product]
-                            WHERE id = '{id}'
+                        WHERE id = '{id}'
                         ";
 
         int result = await _dbConnection.ExecuteAsync(sql);

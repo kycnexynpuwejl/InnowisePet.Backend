@@ -52,7 +52,7 @@ public class OrderController : ControllerBase
     [HttpPut("list")]
     public async Task<IActionResult> UpdateOrdersAsync(IEnumerable<OrderUpdateDto> orderUpdateDtoList)
     {
-        var list = new OrderUpdateDtoList() { List = orderUpdateDtoList };
+        OrderUpdateDtoList list = new() { List = orderUpdateDtoList };
         await _publishEndpoint.Publish(list);
 
         return Ok();

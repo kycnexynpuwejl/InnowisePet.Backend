@@ -5,7 +5,9 @@ public class OrderAcceptedDto
     public int Quantity { get; set; }
 
     public Guid ProductId { get; set; }
-    
+
+    public string ProductName { get; set; }
+
     public string Firstname { get; set; }
     
     public string Lastname { get; set; }
