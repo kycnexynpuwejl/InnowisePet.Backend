@@ -1,8 +1,5 @@
 using System.Data;
-using InnowisePet.BLL.Services.Implementations;
-using InnowisePet.BLL.Services.Interfaces;
-using InnowisePet.DAL.Repo.Implementations;
-using InnowisePet.DAL.Repo.Interfaces;
+using InnowisePet.API.Extensions;
 using InnowisePet.HttpClient;
 using MassTransit;
 using Microsoft.Data.SqlClient;
@@ -15,25 +12,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddMassTransit(x => { x.UsingRabbitMq(); });
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.ConfigureServices();
+
+builder.Services.AddMassTransit(x => x.UsingRabbitMq());
 
 builder.Services.AddHttpClient<OrderClient>(c =>
 {
     c.BaseAddress = new Uri(builder.Configuration["OrderServiceUri"]);
 });
-
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<ILocationRepository, LocationRepository>();
-builder.Services.AddScoped<ILocationService, LocationService>();
-builder.Services.AddScoped<IStorageRepository, StorageRepository>();
-builder.Services.AddScoped<IStorageService, StorageService>();
-builder.Services.AddScoped<IProductStorageRepository, ProductStorageRepository>();
-builder.Services.AddScoped<IProductStorageService, ProductStorageService>();
-
 
 builder.Services.AddTransient<IDbConnection>(_ =>
     new SqlConnection(builder.Configuration.GetConnectionString("DbConnection")));
@@ -74,8 +62,8 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllers()
-        .RequireAuthorization("ApiScope");
+    endpoints.MapControllers();
+    //.RequireAuthorization("ApiScope");
 });
 
 

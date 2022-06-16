@@ -8,7 +8,6 @@ namespace InnowisePet.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
 public class ProductController : Controller
 {
     private readonly IProductService _productService;
@@ -21,8 +20,6 @@ public class ProductController : Controller
     [HttpGet("list")]
     public async Task<IActionResult> GetProductsAsync()
     {
-        string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
         return Ok(await _productService.GetProductsAsync());
     }
 

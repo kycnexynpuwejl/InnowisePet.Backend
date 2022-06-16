@@ -13,17 +13,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.DTO", "Innowise
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.IdentityServer4", "InnowisePet.IdentityServer4\InnowisePet.IdentityServer4.csproj", "{F87BE861-745C-453C-96F2-8DA70F6363B4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnowisePet.Services.Report", "InnowisePet.Services.Report", "{FBD732F1-9D91-462D-84BB-0308DB7D7F3C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Report", "Report", "{FBD732F1-9D91-462D-84BB-0308DB7D7F3C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnowisePet.IdentityServer4", "InnowisePet.IdentityServer4", "{7B5AE6E3-CB59-43A2-929D-AF7EEE5EE113}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer4", "IdentityServer4", "{7B5AE6E3-CB59-43A2-929D-AF7EEE5EE113}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnowisePet.Models", "InnowisePet.Models", "{DC6FF5D0-34C6-43AA-B348-3975C8C9B479}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{DC6FF5D0-34C6-43AA-B348-3975C8C9B479}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnowisePet.Common", "InnowisePet.Common", "{0E56B564-6E8F-46F2-BE07-C47779A8A786}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0E56B564-6E8F-46F2-BE07-C47779A8A786}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnowisePet.Services", "InnowisePet.Services", "{1250236F-9CFA-4609-82C6-024E9E6BA09E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{1250236F-9CFA-4609-82C6-024E9E6BA09E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnowisePet.Services.Order", "InnowisePet.Services.Order", "{8C2076BD-6FDF-4573-94B4-D5D928975DCF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Order", "Order", "{8C2076BD-6FDF-4573-94B4-D5D928975DCF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.Services.Order.DAL", "InnowisePet.Services.Order.DAL\InnowisePet.Services.Order.DAL.csproj", "{8C756959-8D9B-46A8-B96D-906102811E20}"
 EndProject

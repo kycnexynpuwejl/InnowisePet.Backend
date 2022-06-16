@@ -9,7 +9,7 @@ public class LocationCreateProfile : Profile
     public LocationCreateProfile()
     {
         CreateMap<LocationCreateDto, Location>()
-            .ForMember(c => c.City, opt => opt.MapFrom(c => c.City))
-            .ForMember(c => c.Id, opt => opt.MapFrom(c => Guid.NewGuid()));
+            .ForMember(l => l.Id, opt => opt.MapFrom(l => Guid.NewGuid()))
+            .ForMember(l => l.City, opt => opt.MapFrom(l => l.City));
     }
 }

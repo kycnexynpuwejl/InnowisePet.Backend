@@ -9,7 +9,7 @@ builder.Services.ConfigureMassTransit();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ReportPdfRepository, ReportPdfRepository>();
+builder.Services.AddSingleton<ReportPdfRepository, ReportPdfRepository>();
 builder.Services.AddScoped<IGeneratePdfService, GeneratePdfService>();
 
 

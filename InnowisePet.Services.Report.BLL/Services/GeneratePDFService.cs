@@ -17,7 +17,8 @@ public class GeneratePdfService : IGeneratePdfService
     {
         HtmlToPdf renderer = new();
         PdfDocument? pdf = renderer.RenderHtmlAsPdf(
-            $@"<h1>{order.Firstname} {order.Lastname}</h1>
+            $@"<h1>Thanks for ordering!
+                <h1>{order.Firstname} {order.Lastname}</h1>
                 <h2>{order.Address}</h2>"
         ).SaveAs($"{DateTime.Now.ToFileTime()}.pdf");
     }

@@ -26,8 +26,10 @@ public class ProductRepository : IProductRepository
                                 c.title as CategoryName,
                                 SUM(ps.quantity) OVER(PARTITION BY p.id) as Quantity
                             FROM [dbo].[product] p
-                                     JOIN [dbo].[category] c ON p.category_id = c.id
-                                     LEFT JOIN [dbo].[product_storage] ps ON p.id = ps.product_id
+                                JOIN [dbo].[category] c
+                                ON p.category_id = c.id
+                                LEFT JOIN [dbo].[product_storage] ps
+                                ON p.id = ps.product_id
                             ";
 
         return await _dbConnection.QueryAsync<Product>(sql);

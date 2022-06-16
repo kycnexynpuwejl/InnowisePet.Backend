@@ -32,10 +32,15 @@ public class StorageRepository : IStorageRepository
 
     public async Task<Storage> GetStorageByIdAsync(Guid id)
     {
-        string sql = $@"
-                            SELECT *
-                                FROM [dbo].[storage]
-                                WHERE id = '{id}'
+        string sql = $@"SELECT
+                            s.id,
+                            s.location_id,
+                            s.title,
+                            l.city as LocationName
+                        FROM [dbo].[storage] s
+                            JOIN [dbo].[location] l
+                            ON s.location_id = l.id
+                        WHERE id = '{id}'
                             ";
 
         return await _dbConnection.QueryFirstAsync<Storage>(sql);
