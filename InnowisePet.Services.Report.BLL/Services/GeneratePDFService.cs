@@ -8,15 +8,11 @@ public class GeneratePdfService : IGeneratePdfService
 {
     private readonly ReportPdfRepository _repository;
 
-    public GeneratePdfService(ReportPdfRepository repository)
-    {
-        _repository = repository;
-    }
+    public GeneratePdfService(ReportPdfRepository repository) => _repository = repository;
 
     public void GeneratePdf(OrderAcceptedDto order)
     {
-        HtmlToPdf renderer = new();
-        PdfDocument? pdf = renderer.RenderHtmlAsPdf(
+        new HtmlToPdf().RenderHtmlAsPdf(
             $@"<h1>Thanks for ordering!
                 <h1>{order.Firstname} {order.Lastname}</h1>
                 <h2>{order.Address}</h2>"
@@ -47,6 +43,6 @@ public class GeneratePdfService : IGeneratePdfService
         
         byte[]? binaryPdf = pdf.BinaryData;
 
-        _repository.AddReportPdf(new ReportPdfModel() { PdfFile = binaryPdf });
+        _repository.AddReportPdf(new ReportPdfModel { PdfFile = binaryPdf });
     }
 }

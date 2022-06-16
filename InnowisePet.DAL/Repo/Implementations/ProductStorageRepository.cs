@@ -44,12 +44,12 @@ public class ProductStorageRepository : IProductStorageRepository
                                 ps.quantity,
                                 p.title as ProductName,
                                 s.title as StorageName
-                                FROM [dbo].[product_storage] ps
+                            FROM [dbo].[product_storage] ps
                                 JOIN [dbo].[product] p
                                 ON p.id = ps.product_id
                                 JOIN [dbo].[storage] s
                                 ON s.id = ps.storage_id
-                                WHERE ps.id = '{id}'
+                            WHERE ps.id = '{id}'
                             ";
 
         return await _dbConnection.QueryFirstAsync<ProductStorage>(sql);
