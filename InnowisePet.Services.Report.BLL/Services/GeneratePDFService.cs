@@ -12,11 +12,17 @@ public class GeneratePdfService : IGeneratePdfService
 
     public void GeneratePdf(OrderAcceptedDto order)
     {
-        new HtmlToPdf().RenderHtmlAsPdf(
+        var pdf = new HtmlToPdf().RenderHtmlAsPdf(
             $@"<h1>Thanks for ordering!
                 <h1>{order.Firstname} {order.Lastname}</h1>
                 <h2>{order.Address}</h2>"
-        ).SaveAs($"{DateTime.Now.ToFileTime()}.pdf");
+        );
+            
+        pdf.SaveAs($"{DateTime.Now.ToFileTime()}.pdf");
+
+        var binaryPdf = pdf.BinaryData;
+        
+        _repository.AddReportPdf(new ReportPdfModel { PdfFile = binaryPdf });
     }
 
     public void GeneratePdfFromList(IEnumerable<OrderAcceptedDto> orderList)

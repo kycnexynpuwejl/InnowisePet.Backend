@@ -34,6 +34,8 @@ public class OrderController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateOrderAsync(OrderCreateDto orderCreateDto)
     {
+        //orderCreateDto.UserId = new Guid(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
         await _publishEndpoint.Publish(orderCreateDto);
 
         return Ok();
