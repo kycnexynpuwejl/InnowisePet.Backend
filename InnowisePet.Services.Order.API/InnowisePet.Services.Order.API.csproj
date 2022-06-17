@@ -22,7 +22,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\InnowisePet.Services.Order.BLL\InnowisePet.Services.Order.BLL.csproj" />
-        <ProjectReference Include="..\InnowisePet.Services.Report.BLL\InnowisePet.Services.Report.BLL.csproj" />
     </ItemGroup>
 
 </Project>

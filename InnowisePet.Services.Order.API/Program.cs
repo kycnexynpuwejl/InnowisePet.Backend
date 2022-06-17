@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+var s = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.ManifestModule.Name.Contains("Innowise"));
 builder.Services.AddDbContext<OrderDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("OrderDBConnection"),
