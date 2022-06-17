@@ -1,4 +1,4 @@
-using InnowisePet.Models.Enums;
+using InnowisePet.Shared.Enums;
 
 namespace InnowisePet.DTO.DTO.Order;
 

@@ -1,5 +1,3 @@
-using InnowisePet.Models.Enums;
-
 namespace InnowisePet.DTO.DTO.Order;
 
 public class OrderCreateDto

@@ -1,4 +1,4 @@
-namespace InnowisePet.Models.Enums;
+namespace InnowisePet.Shared.Enums;
 
 public enum OrderStatus
 {

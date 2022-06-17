@@ -1,7 +1,5 @@
-using System.Security.Claims;
 using InnowisePet.BLL.Services.Interfaces;
 using InnowisePet.DTO.DTO.Product;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.API.Controllers;
