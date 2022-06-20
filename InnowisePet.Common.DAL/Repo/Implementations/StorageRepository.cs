@@ -32,7 +32,7 @@ public class StorageRepository : IStorageRepository
 
     public async Task<Storage> GetStorageByIdAsync(Guid id)
     {
-        string sql = $@"SELECT
+        var sql = $@"SELECT
                             s.id,
                             s.location_id,
                             s.title,
@@ -51,7 +51,7 @@ public class StorageRepository : IStorageRepository
         const string sql = @"
                             INSERT INTO [dbo].[storage] 
                                 (id, location_id, title)
-                            VALUES(@id, @location_id, @title)
+                            VALUES(@Id, @LocationId, @Title)
                             ";
 
         int result = await _dbConnection.ExecuteAsync(sql, storage);
@@ -61,27 +61,27 @@ public class StorageRepository : IStorageRepository
 
     public async Task<bool> UpdateStorageAsync(Guid id, Storage storage)
     {
-        string sql = $@"
+        var sql = $@"
                             UPDATE [dbo].[storage]
                             SET
-                                location_id = @location_id,
-                                title = @title
+                                location_id = @LocationId,
+                                title = @Title
                             WHERE id = '{id}'
                             ";
 
-        int result = await _dbConnection.ExecuteAsync(sql, storage);
+        var result = await _dbConnection.ExecuteAsync(sql, storage);
 
         return result > 0;
     }
 
     public async Task<bool> DeleteStorageAsync(Guid id)
     {
-        string sql = $@"
+        var sql = $@"
                         DELETE FROM [dbo].[storage]
                             WHERE id = '{id}'
                         ";
 
-        int result = await _dbConnection.ExecuteAsync(sql);
+        var result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;
     }

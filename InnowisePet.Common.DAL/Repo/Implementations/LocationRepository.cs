@@ -40,7 +40,7 @@ public class LocationRepository : ILocationRepository
         string sql = @"
                         INSERT INTO [dbo].[location]
                             (id, city)
-                        VALUES(@id, @city)
+                        VALUES(@Id, @City)
                         ";
 
         int result = await _dbConnection.ExecuteAsync(sql, location);
@@ -52,7 +52,7 @@ public class LocationRepository : ILocationRepository
     {
         string sql = $@"
                         UPDATE [dbo].[location]
-                        SET city = @city
+                        SET city = @City
                         WHERE id = '{id}'
                         ";
 

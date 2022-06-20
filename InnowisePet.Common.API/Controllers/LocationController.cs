@@ -15,7 +15,7 @@ public class LocationController : Controller
         _locationService = locationService;
     }
 
-    [HttpGet]
+    [HttpGet("list")]
     public async Task<IActionResult> GetLocationsAsync()
     {
         return Ok(await _locationService.GetLocationsAsync());

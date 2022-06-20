@@ -10,3 +10,4 @@ go
 create unique index category_id_uindex
     on category (id)
 go
+

@@ -40,7 +40,7 @@ public class CategoryRepository : ICategoryRepository
         const string sql = @"
                             INSERT INTO [dbo].[category]
                                 (id, title)
-                            VALUES(@id, @title)
+                            VALUES(@Id, @Title)
                             ";
 
         int result = await _dbConnection.ExecuteAsync(sql, category);
@@ -52,7 +52,7 @@ public class CategoryRepository : ICategoryRepository
     {
         string sql = $@"
                         UPDATE [dbo].[category]
-                            SET title = @title
+                            SET title = @Title
                             WHERE id = '{id}'
                         ";
 

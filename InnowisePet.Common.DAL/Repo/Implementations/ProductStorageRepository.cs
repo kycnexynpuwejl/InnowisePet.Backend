@@ -60,7 +60,7 @@ public class ProductStorageRepository : IProductStorageRepository
         const string sql = @"
                             INSERT INTO [dbo].[product_storage] 
                                 (id, product_id, storage_id, quantity)
-                            VALUES(@id, @product_id, @storage_id, @quantity)
+                            VALUES(@Id, @ProductId, @StorageId, @Quantity)
                             ";
 
         int result = await _dbConnection.ExecuteAsync(sql, productStorage);
@@ -73,9 +73,9 @@ public class ProductStorageRepository : IProductStorageRepository
         string sql = $@"
                             UPDATE [dbo].[product_storage] 
                             SET 
-                                product_id = @product_id,
-                                storage_id = @storage_id,
-                                quantity = @quantity
+                                product_id = @ProductId,
+                                storage_id = @StorageId,
+                                quantity = @Quantity
                             WHERE id = '{id}'
                             ";
 
