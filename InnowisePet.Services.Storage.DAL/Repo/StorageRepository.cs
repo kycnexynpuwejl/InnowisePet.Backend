@@ -1,6 +1,7 @@
 using InnowisePet.Services.Storage.DAL.Data;
 using InnowisePet.Services.Storage.DAL.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace InnowisePet.Services.Storage.DAL.Repo;
 
@@ -20,7 +21,7 @@ public class StorageRepository : IStorageRepository
 
     public async Task<Models.Storage> GetStorageByIdAsync(Guid id)
     {
-        return await _context.Storages.FirstOrDefaultAsync(s => s.Id == id);
+        return await _context.Storages.Include(s => s.ProductStorages).FirstOrDefaultAsync(s => s.Id == id);
     }
 
     public async Task CreateStorageAsync(Models.Storage storage)
@@ -44,4 +45,5 @@ public class StorageRepository : IStorageRepository
         }
         await _context.SaveChangesAsync();
     }
+    
 }

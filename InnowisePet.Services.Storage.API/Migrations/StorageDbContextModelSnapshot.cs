@@ -39,6 +39,8 @@ namespace InnowisePet.Services.Storage.API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("StorageId");
+
                     b.ToTable("ProductStorages");
                 });
 
@@ -54,6 +56,20 @@ namespace InnowisePet.Services.Storage.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Storages");
+                });
+
+            modelBuilder.Entity("InnowisePet.Services.Storage.DAL.Models.ProductStorage", b =>
+                {
+                    b.HasOne("InnowisePet.Services.Storage.DAL.Models.Storage", null)
+                        .WithMany("ProductStorages")
+                        .HasForeignKey("StorageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("InnowisePet.Services.Storage.DAL.Models.Storage", b =>
+                {
+                    b.Navigation("ProductStorages");
                 });
 #pragma warning restore 612, 618
         }

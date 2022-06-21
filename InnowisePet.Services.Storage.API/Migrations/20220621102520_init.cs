@@ -10,6 +10,18 @@ namespace InnowisePet.Services.Storage.API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Storages",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Storages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductStorages",
                 columns: table => new
                 {
@@ -21,19 +33,18 @@ namespace InnowisePet.Services.Storage.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductStorages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductStorages_Storages_StorageId",
+                        column: x => x.StorageId,
+                        principalTable: "Storages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Storages",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Storages", x => x.Id);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductStorages_StorageId",
+                table: "ProductStorages",
+                column: "StorageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

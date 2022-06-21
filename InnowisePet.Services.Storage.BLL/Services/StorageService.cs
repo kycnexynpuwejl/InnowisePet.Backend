@@ -37,4 +37,5 @@ public class StorageService : IStorageService
         var productStorage = _mapper.Map<ProductStorage>(productStorageCreateDto);
         await _storageRepository.AddProductToStorageAsync(productStorage);
     }
+    
 }
