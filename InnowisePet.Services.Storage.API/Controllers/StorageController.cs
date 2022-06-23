@@ -58,4 +58,15 @@ public class StorageController : Controller
     {
         await _storageService.DeleteProductSorageAsync(storageId, productId);
     }
+
+    [HttpPut("{storageId}/product/{productId}")]
+    public async Task UpdateProductStorageAsync([FromRoute] Guid storageId, [FromRoute] Guid productId, [FromBody]int quantity)
+    {
+        await _storageService.UpdateProductStorageAsync(new ProductStorageUpdateDto
+        {
+            StorageId = storageId,
+            ProductId = productId,
+            Quantity = quantity
+        });
+    }
 }

@@ -52,6 +52,10 @@ public class StorageService : IStorageService
     {
         await _storageRepository.DeleteProductSorageAsync(storageId, productId);
     }
-    
-    
+
+    public async Task UpdateProductStorageAsync(ProductStorageUpdateDto productStorageUpdateDto)
+    {
+        var productStorage = _mapper.Map<ProductStorage>(productStorageUpdateDto);
+        await _storageRepository.UpdateProductStorageAsync(productStorage);
+    }
 }

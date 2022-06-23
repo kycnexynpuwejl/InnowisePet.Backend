@@ -67,4 +67,17 @@ public class StorageRepository : IStorageRepository
         _context.ProductStorages.Remove(productStorageToDelete);
         await _context.SaveChangesAsync();
     }
+
+    public async Task UpdateProductStorageAsync(ProductStorage productStorage)
+    {
+        var productStorageToUpdate = await _context.ProductStorages.FirstOrDefaultAsync(ps =>
+            ps.StorageId == productStorage.StorageId &&
+            ps.ProductId == productStorage.ProductId);
+
+        if (productStorageToUpdate == null) return;
+
+        productStorageToUpdate.Quantity = productStorage.Quantity;
+        _context.ProductStorages.Update(productStorageToUpdate);
+        await _context.SaveChangesAsync();
+    }
 }
