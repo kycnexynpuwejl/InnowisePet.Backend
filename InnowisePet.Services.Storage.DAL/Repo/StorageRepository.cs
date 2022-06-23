@@ -50,4 +50,21 @@ public class StorageRepository : IStorageRepository
     {
         return await _context.ProductStorages.ToListAsync();
     }
+
+    public async Task<IEnumerable<ProductStorage>> GetProductsByStorageIdAsync(Guid storageId)
+    {
+        return await _context.ProductStorages.Where(x => x.StorageId == storageId).ToListAsync();
+    }
+
+    public async Task DeleteProductSorageAsync(Guid storageId, Guid productId)
+    {
+        var productStorageToDelete = await _context.ProductStorages.FirstOrDefaultAsync(x => 
+            x.StorageId == storageId &&
+            x.ProductId == productId);
+        
+        if(productStorageToDelete == null) return;
+
+        _context.ProductStorages.Remove(productStorageToDelete);
+        await _context.SaveChangesAsync();
+    }
 }

@@ -47,4 +47,15 @@ public class StorageController : Controller
         return Ok(await _storageService.GetProductsAsync());
     }
 
+    [HttpGet("{storageId}/product")]
+    public async Task<IActionResult> GetProductsByStorageIdAsync(Guid storageId)
+    {
+        return Ok(await _storageService.GetProductsByStorageIdAsync(storageId));
+    }
+
+    [HttpDelete("{storageId}/product/{productId}")]
+    public async Task DeleteProductSorageAsync([FromRoute]Guid storageId, [FromRoute]Guid productId)
+    {
+        await _storageService.DeleteProductSorageAsync(storageId, productId);
+    }
 }

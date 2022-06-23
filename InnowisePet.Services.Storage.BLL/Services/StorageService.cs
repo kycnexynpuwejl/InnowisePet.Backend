@@ -42,4 +42,16 @@ public class StorageService : IStorageService
     {
         return await _storageRepository.GetProductsAsync();
     }
+
+    public async Task<IEnumerable<ProductStorage>> GetProductsByStorageIdAsync(Guid storageId)
+    {
+        return await _storageRepository.GetProductsByStorageIdAsync(storageId);
+    }
+
+    public async Task DeleteProductSorageAsync(Guid storageId, Guid productId)
+    {
+        await _storageRepository.DeleteProductSorageAsync(storageId, productId);
+    }
+    
+    
 }
