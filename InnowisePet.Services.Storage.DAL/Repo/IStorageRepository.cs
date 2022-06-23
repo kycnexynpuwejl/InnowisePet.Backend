@@ -8,4 +8,6 @@ public interface IStorageRepository
     Task<Models.Storage> GetStorageByIdAsync(Guid id);
     Task CreateStorageAsync(Models.Storage storage);
     Task AddProductToStorageAsync(ProductStorage productStorage);
+
+    Task<IEnumerable<ProductStorage>> GetProductsAsync();
 }

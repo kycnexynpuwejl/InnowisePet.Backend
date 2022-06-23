@@ -1,5 +1,6 @@
 using InnowisePet.Services.Storage.BLL.DTO;
 using InnowisePet.Services.Storage.BLL.Services;
+using InnowisePet.Services.Storage.DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Services.Storage.API.Controllers;
@@ -21,10 +22,10 @@ public class StorageController : Controller
         return Ok(await _storageService.GetStoragesAsync());
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetStorageByIdAsync([FromRoute] Guid id)
+    [HttpGet("{storageID}")]
+    public async Task<IActionResult> GetStorageByIdAsync([FromRoute] Guid storageID)
     {
-        return Ok(await _storageService.GetStorageByIdAsync(id));
+        return Ok(await _storageService.GetStorageByIdAsync(storageID));
     }
 
     [HttpPost]
@@ -33,11 +34,17 @@ public class StorageController : Controller
         await _storageService.CreateStorageAsync(storageCreateDto);
     }
 
-    [HttpPost("{id}")]
-    public async Task AddProductToStorageAsync([FromRoute]Guid id, [FromBody]ProductStorageCreateDto productStorageCreateDto)
+    [HttpPost("{storageID}/product/")]
+    public async Task AddProductToStorageAsync([FromRoute]Guid storageID, [FromBody]ProductStorageCreateDto productStorageCreateDto)
     {
-        productStorageCreateDto.StorageId = id;
+        productStorageCreateDto.StorageId = storageID;
         await _storageService.AddProductToStorageAsync(productStorageCreateDto);
     }
-    
+
+    [HttpGet("product")]
+    public async Task<IActionResult> GetProductsAsync()
+    {
+        return Ok(await _storageService.GetProductsAsync());
+    }
+
 }

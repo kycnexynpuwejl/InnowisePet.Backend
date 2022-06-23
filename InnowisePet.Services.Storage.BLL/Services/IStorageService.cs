@@ -1,4 +1,5 @@
 using InnowisePet.Services.Storage.BLL.DTO;
+using InnowisePet.Services.Storage.DAL.Models;
 
 namespace InnowisePet.Services.Storage.BLL.Services;
 
@@ -8,4 +9,5 @@ public interface IStorageService
     Task<DAL.Models.Storage> GetStorageByIdAsync(Guid id);
     Task CreateStorageAsync(StorageCreateDto storageCreateDto);
     Task AddProductToStorageAsync(ProductStorageCreateDto productStorageCreateDto);
+    Task<IEnumerable<ProductStorage>> GetProductsAsync();
 }
