@@ -8,5 +8,5 @@ public class ProductGetDto
 
     public decimal Price { get; set; }
 
-    public byte[] Image { get; set; }
+    public string ImageUrl { get; set; }
 }

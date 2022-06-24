@@ -15,19 +15,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<IEnumerable<Product>> GetProducts()
     {
-        IEnumerable<Product> result = new List<Product>();
-        using (var cursor = await _collection.FindAsync(_ => true))
-        {
-            while(await cursor.MoveNextAsync())
-            {
-                var products = cursor.Current;
-                foreach (var product in products)
-                {
-                    result.Append(product);
-                }
-            }
-        }
-
+        var result = await _collection.AsQueryable().ToListAsync();
         return result;
     }
     public async Task AddProduct(Product product)
