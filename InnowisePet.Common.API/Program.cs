@@ -25,6 +25,11 @@ builder.Services.AddHttpClient<OrderClient>(c =>
     c.BaseAddress = new Uri(builder.Configuration["OrderServiceUri"]);
 });
 
+/*builder.Services.AddHttpClient<ProductClient>(c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["ProductServiceUri"]);
+});*/
+
 builder.Services.AddTransient<IDbConnection>(_ =>
     new SqlConnection(builder.Configuration.GetConnectionString("DbConnection")));
 
