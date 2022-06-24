@@ -11,6 +11,6 @@ public interface IStorageService
     Task AddProductToStorageAsync(ProductStorageCreateDto productStorageCreateDto);
     Task<IEnumerable<ProductStorage>> GetProductsAsync();
     Task<IEnumerable<ProductStorage>> GetProductsByStorageIdAsync(Guid storageId);
-    Task DeleteProductSorageAsync(Guid storageId, Guid productId);
+    Task DeleteProductSorageAsync(Guid storageId, string productId);
     Task UpdateProductStorageAsync(ProductStorageUpdateDto productStorageUpdateDto);
 }

@@ -13,7 +13,7 @@ public interface IStorageRepository
 
     Task<IEnumerable<ProductStorage>> GetProductsByStorageIdAsync(Guid storageId);
 
-    Task DeleteProductSorageAsync(Guid storageId, Guid productId);
+    Task DeleteProductSorageAsync(Guid storageId, string productId);
 
     Task UpdateProductStorageAsync(ProductStorage productStorage);
 }

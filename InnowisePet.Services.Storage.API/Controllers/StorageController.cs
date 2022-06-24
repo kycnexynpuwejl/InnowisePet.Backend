@@ -54,7 +54,7 @@ public class StorageController : Controller
     }
 
     [HttpDelete("{storageId}/product/{productId}")]
-    public async Task DeleteProductSorageAsync([FromRoute]Guid storageId, [FromRoute]Guid productId)
+    public async Task DeleteProductSorageAsync([FromRoute]Guid storageId, [FromRoute]string productId)
     {
         await _storageService.DeleteProductSorageAsync(storageId, productId);
     }

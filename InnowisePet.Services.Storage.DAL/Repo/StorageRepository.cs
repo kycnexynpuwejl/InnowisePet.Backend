@@ -56,7 +56,7 @@ public class StorageRepository : IStorageRepository
         return await _context.ProductStorages.Where(x => x.StorageId == storageId).ToListAsync();
     }
 
-    public async Task DeleteProductSorageAsync(Guid storageId, Guid productId)
+    public async Task DeleteProductSorageAsync(Guid storageId, string productId)
     {
         var productStorageToDelete = await _context.ProductStorages.FirstOrDefaultAsync(x => 
             x.StorageId == storageId &&
