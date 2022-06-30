@@ -30,6 +30,6 @@ public class OrderClient : IOrderClient
 
     public async Task CreateOrderAsync()
     {
-        return await _publishEndpoint.Pub
+        
     }
 }

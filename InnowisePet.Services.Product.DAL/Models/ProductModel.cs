@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InnowisePet.Services.Product.DAL.Models;
 
@@ -8,6 +9,7 @@ public class ProductModel
     public Guid Id { get; set; }
 
     [Required]
+    [ForeignKey("Categories")]
     public Guid CategoryId { get; set; }
     
     [Required]
