@@ -1,6 +1,5 @@
 using InnowisePet.Services.Storage.BLL.DTO;
 using InnowisePet.Services.Storage.BLL.Services;
-using InnowisePet.Services.Storage.DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Services.Storage.API.Controllers;

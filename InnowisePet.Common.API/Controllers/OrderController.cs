@@ -1,6 +1,5 @@
-using System.Security.Claims;
 using InnowisePet.DTO.DTO.Order;
-using InnowisePet.HttpClient;
+using InnowisePet.HttpClients;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 

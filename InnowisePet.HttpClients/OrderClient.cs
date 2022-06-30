@@ -1,14 +1,14 @@
 using InnowisePet.DTO.DTO.Order;
 
-namespace InnowisePet.HttpClient;
+namespace InnowisePet.HttpClients;
 
 public class OrderClient
 {
     private const string Url = "api/order/";
 
-    private readonly System.Net.Http.HttpClient _httpClient;
+    private readonly HttpClient _httpClient;
 
-    public OrderClient(System.Net.Http.HttpClient httpClient)
+    public OrderClient(HttpClient httpClient)
     {
         _httpClient = httpClient;
     }

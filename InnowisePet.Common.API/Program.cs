@@ -1,7 +1,6 @@
 using System.Data;
 using System.Reflection;
 using InnowisePet.Common.API.Extensions;
-using InnowisePet.HttpClient;
 using MassTransit;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
