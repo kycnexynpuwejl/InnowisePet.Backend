@@ -1,6 +1,20 @@
+using InnowisePet.Services.Product.BLL.DTO;
+using InnowisePet.Services.Product.BLL.Services;
+using MassTransit;
+
 namespace InnowisePet.Services.Product.BLL.Consumers;
 
-public class ProductCreateConsumer
+public class ProductCreateConsumer : IConsumer<ProductCreateDto>
 {
-    
+    private readonly IProductService _productService;
+
+    public ProductCreateConsumer(IProductService productService)
+    {
+        _productService = productService;
+    }
+
+    public async Task Consume(ConsumeContext<ProductCreateDto> context)
+    {
+        await _productService.CreateProductAsync(context.Message);
+    }
 }

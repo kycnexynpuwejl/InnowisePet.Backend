@@ -1,6 +1,20 @@
+using InnowisePet.Services.Product.BLL.DTO;
+using InnowisePet.Services.Product.BLL.Services;
+using MassTransit;
+
 namespace InnowisePet.Services.Product.BLL.Consumers;
 
-public class ProductDeleteConsumer
+public class ProductDeleteConsumer : IConsumer<ProductDeleteDto>
 {
-    
+    private readonly IProductService _productService;
+
+    public ProductDeleteConsumer(IProductService productService)
+    {
+        _productService = productService;
+    }
+
+    public async Task Consume(ConsumeContext<ProductDeleteDto> context)
+    {
+        await _productService.DeleteProductAsync(context.Message.Id);
+    }
 }
