@@ -1,6 +1,5 @@
 using InnowisePet.DTO.DTO.Order;
 using InnowisePet.HttpClients;
-using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Common.API.Controllers;
@@ -32,34 +31,32 @@ public class OrderController : ControllerBase
     public async Task<IActionResult> CreateOrderAsync(OrderCreateDto orderCreateDto)
     {
         //orderCreateDto.UserId = new Guid(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
-        await _publishEndpoint.Publish(orderCreateDto);
-
+        await _orderClient.CreateOrderAsync(orderCreateDto);
         return Ok();
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateOrderAsync(OrderUpdateDto orderUpdateDto)
     {
-        await _publishEndpoint.Publish(orderUpdateDto);
+        await _orderClient.UpdateOrderAsync(orderUpdateDto);
 
         return Ok();
     }
     
-    [HttpPut("list")]
+    /*[HttpPut("list")]
     public async Task<IActionResult> UpdateOrdersAsync(IEnumerable<OrderUpdateDto> orderUpdateDtoList)
     {
         OrderUpdateDtoList list = new() { List = orderUpdateDtoList };
         await _publishEndpoint.Publish(list);
 
         return Ok();
-    }
+    }*/
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteOrderAsync([FromRoute] Guid id)
     {
         OrderDeleteDto orderDeleteDto = new() { Id = id };
-        await _publishEndpoint.Publish(orderDeleteDto);
+        await _orderClient.DeleteOrderAsync(orderDeleteDto);
 
         return Ok();
     }

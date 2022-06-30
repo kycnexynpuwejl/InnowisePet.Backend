@@ -1,8 +1,9 @@
 using InnowisePet.DTO.DTO.Order;
+using MassTransit;
 
 namespace InnowisePet.HttpClients;
 
-public class OrderClient : IOrderClient
+public class OrderClient
 {
     private const string Url = "api/order/";
 
@@ -28,8 +29,18 @@ public class OrderClient : IOrderClient
         return await CommonHttpClientExtensions.Deserialize<OrderGetDto>(result);
     }
 
-    public async Task CreateOrderAsync()
+    public async Task CreateOrderAsync(OrderCreateDto orderCreateDto)
     {
-        
+        await _publishEndpoint.Publish(orderCreateDto);
+    }
+
+    public async Task UpdateOrderAsync(OrderUpdateDto orderUpdateDto)
+    {
+        await _publishEndpoint.Publish(orderUpdateDto);
+    }
+
+    public async Task DeleteOrderAsync(OrderDeleteDto orderDeleteDto)
+    {
+        await _publishEndpoint.Publish(orderDeleteDto);
     }
 }
