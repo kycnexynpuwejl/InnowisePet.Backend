@@ -1,5 +1,3 @@
-using InnowisePet.Services.Product.BLL.DTO;
-using InnowisePet.Services.Product.BLL.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Services.Product.API.Controllers;
@@ -8,14 +6,7 @@ namespace InnowisePet.Services.Product.API.Controllers;
 [Route("api/[controller]")]
 public class ProductController : Controller
 {
-    private readonly IProductService _productService;
-
-    public ProductController(IProductService productService)
-    {
-        _productService = productService;
-    }
-
-    [HttpGet]
+    /*[HttpGet]
     public async Task<IActionResult> GetProductsAsync()
     {
         return Ok(await _productService.GetProductsAsync());
@@ -41,5 +32,5 @@ public class ProductController : Controller
     {
         await _productService.DeleteProductAsync(id);
         return Ok();
-    }
+    }*/
 }

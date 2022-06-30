@@ -7,6 +7,6 @@ public class ProductCreateProfile : Profile
 {
     public ProductCreateProfile()
     {
-        CreateMap<ProductCreateDto, DAL.Product>();
+        CreateMap<ProductCreateDto, DAL.Models.ProductModel>();
     }
 }

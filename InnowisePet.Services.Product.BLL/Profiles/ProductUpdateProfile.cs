@@ -7,6 +7,6 @@ public class ProductUpdateProfile : Profile
 {
     public ProductUpdateProfile()
     {
-        CreateMap<ProductUpdateDto, DAL.Product>();
+        CreateMap<ProductUpdateDto, DAL.Models.ProductModel>();
     }
 }
