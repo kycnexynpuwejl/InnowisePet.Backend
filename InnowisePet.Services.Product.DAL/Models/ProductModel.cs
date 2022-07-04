@@ -9,7 +9,6 @@ public class ProductModel
     public Guid Id { get; set; }
 
     [Required]
-    [ForeignKey("Categories")]
     public Guid CategoryId { get; set; }
     
     [Required]

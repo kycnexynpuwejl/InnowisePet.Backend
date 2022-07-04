@@ -2,6 +2,8 @@ namespace InnowisePet.Services.Product.BLL.DTO;
 
 public class ProductGetDto
 {
+    public Guid Id { get; set; }
+    
     public string Title { get; set; }
     
     public string Category { get; set; }
