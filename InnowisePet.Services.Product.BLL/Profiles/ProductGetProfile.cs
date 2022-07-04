@@ -4,10 +4,10 @@ using InnowisePet.Services.Product.DAL.Models;
 
 namespace InnowisePet.Services.Product.BLL.Profiles;
 
-public class ProductCreateProfile : Profile
+public class ProductGetProfile : Profile
 {
-    public ProductCreateProfile()
+    public ProductGetProfile()
     {
-        CreateMap<ProductCreateDto, ProductModel>();
+        CreateMap<ProductModel, ProductGetDto>();
     }
 }

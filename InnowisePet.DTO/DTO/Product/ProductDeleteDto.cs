@@ -1,4 +1,4 @@
-namespace InnowisePet.Services.Product.BLL.DTO;
+namespace InnowisePet.DTO.DTO.Product;
 
 public class ProductDeleteDto
 {

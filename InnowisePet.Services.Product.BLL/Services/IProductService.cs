@@ -1,4 +1,4 @@
-using InnowisePet.Services.Product.BLL.DTO;
+using InnowisePet.DTO.DTO.Product;
 
 namespace InnowisePet.Services.Product.BLL.Services;
 
