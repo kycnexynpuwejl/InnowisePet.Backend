@@ -8,10 +8,7 @@ public class ProductCreateConsumer : IConsumer<ProductCreateDto>
 {
     private readonly IProductService _productService;
 
-    public ProductCreateConsumer(IProductService productService)
-    {
-        _productService = productService;
-    }
+    public ProductCreateConsumer(IProductService productService) => _productService = productService;
 
     public async Task Consume(ConsumeContext<ProductCreateDto> context)
     {
