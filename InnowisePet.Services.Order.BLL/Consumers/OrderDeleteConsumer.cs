@@ -7,10 +7,7 @@ public class OrderDeleteConsumer : IConsumer<OrderDeleteDto>
 {
     private readonly IOrderService _orderService;
 
-    public OrderDeleteConsumer(IOrderService orderService)
-    {
-        _orderService = orderService;
-    }
+    public OrderDeleteConsumer(IOrderService orderService) => _orderService = orderService;
 
     public async Task Consume(ConsumeContext<OrderDeleteDto> context)
     {

@@ -7,10 +7,7 @@ public class OrderCreateConsumer : IConsumer<OrderCreateDto>
 {
     private readonly IOrderService _orderService;
 
-    public OrderCreateConsumer(IOrderService orderService)
-    {
-        _orderService = orderService;
-    }
+    public OrderCreateConsumer(IOrderService orderService) => _orderService = orderService;
 
     public async Task Consume(ConsumeContext<OrderCreateDto> context)
     {

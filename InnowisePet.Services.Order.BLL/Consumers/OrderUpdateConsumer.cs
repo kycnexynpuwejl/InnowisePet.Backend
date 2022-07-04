@@ -17,7 +17,7 @@ public class OrderUpdateConsumer : IConsumer<OrderUpdateDto>
         _publishEndpoint = publishEndpoint;
         _mapper = mapper;
     }
-
+ 
     public async Task Consume(ConsumeContext<OrderUpdateDto> context)
     {
         await _orderService.UpdateOrderAsync(context.Message);
