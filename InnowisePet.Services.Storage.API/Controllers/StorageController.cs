@@ -1,4 +1,5 @@
-using InnowisePet.Services.Storage.BLL.DTO;
+using InnowisePet.DTO.DTO.ProductStorage;
+using InnowisePet.DTO.DTO.Storage;
 using InnowisePet.Services.Storage.BLL.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,7 +54,7 @@ public class StorageController : Controller
     }
 
     [HttpDelete("{storageId}/product/{productId}")]
-    public async Task DeleteProductSorageAsync([FromRoute]Guid storageId, [FromRoute]string productId)
+    public async Task DeleteProductSorageAsync([FromRoute]Guid storageId, [FromRoute]Guid productId)
     {
         await _storageService.DeleteProductSorageAsync(storageId, productId);
     }

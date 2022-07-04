@@ -1,6 +1,7 @@
 using AutoMapper;
-using InnowisePet.Services.Storage.BLL.DTO;
-using InnowisePet.Services.Storage.DAL.Models;
+using InnowisePet.DTO.DTO.ProductStorage;
+using InnowisePet.DTO.DTO.Storage;
+using InnowisePet.Models.Entities;
 using InnowisePet.Services.Storage.DAL.Repo;
 
 namespace InnowisePet.Services.Storage.BLL.Services;
@@ -16,19 +17,19 @@ public class StorageService : IStorageService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<DAL.Models.Storage>> GetStoragesAsync()
+    public async Task<IEnumerable<Models.Entities.Storage>> GetStoragesAsync()
     {
         return await _storageRepository.GetStoragesAsync();
     }
 
-    public async Task<DAL.Models.Storage> GetStorageByIdAsync(Guid id)
+    public async Task<Models.Entities.Storage> GetStorageByIdAsync(Guid id)
     {
         return await _storageRepository.GetStorageByIdAsync(id);
     }
 
     public async Task CreateStorageAsync(StorageCreateDto storageCreateDto)
     {
-        var storage = _mapper.Map<DAL.Models.Storage>(storageCreateDto);
+        var storage = _mapper.Map<Models.Entities.Storage>(storageCreateDto);
         await _storageRepository.CreateStorageAsync(storage);
     }
 
@@ -48,7 +49,7 @@ public class StorageService : IStorageService
         return await _storageRepository.GetProductsByStorageIdAsync(storageId);
     }
 
-    public async Task DeleteProductSorageAsync(Guid storageId, string productId)
+    public async Task DeleteProductSorageAsync(Guid storageId, Guid productId)
     {
         await _storageRepository.DeleteProductSorageAsync(storageId, productId);
     }

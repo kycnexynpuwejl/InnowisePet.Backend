@@ -1,5 +1,5 @@
+using InnowisePet.Models.Entities;
 using InnowisePet.Services.Storage.DAL.Data;
-using InnowisePet.Services.Storage.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -14,17 +14,17 @@ public class StorageRepository : IStorageRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Models.Storage>> GetStoragesAsync()
+    public async Task<IEnumerable<InnowisePet.Models.Entities.Storage>> GetStoragesAsync()
     {
         return await _context.Storages.ToListAsync();
     }
 
-    public async Task<Models.Storage> GetStorageByIdAsync(Guid id)
+    public async Task<InnowisePet.Models.Entities.Storage> GetStorageByIdAsync(Guid id)
     {
         return await _context.Storages.Include(s => s.ProductStorages).FirstOrDefaultAsync(s => s.Id == id);
     }
 
-    public async Task CreateStorageAsync(Models.Storage storage)
+    public async Task CreateStorageAsync(InnowisePet.Models.Entities.Storage storage)
     {
         await _context.Storages.AddAsync(storage);
         await _context.SaveChangesAsync();
@@ -56,7 +56,7 @@ public class StorageRepository : IStorageRepository
         return await _context.ProductStorages.Where(x => x.StorageId == storageId).ToListAsync();
     }
 
-    public async Task DeleteProductSorageAsync(Guid storageId, string productId)
+    public async Task DeleteProductSorageAsync(Guid storageId, Guid productId)
     {
         var productStorageToDelete = await _context.ProductStorages.FirstOrDefaultAsync(x => 
             x.StorageId == storageId &&

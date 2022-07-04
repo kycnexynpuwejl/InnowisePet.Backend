@@ -1,19 +1,19 @@
-using InnowisePet.Services.Storage.DAL.Models;
+using InnowisePet.Models.Entities;
 
 namespace InnowisePet.Services.Storage.DAL.Repo;
 
 public interface IStorageRepository
 {
-    Task<IEnumerable<Models.Storage>> GetStoragesAsync();
-    Task<Models.Storage> GetStorageByIdAsync(Guid id);
-    Task CreateStorageAsync(Models.Storage storage);
+    Task<IEnumerable<InnowisePet.Models.Entities.Storage>> GetStoragesAsync();
+    Task<InnowisePet.Models.Entities.Storage> GetStorageByIdAsync(Guid id);
+    Task CreateStorageAsync(InnowisePet.Models.Entities.Storage storage);
     Task AddProductToStorageAsync(ProductStorage productStorage);
 
     Task<IEnumerable<ProductStorage>> GetProductsAsync();
 
     Task<IEnumerable<ProductStorage>> GetProductsByStorageIdAsync(Guid storageId);
 
-    Task DeleteProductSorageAsync(Guid storageId, string productId);
+    Task DeleteProductSorageAsync(Guid storageId, Guid productId);
 
     Task UpdateProductStorageAsync(ProductStorage productStorage);
 }
