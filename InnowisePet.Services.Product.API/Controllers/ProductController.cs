@@ -21,7 +21,7 @@ public class ProductController : Controller
         return Ok(await _productService.GetProductsAsync());
     }
 
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetProductByIdAsync(Guid id)
     {
         return Ok(await _productService.GetProductByIdAsync(id));

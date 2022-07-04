@@ -1,3 +1,4 @@
+using InnowisePet.DTO.DTO.Product;
 using InnowisePet.HttpClients;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
@@ -29,13 +30,15 @@ public class ProductController : Controller
         return Ok(await _productClient.GetProductByIdAsync(id));
     }
 
-    /*[HttpPost]
+    [HttpPost]
     public async Task<IActionResult> CreateProductAsync(ProductCreateDto productCreateDto)
     {
-        return Ok(await _productService.CreateProductAsync(productCreateDto));
+        await _productClient.CreateProductAsync(productCreateDto);
+        
+        return Ok();
     }
 
-    [HttpPut("{id}")]
+    /*[HttpPut("{id}")]
     public async Task<IActionResult> UpdateProductAsync([FromRoute] Guid id,
         [FromBody] ProductUpdateDto productUpdateDto)
     {
