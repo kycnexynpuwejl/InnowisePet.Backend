@@ -17,19 +17,19 @@ public class StorageService : IStorageService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<Models.Entities.StorageModel>> GetStoragesAsync()
+    public async Task<IEnumerable<StorageModel>> GetStoragesAsync()
     {
         return await _storageRepository.GetStoragesAsync();
     }
 
-    public async Task<Models.Entities.StorageModel> GetStorageByIdAsync(Guid id)
+    public async Task<StorageModel> GetStorageByIdAsync(Guid id)
     {
         return await _storageRepository.GetStorageByIdAsync(id);
     }
 
     public async Task CreateStorageAsync(StorageCreateDto storageCreateDto)
     {
-        var storage = _mapper.Map<Models.Entities.StorageModel>(storageCreateDto);
+        var storage = _mapper.Map<StorageModel>(storageCreateDto);
         await _storageRepository.CreateStorageAsync(storage);
     }
 

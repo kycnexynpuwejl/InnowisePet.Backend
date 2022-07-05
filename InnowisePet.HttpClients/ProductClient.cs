@@ -42,6 +42,17 @@ public class ProductClient
     {
         await _publishEndpoint.Publish(productCreateDto);
     }
+    
+    public async Task UpdateProductAsync(ProductUpdateDto productUpdateDto)
+    {
+        await _publishEndpoint.Publish(productUpdateDto);
+    }
+
+    public async Task DeleteProductAsync(Guid id)
+    {
+        ProductDeleteDto productDeleteDto = new() { Id = id };
+        await _publishEndpoint.Publish(productDeleteDto);
+    }
 
     public async Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
     {

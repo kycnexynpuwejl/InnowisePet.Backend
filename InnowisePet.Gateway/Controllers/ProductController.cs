@@ -1,7 +1,6 @@
 using InnowisePet.HttpClients;
 using InnowisePet.Models.DTO.Category;
 using InnowisePet.Models.DTO.Product;
-using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Common.API.Controllers;
@@ -11,11 +10,9 @@ namespace InnowisePet.Common.API.Controllers;
 public class ProductController : Controller
 {
     private readonly ProductClient _productClient;
-    private readonly IPublishEndpoint _publishEndpoint;
 
-    public ProductController(IPublishEndpoint publishEndpoint, ProductClient productClient)
+    public ProductController(ProductClient productClient)
     {
-        _publishEndpoint = publishEndpoint;
         _productClient = productClient;
     }
 
@@ -53,16 +50,21 @@ public class ProductController : Controller
         return Ok();
     }
 
-    /*[HttpPut("{id}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> UpdateProductAsync([FromRoute] Guid id,
         [FromBody] ProductUpdateDto productUpdateDto)
     {
-        return Ok(await _productService.UpdateProductAsync(id, productUpdateDto));
+        productUpdateDto.Id = id;
+        await _productClient.UpdateProductAsync(productUpdateDto);
+        
+        return Ok();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProductAsync([FromRoute] Guid id)
     {
-        return Ok(await _productService.DeleteProductAsync(id));
-    }*/
+        await _productClient.DeleteProductAsync(id);
+        
+        return Ok();
+    }
 }

@@ -14,17 +14,17 @@ public class StorageRepository : IStorageRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<InnowisePet.Models.Entities.StorageModel>> GetStoragesAsync()
+    public async Task<IEnumerable<StorageModel>> GetStoragesAsync()
     {
         return await _context.Storages.ToListAsync();
     }
 
-    public async Task<InnowisePet.Models.Entities.StorageModel> GetStorageByIdAsync(Guid id)
+    public async Task<StorageModel> GetStorageByIdAsync(Guid id)
     {
         return await _context.Storages.Include(s => s.ProductStorages).FirstOrDefaultAsync(s => s.Id == id);
     }
 
-    public async Task CreateStorageAsync(InnowisePet.Models.Entities.StorageModel storageModel)
+    public async Task CreateStorageAsync(StorageModel storageModel)
     {
         await _context.Storages.AddAsync(storageModel);
         await _context.SaveChangesAsync();
