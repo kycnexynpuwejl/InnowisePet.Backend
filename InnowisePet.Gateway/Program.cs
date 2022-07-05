@@ -1,3 +1,4 @@
+using InnowisePet.Common.API.Extensions;
 using InnowisePet.HttpClients;
 using MassTransit;
 using Microsoft.IdentityModel.Tokens;
@@ -9,8 +10,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>  
-{  
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BasicAuth", Version = "v1" });  
+{
     c.AddSecurityDefinition("basic", new OpenApiSecurityScheme  
     {  
         Name = "Authorization",  
@@ -33,11 +33,7 @@ builder.Services.AddSwaggerGen(c =>
             new string[] {}  
         }  
     });  
-});  
-
-
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddControllers();
+});
 
 builder.Services.AddMassTransit(x => x.UsingRabbitMq());
 
@@ -46,15 +42,7 @@ builder.Services.AddHttpClient<OrderClient>(c =>
     c.BaseAddress = new Uri(builder.Configuration["OrderServiceUri"]);
 });
 
-builder.Services.AddHttpClient<ProductClient>(c =>
-{
-    c.BaseAddress = new Uri(builder.Configuration["ProductServiceUri"]);
-});
-
-builder.Services.AddHttpClient<StorageClient>(c =>
-{
-    c.BaseAddress = new Uri(builder.Configuration["StorageServiceUri"]);
-});
+builder.Services.ConfigureHttpClients(builder.Configuration);
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
@@ -74,6 +62,9 @@ builder.Services.AddAuthorization(options =>
         policy.RequireClaim("scope", "APIScope");
     });
 });
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddControllers();
 
 WebApplication app = builder.Build();
 
