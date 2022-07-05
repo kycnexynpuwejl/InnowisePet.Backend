@@ -28,19 +28,6 @@ public class StorageController : Controller
         return Ok(await _storageService.GetStorageByIdAsync(storageID));
     }
 
-    [HttpPost]
-    public async Task CreateStorageAsync(StorageCreateDto storageCreateDto)
-    {
-        await _storageService.CreateStorageAsync(storageCreateDto);
-    }
-
-    [HttpPost("{storageID}/product/")]
-    public async Task AddProductToStorageAsync([FromRoute]Guid storageID, [FromBody]ProductStorageCreateDto productStorageCreateDto)
-    {
-        productStorageCreateDto.StorageId = storageID;
-        await _storageService.AddProductToStorageAsync(productStorageCreateDto);
-    }
-
     [HttpGet("product")]
     public async Task<IActionResult> GetProductsAsync()
     {
@@ -51,22 +38,5 @@ public class StorageController : Controller
     public async Task<IActionResult> GetProductsByStorageIdAsync(Guid storageId)
     {
         return Ok(await _storageService.GetProductsByStorageIdAsync(storageId));
-    }
-
-    [HttpDelete("{storageId}/product/{productId}")]
-    public async Task DeleteProductSorageAsync([FromRoute]Guid storageId, [FromRoute]Guid productId)
-    {
-        await _storageService.DeleteProductSorageAsync(storageId, productId);
-    }
-
-    [HttpPut("{storageId}/product/{productId}")]
-    public async Task UpdateProductStorageAsync([FromRoute] Guid storageId, [FromRoute] Guid productId, [FromBody]int quantity)
-    {
-        await _storageService.UpdateProductStorageAsync(new ProductStorageUpdateDto
-        {
-            StorageId = storageId,
-            ProductId = productId,
-            Quantity = quantity
-        });
     }
 }
