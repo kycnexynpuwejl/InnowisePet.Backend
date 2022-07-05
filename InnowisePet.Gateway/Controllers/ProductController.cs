@@ -31,6 +31,12 @@ public class ProductController : Controller
         return Ok(await _productClient.GetProductByIdAsync(id));
     }
 
+    [HttpGet("category")]
+    public async Task<IActionResult> GetCategoriesAsync()
+    {
+        return Ok(await _productClient.GetCategoriesAsync());
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateProductAsync(ProductCreateDto productCreateDto)
     {
@@ -39,7 +45,7 @@ public class ProductController : Controller
         return Ok();
     }
 
-    [HttpPost("categoty")]
+    [HttpPost("category")]
     public async Task<IActionResult> CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
     {
         await _productClient.CreateCategoryAsync(categoryCreateDto);

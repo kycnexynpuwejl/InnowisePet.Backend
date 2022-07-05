@@ -23,6 +23,11 @@ public class ProductRepository : IProductRepository
         return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
     }
 
+    public async Task<IEnumerable<CategoryModel>> GetCategoriesAsync()
+    {
+        return await _context.Categories.ToListAsync();
+    }
+
     public async Task CreateProductAsync(ProductModel productModel)
     {
         if (productModel == null) return;

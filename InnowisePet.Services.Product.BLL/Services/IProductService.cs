@@ -7,6 +7,7 @@ public interface IProductService
 {
     Task<IEnumerable<ProductGetDto>> GetProductsAsync();
     Task<ProductGetDto> GetProductByIdAsync(Guid id);
+    Task<IEnumerable<CategoryGetDto>> GetCategoriesAsync();
     Task CreateProductAsync(ProductCreateDto productCreateDto);
     Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto);
     Task UpdateProductAsync(ProductUpdateDto productUpdateDto);

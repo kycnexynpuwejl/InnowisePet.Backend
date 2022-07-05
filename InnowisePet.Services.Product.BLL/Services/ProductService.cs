@@ -27,6 +27,11 @@ public class ProductService : IProductService
         return _mapper.Map<ProductGetDto>(await _productRepository.GetProductByIdAsync(id));
     }
 
+    public async Task<IEnumerable<CategoryGetDto>> GetCategoriesAsync()
+    {
+        return _mapper.Map<IEnumerable<CategoryGetDto>>(await _productRepository.GetCategoriesAsync());
+    }
+
     public async Task CreateProductAsync(ProductCreateDto productCreateDto)
     {
         await _productRepository.CreateProductAsync(_mapper.Map<ProductModel>(productCreateDto));
