@@ -1,5 +1,5 @@
 using AutoMapper;
-using InnowisePet.DTO.DTO.Storage;
+using InnowisePet.DTO.Storage;
 
 namespace InnowisePet.Services.Storage.BLL.Profiles;
 

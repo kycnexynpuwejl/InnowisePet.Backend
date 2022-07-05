@@ -1,4 +1,4 @@
-using InnowisePet.DTO.DTO.Product;
+using InnowisePet.DTO.Product;
 using MassTransit;
 
 namespace InnowisePet.HttpClients;

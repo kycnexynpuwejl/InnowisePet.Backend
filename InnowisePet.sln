@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.Gateway", "Inno
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.DTO", "InnowisePet.DTO\InnowisePet.DTO.csproj", "{9508D0D1-8E3F-45D1-9960-ECDC7F25277E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.IdentityServer4", "InnowisePet.IdentityServer4\InnowisePet.IdentityServer4.csproj", "{F87BE861-745C-453C-96F2-8DA70F6363B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.Services.IdentityServer4", "InnowisePet.Services.IdentityServer4\InnowisePet.Services.IdentityServer4.csproj", "{F87BE861-745C-453C-96F2-8DA70F6363B4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Report", "Report", "{FBD732F1-9D91-462D-84BB-0308DB7D7F3C}"
 EndProject

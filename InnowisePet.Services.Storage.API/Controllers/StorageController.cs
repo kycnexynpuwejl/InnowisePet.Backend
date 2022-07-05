@@ -1,5 +1,3 @@
-using InnowisePet.DTO.DTO.ProductStorage;
-using InnowisePet.DTO.DTO.Storage;
 using InnowisePet.Services.Storage.BLL.Services;
 using Microsoft.AspNetCore.Mvc;
 

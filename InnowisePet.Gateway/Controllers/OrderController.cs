@@ -1,4 +1,4 @@
-using InnowisePet.DTO.DTO.Order;
+using InnowisePet.DTO.Order;
 using InnowisePet.HttpClients;
 using Microsoft.AspNetCore.Mvc;
 

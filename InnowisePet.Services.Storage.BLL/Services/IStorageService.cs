@@ -1,5 +1,5 @@
-using InnowisePet.DTO.DTO.ProductStorage;
-using InnowisePet.DTO.DTO.Storage;
+using InnowisePet.DTO.ProductStorage;
+using InnowisePet.DTO.Storage;
 using InnowisePet.Models.Entities;
 
 namespace InnowisePet.Services.Storage.BLL.Services;

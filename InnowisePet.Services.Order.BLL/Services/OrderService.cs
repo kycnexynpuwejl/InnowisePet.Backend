@@ -1,5 +1,5 @@
 using AutoMapper;
-using InnowisePet.DTO.DTO.Order;
+using InnowisePet.DTO.Order;
 using InnowisePet.Services.Order.DAL.Repo;
 
 namespace InnowisePet.Services.Order.BLL.Services;
