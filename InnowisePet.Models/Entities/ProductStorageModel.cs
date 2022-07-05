@@ -9,7 +9,9 @@ public class ProductStorageModel
     public Guid Id { get; set; }
     public Guid ProductId { get; set; }
     
-    [ForeignKey("")]
+    [ForeignKey("StorageModel")]
     public Guid StorageId { get; set; }
+
+    public StorageModel Storage { get; set; }
     public int Quantity { get; set; }
 }

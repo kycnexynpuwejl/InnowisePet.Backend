@@ -9,8 +9,11 @@ public class ProductModel
     public Guid Id { get; set; }
 
     [Required]
+    [ForeignKey("CategoryModel")]
     public Guid CategoryId { get; set; }
     
+    public CategoryModel Category { get; set; }
+
     [Required]
     public string Title { get; set; }
 
