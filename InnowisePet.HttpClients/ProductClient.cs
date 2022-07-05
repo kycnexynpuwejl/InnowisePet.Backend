@@ -43,9 +43,19 @@ public class ProductClient
         await _publishEndpoint.Publish(productCreateDto);
     }
     
+    public async Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
+    {
+        await _publishEndpoint.Publish(categoryCreateDto);
+    }
+    
     public async Task UpdateProductAsync(ProductUpdateDto productUpdateDto)
     {
         await _publishEndpoint.Publish(productUpdateDto);
+    }
+
+    public async Task UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto)
+    {
+        await _publishEndpoint.Publish(categoryUpdateDto);
     }
 
     public async Task DeleteProductAsync(Guid id)
@@ -54,8 +64,9 @@ public class ProductClient
         await _publishEndpoint.Publish(productDeleteDto);
     }
 
-    public async Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
+    public async Task DeleteCategoryAsync(Guid id)
     {
-        await _publishEndpoint.Publish(categoryCreateDto);
+        CategoryDeleteDto categoryDeleteDto = new() { Id = id };
+        await _publishEndpoint.Publish(categoryDeleteDto);
     }
 }

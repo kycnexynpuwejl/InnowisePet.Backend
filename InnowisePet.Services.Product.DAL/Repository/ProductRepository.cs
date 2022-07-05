@@ -28,6 +28,11 @@ public class ProductRepository : IProductRepository
         return await _context.Categories.ToListAsync();
     }
 
+    public async Task<CategoryModel> GetCategoryByIdAsync(Guid id)
+    {
+        return await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+    }
+
     public async Task CreateProductAsync(ProductModel productModel)
     {
         if (productModel == null) return;
@@ -47,8 +52,8 @@ public class ProductRepository : IProductRepository
     public async Task UpdateProductAsync(ProductModel productModel)
     {
         if (productModel == null) return;
-
-        var productFromDb = await _context.Products.FirstOrDefaultAsync(p => p.Id == productModel.Id);
+        
+        ProductModel productFromDb = await _context.Products.FirstOrDefaultAsync(p => p.Id == productModel.Id);
 
         if (productFromDb != null)
         {
@@ -62,6 +67,17 @@ public class ProductRepository : IProductRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task UpdateCategoryAsync(CategoryModel categoryModel)
+    {
+        if(categoryModel == null) return;
+
+        CategoryModel categoryFromDb = await _context.Categories.FirstOrDefaultAsync(c => c.Id == categoryModel.Id);
+
+        if (categoryFromDb != null) categoryFromDb.Title = categoryModel.Title;
+
+        await _context.SaveChangesAsync();
+    }
+
     public async Task DeleteProductAsync(Guid id)
     {
         var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
@@ -70,5 +86,13 @@ public class ProductRepository : IProductRepository
 
         await _context.SaveChangesAsync();
     }
-    
+
+    public async Task DeleteCategoryAsync(Guid id)
+    {
+        var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+
+        if (category != null) _context.Categories.Remove(category);
+
+        await _context.SaveChangesAsync();
+    }
 }

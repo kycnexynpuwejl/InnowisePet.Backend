@@ -11,5 +11,7 @@ public interface IProductService
     Task CreateProductAsync(ProductCreateDto productCreateDto);
     Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto);
     Task UpdateProductAsync(ProductUpdateDto productUpdateDto);
+    Task UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto);
     Task DeleteProductAsync(Guid id);
+    Task DeleteCategoryAsync(Guid id);
 }

@@ -60,11 +60,29 @@ public class ProductController : Controller
         return Ok();
     }
 
+    [HttpPut("category/{id}")]
+    public async Task<IActionResult> UpdateCategoryAsync([FromRoute] Guid id,
+        [FromBody]CategoryUpdateDto categoryUpdateDto)
+    {
+        categoryUpdateDto.Id = id;
+        await _productClient.UpdateCategoryAsync(categoryUpdateDto);
+
+        return Ok();
+    }
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProductAsync([FromRoute] Guid id)
     {
         await _productClient.DeleteProductAsync(id);
         
+        return Ok();
+    }
+
+    [HttpDelete("category/{id}")]
+    public async Task<IActionResult> DeleteCategoryASync([FromRoute] Guid id)
+    {
+        await _productClient.DeleteCategoryAsync(id);
+
         return Ok();
     }
 }

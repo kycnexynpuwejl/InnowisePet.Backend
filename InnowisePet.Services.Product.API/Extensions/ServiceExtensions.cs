@@ -13,6 +13,8 @@ public static class ServiceExtensions
             x.AddConsumer<ProductUpdateConsumer>();
             x.AddConsumer<ProductDeleteConsumer>();
             x.AddConsumer<CategoryCreateConsumer>();
+            x.AddConsumer<CategoryUpdateConsumer>();
+            x.AddConsumer<CategoryDeleteConsumer>();
 
             x.UsingRabbitMq((context, cfg) =>
             {
@@ -20,6 +22,8 @@ public static class ServiceExtensions
                 cfg.ReceiveEndpoint("ProductUpdateQueue", e => e.ConfigureConsumer<ProductUpdateConsumer>(context));
                 cfg.ReceiveEndpoint("ProductDeleteQueue", e => e.ConfigureConsumer<ProductDeleteConsumer>(context));
                 cfg.ReceiveEndpoint("CategoryCreateQueue", e => e.ConfigureConsumer<CategoryCreateConsumer>(context));
+                cfg.ReceiveEndpoint("CategoryUpdateQueue", e => e.ConfigureConsumer<CategoryUpdateConsumer>(context));
+                cfg.ReceiveEndpoint("CategoryDeleteQueue", e => e.ConfigureConsumer<CategoryDeleteConsumer>(context));
             });
         });
     }

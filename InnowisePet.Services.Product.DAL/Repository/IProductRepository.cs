@@ -10,5 +10,7 @@ public interface IProductRepository
     Task CreateProductAsync(ProductModel productModel);
     Task CreateCategoryAsync(CategoryModel categoryModel);
     Task UpdateProductAsync(ProductModel productModel);
+    Task UpdateCategoryAsync(CategoryModel categoryModel);
     Task DeleteProductAsync(Guid id);
+    Task DeleteCategoryAsync(Guid id);
 }

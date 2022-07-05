@@ -47,8 +47,18 @@ public class ProductService : IProductService
         await _productRepository.UpdateProductAsync(_mapper.Map<ProductModel>(productUpdateDto));
     }
 
+    public async Task UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto)
+    {
+        await _productRepository.UpdateCategoryAsync(_mapper.Map<CategoryModel>(categoryUpdateDto));
+    }
+
     public async Task DeleteProductAsync(Guid id)
     {
         await _productRepository.DeleteProductAsync(id);
+    }
+
+    public async Task DeleteCategoryAsync(Guid id)
+    {
+        await _productRepository.DeleteCategoryAsync(id);
     }
 }
