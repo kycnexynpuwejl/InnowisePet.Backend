@@ -1,4 +1,4 @@
-namespace InnowisePet.DTO.Location;
+namespace InnowisePet.Models.DTO.Location;
 
 public class LocationUpdateDto
 {

@@ -1,4 +1,4 @@
-using InnowisePet.DTO.Storage;
+using InnowisePet.Models.DTO.Storage;
 
 namespace InnowisePet.HttpClients;
 

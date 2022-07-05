@@ -1,4 +1,4 @@
-namespace InnowisePet.DTO.Category;
+namespace InnowisePet.Models.DTO.Category;
 
 public class CategoryCreateDto
 {

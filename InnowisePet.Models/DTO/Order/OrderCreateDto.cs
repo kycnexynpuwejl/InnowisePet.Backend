@@ -1,4 +1,4 @@
-namespace InnowisePet.DTO.Order;
+namespace InnowisePet.Models.DTO.Order;
 
 public class OrderCreateDto
 {

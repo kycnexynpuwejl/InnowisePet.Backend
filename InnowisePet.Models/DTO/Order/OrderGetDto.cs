@@ -1,6 +1,6 @@
 using InnowisePet.Shared.Enums;
 
-namespace InnowisePet.DTO.Order;
+namespace InnowisePet.Models.DTO.Order;
 
 public class OrderGetDto
 {

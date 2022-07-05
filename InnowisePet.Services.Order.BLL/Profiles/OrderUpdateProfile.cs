@@ -1,5 +1,5 @@
 using AutoMapper;
-using InnowisePet.DTO.Order;
+using InnowisePet.Models.DTO.Order;
 
 namespace InnowisePet.Services.Order.BLL.Profiles;
 

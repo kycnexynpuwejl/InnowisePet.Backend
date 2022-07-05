@@ -1,6 +1,6 @@
 using AutoMapper;
-using InnowisePet.DTO.ProductStorage;
-using InnowisePet.DTO.Storage;
+using InnowisePet.Models.DTO.ProductStorage;
+using InnowisePet.Models.DTO.Storage;
 using InnowisePet.Models.Entities;
 using InnowisePet.Services.Storage.DAL.Repo;
 

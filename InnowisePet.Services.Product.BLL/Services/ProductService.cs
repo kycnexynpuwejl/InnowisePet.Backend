@@ -1,5 +1,5 @@
 using AutoMapper;
-using InnowisePet.DTO.Product;
+using InnowisePet.Models.DTO.Product;
 using InnowisePet.Models.Entities;
 using InnowisePet.Services.Product.DAL.Repository;
 

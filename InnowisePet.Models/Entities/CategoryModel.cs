@@ -9,4 +9,6 @@ public class CategoryModel
 
     [Required]
     public string Title { get; set; }
+    
+    public IEnumerable<ProductModel> Products { get; set; }
 }

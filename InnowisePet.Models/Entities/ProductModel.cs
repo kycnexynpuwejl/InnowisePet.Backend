@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InnowisePet.Models.Entities;
 
@@ -16,9 +17,8 @@ public class ProductModel
     public string Description { get; set; }
 
     [Required]
+    [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }
 
     public string ImageUrl { get; set; }
-
-    public IEnumerable<CategoryModel> Categories { get; set; }
 }

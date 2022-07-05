@@ -11,4 +11,8 @@
       <ProjectReference Include="..\InnowisePet.Shared\InnowisePet.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="DTO" />
+    </ItemGroup>
+
 </Project>

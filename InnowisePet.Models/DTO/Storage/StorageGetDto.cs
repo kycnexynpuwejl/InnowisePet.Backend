@@ -1,4 +1,4 @@
-namespace InnowisePet.DTO.Storage;
+namespace InnowisePet.Models.DTO.Storage;
 
 public class StorageGetDto
 {

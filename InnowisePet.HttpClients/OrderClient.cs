@@ -1,4 +1,4 @@
-using InnowisePet.DTO.Order;
+using InnowisePet.Models.DTO.Order;
 using MassTransit;
 
 namespace InnowisePet.HttpClients;

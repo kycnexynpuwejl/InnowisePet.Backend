@@ -1,4 +1,4 @@
-using InnowisePet.DTO.Product;
+using InnowisePet.Models.DTO.Product;
 using InnowisePet.Services.Product.BLL.Services;
 using MassTransit;
 

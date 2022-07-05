@@ -1,21 +1,13 @@
-using InnowisePet.Shared.Enums;
+namespace InnowisePet.Models.DTO.Order;
 
-namespace InnowisePet.DTO.Order;
-
-public class OrderUpdateDto
+public class OrderAcceptedDto
 {
-    public Guid Id { get; set; }
-
-    public Guid UserId { get; set; }
-
     public int Quantity { get; set; }
 
     public Guid ProductId { get; set; }
 
     public string ProductName { get; set; }
 
-    public OrderStatus OrderStatus { get; set; }
-    
     public string Firstname { get; set; }
     
     public string Lastname { get; set; }

@@ -1,5 +1,5 @@
-using InnowisePet.DTO.Order;
 using InnowisePet.HttpClients;
+using InnowisePet.Models.DTO.Order;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Common.API.Controllers;

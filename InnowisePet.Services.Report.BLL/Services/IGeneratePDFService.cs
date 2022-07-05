@@ -1,4 +1,4 @@
-using InnowisePet.DTO.Order;
+using InnowisePet.Models.DTO.Order;
 
 namespace InnowisePet.Services.Report.BLL.Services;
 

@@ -1,5 +1,5 @@
-using InnowisePet.DTO.Product;
 using InnowisePet.HttpClients;
+using InnowisePet.Models.DTO.Product;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 

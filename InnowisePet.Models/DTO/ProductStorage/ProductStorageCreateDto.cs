@@ -1,6 +1,6 @@
-namespace InnowisePet.DTO.ProductStorage;
+namespace InnowisePet.Models.DTO.ProductStorage;
 
-public class ProductStorageUpdateDto
+public class ProductStorageCreateDto
 {
     public Guid ProductId { get; set; }
     public Guid StorageId { get; set; }
