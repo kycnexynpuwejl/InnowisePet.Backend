@@ -1,4 +1,5 @@
-/*using InnowisePet.DTO.DTO.Storage;
+using InnowisePet.HttpClients;
+using InnowisePet.Models.DTO.Storage;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Common.API.Controllers;
@@ -7,32 +8,34 @@ namespace InnowisePet.Common.API.Controllers;
 [Route("api/[controller]")]
 public class StorageController : Controller
 {
-    private readonly IStorageService _storageService;
+    private readonly StorageClient _storageClient;
 
-    public StorageController(IStorageService storageService)
+    public StorageController(StorageClient storageClient)
     {
-        _storageService = storageService;
+        _storageClient = storageClient;
     }
 
     [HttpGet("list")]
     public async Task<IActionResult> GetStoragesAsync()
     {
-        return Ok(await _storageService.GetStoragesAsync());
+        return Ok(await _storageClient.GetStoragesAsync());
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetStorageByIdAsync([FromRoute] Guid id)
     {
-        return Ok(await _storageService.GetStorageByIdAsync(id));
+        return Ok(await _storageClient.GetStorageByIdAsync(id));
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateStorageAsync(StorageCreateDto storageCreateDto)
+    public async Task<IActionResult> CreateStorageAsync([FromBody]StorageCreateDto storageCreateDto)
     {
-        return Ok(await _storageService.CreateStorageAsync(storageCreateDto));
+        await _storageClient.CreateStorageAsync(storageCreateDto);
+        
+        return Ok();
     }
 
-    [HttpPut("{id}")]
+    /*[HttpPut("{id}")]
     public async Task<IActionResult> UpdateStorageAsync([FromRoute] Guid id,
         [FromBody] StorageUpdateDto storageUpdateDto)
     {
@@ -43,5 +46,5 @@ public class StorageController : Controller
     public async Task<IActionResult> DeleteStorageAsync([FromRoute] Guid id)
     {
         return Ok(await _storageService.DeleteStorageAsync(id));
-    }
-}*/
+    }*/
+}

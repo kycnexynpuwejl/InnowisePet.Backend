@@ -1,3 +1,4 @@
+using InnowisePet.Services.Storage.BLL.Consumers;
 using MassTransit;
 
 namespace InnowisePet.Services.Storage.API.Extensions;
@@ -8,7 +9,12 @@ public static class ServiceExtensions
     {
         services.AddMassTransit(x =>
         {
-            x.UsingRabbitMq();
+            x.AddConsumer<StorageCreateConsumer>();
+            
+            x.UsingRabbitMq((context, cfg) =>
+            {
+                cfg.ReceiveEndpoint("StorageCreateQueue", e =>  e.ConfigureConsumer<StorageCreateConsumer>(context));
+            });
         });
     }
 }

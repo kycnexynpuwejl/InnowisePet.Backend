@@ -30,6 +30,16 @@ public class StorageRepository : IStorageRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task UpdateStorageAsync(StorageModel storageModel)
+    {
+        var storageFromDb = await _context.Storages.FirstOrDefaultAsync(s => s.Id == storageModel.Id);
+
+        if (storageFromDb != null)
+        {
+            storageFromDb.Title = storageModel.Title;
+        }
+    }
+
     public async Task AddProductToStorageAsync(ProductStorageModel productStorageModel)
     {
         var productStorageFromDb = await _context.ProductStorages.FirstOrDefaultAsync(

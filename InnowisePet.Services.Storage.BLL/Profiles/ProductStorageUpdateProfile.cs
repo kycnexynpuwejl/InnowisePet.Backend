@@ -8,6 +8,6 @@ public class ProductStorageUpdateProfile : Profile
 {
     public ProductStorageUpdateProfile()
     {
-        CreateMap<ProductStorageUpdateDto, ProductStorageModel>();
+        CreateMap<ProductStorageUpdateDto, ProductStorageModel>().ReverseMap();
     }
 }

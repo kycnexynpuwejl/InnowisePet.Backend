@@ -1,12 +1,39 @@
 using InnowisePet.HttpClients;
 using MassTransit;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(c =>  
+{  
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BasicAuth", Version = "v1" });  
+    c.AddSecurityDefinition("basic", new OpenApiSecurityScheme  
+    {  
+        Name = "Authorization",  
+        Type = SecuritySchemeType.Http,  
+        Scheme = "basic",  
+        In = ParameterLocation.Header,  
+        Description = "Basic Authorization header using the Bearer scheme."  
+    });  
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement  
+    {  
+        {  
+            new OpenApiSecurityScheme  
+            {  
+                Reference = new OpenApiReference  
+                {  
+                    Type = ReferenceType.SecurityScheme,  
+                    Id = "basic"  
+                }  
+            },  
+            new string[] {}  
+        }  
+    });  
+});  
 
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -32,7 +59,7 @@ builder.Services.AddHttpClient<StorageClient>(c =>
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
-        options.Authority = "https://localhost:7000";
+        options.Authority = "https://localhost:7000/";
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateAudience = false
@@ -65,8 +92,7 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllers();
-    //.RequireAuthorization("ApiScope");
+    endpoints.MapControllers().RequireAuthorization("ApiScope");
 });
 
 
