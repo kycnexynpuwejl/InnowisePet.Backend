@@ -1,4 +1,5 @@
 using AutoMapper;
+using InnowisePet.Models.DTO.Category;
 using InnowisePet.Models.DTO.Product;
 using InnowisePet.Models.Entities;
 using InnowisePet.Services.Product.DAL.Repository;
@@ -29,6 +30,11 @@ public class ProductService : IProductService
     public async Task CreateProductAsync(ProductCreateDto productCreateDto)
     {
         await _productRepository.CreateProductAsync(_mapper.Map<ProductModel>(productCreateDto));
+    }
+
+    public async Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
+    {
+        await _productRepository.CreateCategoryAsync(_mapper.Map<CategoryModel>(categoryCreateDto));
     }
 
     public async Task UpdateProductAsync(ProductUpdateDto productUpdateDto)

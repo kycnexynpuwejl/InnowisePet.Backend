@@ -31,6 +31,14 @@ public class ProductRepository : IProductRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task CreateCategoryAsync(CategoryModel categoryModel)
+    {
+        if(categoryModel == null) return;
+
+        await _context.Categories.AddAsync(categoryModel);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task UpdateProductAsync(ProductModel productModel)
     {
         if (productModel == null) return;

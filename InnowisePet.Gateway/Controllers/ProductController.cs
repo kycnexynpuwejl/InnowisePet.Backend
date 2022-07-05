@@ -1,4 +1,5 @@
 using InnowisePet.HttpClients;
+using InnowisePet.Models.DTO.Category;
 using InnowisePet.Models.DTO.Product;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +36,14 @@ public class ProductController : Controller
     {
         await _productClient.CreateProductAsync(productCreateDto);
         
+        return Ok();
+    }
+
+    [HttpPost("categoty")]
+    public async Task<IActionResult> CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
+    {
+        await _productClient.CreateCategoryAsync(categoryCreateDto);
+
         return Ok();
     }
 

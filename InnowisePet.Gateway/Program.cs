@@ -1,4 +1,3 @@
-using InnowisePet.Common.API.Extensions;
 using InnowisePet.HttpClients;
 using MassTransit;
 using Microsoft.IdentityModel.Tokens;
@@ -10,7 +9,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.ConfigureServices();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
 

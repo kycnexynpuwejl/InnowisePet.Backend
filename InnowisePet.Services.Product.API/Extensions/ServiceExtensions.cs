@@ -10,10 +10,12 @@ public static class ServiceExtensions
         services.AddMassTransit(x =>
         {
             x.AddConsumer<ProductCreateConsumer>();
+            x.AddConsumer<CategoryCreateConsumer>();
 
             x.UsingRabbitMq((context, cfg) =>
             {
-                cfg.ReceiveEndpoint("ProductCreateQueue", e => { e.ConfigureConsumer<ProductCreateConsumer>(context); });
+                cfg.ReceiveEndpoint("ProductCreateQueue", e =>  e.ConfigureConsumer<ProductCreateConsumer>(context));
+                cfg.ReceiveEndpoint("CategoryCreateQueue", e => e.ConfigureConsumer<CategoryCreateConsumer>(context));
             });
         });
     }

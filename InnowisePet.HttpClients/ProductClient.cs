@@ -1,3 +1,4 @@
+using InnowisePet.Models.DTO.Category;
 using InnowisePet.Models.DTO.Product;
 using MassTransit;
 
@@ -33,5 +34,10 @@ public class ProductClient
     public async Task CreateProductAsync(ProductCreateDto productCreateDto)
     {
         await _publishEndpoint.Publish(productCreateDto);
+    }
+
+    public async Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
+    {
+        await _publishEndpoint.Publish(categoryCreateDto);
     }
 }
