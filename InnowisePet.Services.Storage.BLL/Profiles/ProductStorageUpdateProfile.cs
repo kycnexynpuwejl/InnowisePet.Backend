@@ -8,6 +8,6 @@ public class ProductStorageUpdateProfile : Profile
 {
     public ProductStorageUpdateProfile()
     {
-        CreateMap<ProductStorageUpdateDto, ProductStorage>();
+        CreateMap<ProductStorageUpdateDto, ProductStorageModel>();
     }
 }

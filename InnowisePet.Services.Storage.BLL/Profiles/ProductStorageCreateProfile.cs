@@ -8,6 +8,6 @@ public class ProductStorageCreateProfile : Profile
 {
     public ProductStorageCreateProfile()
     {
-        CreateMap<ProductStorageCreateDto, ProductStorage>();
+        CreateMap<ProductStorageCreateDto, ProductStorageModel>();
     }
 }

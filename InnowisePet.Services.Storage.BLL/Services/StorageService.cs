@@ -17,34 +17,34 @@ public class StorageService : IStorageService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<Models.Entities.Storage>> GetStoragesAsync()
+    public async Task<IEnumerable<Models.Entities.StorageModel>> GetStoragesAsync()
     {
         return await _storageRepository.GetStoragesAsync();
     }
 
-    public async Task<Models.Entities.Storage> GetStorageByIdAsync(Guid id)
+    public async Task<Models.Entities.StorageModel> GetStorageByIdAsync(Guid id)
     {
         return await _storageRepository.GetStorageByIdAsync(id);
     }
 
     public async Task CreateStorageAsync(StorageCreateDto storageCreateDto)
     {
-        var storage = _mapper.Map<Models.Entities.Storage>(storageCreateDto);
+        var storage = _mapper.Map<Models.Entities.StorageModel>(storageCreateDto);
         await _storageRepository.CreateStorageAsync(storage);
     }
 
     public async Task AddProductToStorageAsync(ProductStorageCreateDto productStorageCreateDto)
     {
-        var productStorage = _mapper.Map<ProductStorage>(productStorageCreateDto);
+        var productStorage = _mapper.Map<ProductStorageModel>(productStorageCreateDto);
         await _storageRepository.AddProductToStorageAsync(productStorage);
     }
 
-    public async Task<IEnumerable<ProductStorage>> GetProductsAsync()
+    public async Task<IEnumerable<ProductStorageModel>> GetProductsAsync()
     {
         return await _storageRepository.GetProductsAsync();
     }
 
-    public async Task<IEnumerable<ProductStorage>> GetProductsByStorageIdAsync(Guid storageId)
+    public async Task<IEnumerable<ProductStorageModel>> GetProductsByStorageIdAsync(Guid storageId)
     {
         return await _storageRepository.GetProductsByStorageIdAsync(storageId);
     }
@@ -56,7 +56,7 @@ public class StorageService : IStorageService
 
     public async Task UpdateProductStorageAsync(ProductStorageUpdateDto productStorageUpdateDto)
     {
-        var productStorage = _mapper.Map<ProductStorage>(productStorageUpdateDto);
+        var productStorage = _mapper.Map<ProductStorageModel>(productStorageUpdateDto);
         await _storageRepository.UpdateProductStorageAsync(productStorage);
     }
 }

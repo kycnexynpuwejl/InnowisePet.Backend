@@ -1,6 +1,6 @@
 ﻿namespace InnowisePet.Models.Entities;
 
-public class User
+public class UserModel
 {
     public Guid Id { get; set; }
     public string Firstname { get; set; }

@@ -7,6 +7,6 @@ public class StorageCreateProfile : Profile
 {
     public StorageCreateProfile()
     {
-        CreateMap<StorageCreateDto, Models.Entities.Storage>();
+        CreateMap<StorageCreateDto, Models.Entities.StorageModel>();
     }
 }

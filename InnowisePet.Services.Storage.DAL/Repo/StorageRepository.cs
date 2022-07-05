@@ -14,44 +14,44 @@ public class StorageRepository : IStorageRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<InnowisePet.Models.Entities.Storage>> GetStoragesAsync()
+    public async Task<IEnumerable<InnowisePet.Models.Entities.StorageModel>> GetStoragesAsync()
     {
         return await _context.Storages.ToListAsync();
     }
 
-    public async Task<InnowisePet.Models.Entities.Storage> GetStorageByIdAsync(Guid id)
+    public async Task<InnowisePet.Models.Entities.StorageModel> GetStorageByIdAsync(Guid id)
     {
         return await _context.Storages.Include(s => s.ProductStorages).FirstOrDefaultAsync(s => s.Id == id);
     }
 
-    public async Task CreateStorageAsync(InnowisePet.Models.Entities.Storage storage)
+    public async Task CreateStorageAsync(InnowisePet.Models.Entities.StorageModel storageModel)
     {
-        await _context.Storages.AddAsync(storage);
+        await _context.Storages.AddAsync(storageModel);
         await _context.SaveChangesAsync();
     }
 
-    public async Task AddProductToStorageAsync(ProductStorage productStorage)
+    public async Task AddProductToStorageAsync(ProductStorageModel productStorageModel)
     {
         var productStorageFromDb = await _context.ProductStorages.FirstOrDefaultAsync(
-            ps => ps.ProductId == productStorage.ProductId &&
-                  ps.StorageId == productStorage.StorageId);
+            ps => ps.ProductId == productStorageModel.ProductId &&
+                  ps.StorageId == productStorageModel.StorageId);
         if (productStorageFromDb == null)
         {
-            await _context.ProductStorages.AddAsync(productStorage);
+            await _context.ProductStorages.AddAsync(productStorageModel);
         }
         else
         {
-            productStorageFromDb.Quantity += productStorage.Quantity;
+            productStorageFromDb.Quantity += productStorageModel.Quantity;
         }
         await _context.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<ProductStorage>> GetProductsAsync()
+    public async Task<IEnumerable<ProductStorageModel>> GetProductsAsync()
     {
         return await _context.ProductStorages.ToListAsync();
     }
 
-    public async Task<IEnumerable<ProductStorage>> GetProductsByStorageIdAsync(Guid storageId)
+    public async Task<IEnumerable<ProductStorageModel>> GetProductsByStorageIdAsync(Guid storageId)
     {
         return await _context.ProductStorages.Where(x => x.StorageId == storageId).ToListAsync();
     }
@@ -68,15 +68,15 @@ public class StorageRepository : IStorageRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateProductStorageAsync(ProductStorage productStorage)
+    public async Task UpdateProductStorageAsync(ProductStorageModel productStorageModel)
     {
         var productStorageToUpdate = await _context.ProductStorages.FirstOrDefaultAsync(ps =>
-            ps.StorageId == productStorage.StorageId &&
-            ps.ProductId == productStorage.ProductId);
+            ps.StorageId == productStorageModel.StorageId &&
+            ps.ProductId == productStorageModel.ProductId);
 
         if (productStorageToUpdate == null) return;
 
-        productStorageToUpdate.Quantity = productStorage.Quantity;
+        productStorageToUpdate.Quantity = productStorageModel.Quantity;
         _context.ProductStorages.Update(productStorageToUpdate);
         await _context.SaveChangesAsync();
     }

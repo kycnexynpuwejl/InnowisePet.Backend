@@ -1,7 +1,9 @@
 ﻿namespace InnowisePet.Models.Entities;
 
-public class Category
+public class Location
 {
     public Guid Id { get; set; }
-    public string Title { get; set; }
+    
+    public string City { get; set; }
+    
 }

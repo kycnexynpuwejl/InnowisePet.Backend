@@ -1,6 +1,6 @@
 namespace InnowisePet.Models.Entities;
 
-public class ProductStorage
+public class ProductStorageModel
 {
     public Guid Id { get; set; }
     public Guid ProductId { get; set; }

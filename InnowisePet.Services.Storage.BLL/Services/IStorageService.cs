@@ -6,12 +6,12 @@ namespace InnowisePet.Services.Storage.BLL.Services;
 
 public interface IStorageService
 {
-    Task<IEnumerable<Models.Entities.Storage>> GetStoragesAsync();
-    Task<Models.Entities.Storage> GetStorageByIdAsync(Guid id);
+    Task<IEnumerable<Models.Entities.StorageModel>> GetStoragesAsync();
+    Task<Models.Entities.StorageModel> GetStorageByIdAsync(Guid id);
     Task CreateStorageAsync(StorageCreateDto storageCreateDto);
     Task AddProductToStorageAsync(ProductStorageCreateDto productStorageCreateDto);
-    Task<IEnumerable<ProductStorage>> GetProductsAsync();
-    Task<IEnumerable<ProductStorage>> GetProductsByStorageIdAsync(Guid storageId);
+    Task<IEnumerable<ProductStorageModel>> GetProductsAsync();
+    Task<IEnumerable<ProductStorageModel>> GetProductsByStorageIdAsync(Guid storageId);
     Task DeleteProductSorageAsync(Guid storageId, Guid productId);
     Task UpdateProductStorageAsync(ProductStorageUpdateDto productStorageUpdateDto);
 }

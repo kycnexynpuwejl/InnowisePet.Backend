@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace InnowisePet.Services.Order.DAL;
+namespace InnowisePet.Services.Order.DAL.Data;
 
 public class OrderDbContext : DbContext
 {
