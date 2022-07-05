@@ -1,6 +1,5 @@
 using InnowisePet.Services.Order.API.Extensions;
-using InnowisePet.Services.Order.BLL;
-using InnowisePet.Services.Order.DAL;
+using InnowisePet.Services.Order.BLL.Services;
 using InnowisePet.Services.Order.DAL.Data;
 using InnowisePet.Services.Order.DAL.Repo;
 using Microsoft.EntityFrameworkCore;
@@ -14,8 +13,9 @@ builder.Services.ConfigureMassTransit();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-var s = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.ManifestModule.Name.Contains("Innowise"));
+
 builder.Services.AddDbContext<OrderDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("OrderDBConnection"),

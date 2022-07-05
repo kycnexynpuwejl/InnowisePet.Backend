@@ -1,4 +1,5 @@
 using InnowisePet.DTO.DTO.Order;
+using InnowisePet.Services.Order.BLL.Services;
 using MassTransit;
 
 namespace InnowisePet.Services.Order.BLL.Consumers;

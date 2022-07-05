@@ -2,7 +2,7 @@ using AutoMapper;
 using InnowisePet.DTO.DTO.Order;
 using InnowisePet.Services.Order.DAL.Repo;
 
-namespace InnowisePet.Services.Order.BLL;
+namespace InnowisePet.Services.Order.BLL.Services;
 
 public class OrderService : IOrderService
 {

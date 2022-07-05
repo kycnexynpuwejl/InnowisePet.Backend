@@ -26,26 +26,4 @@ public class ProductController : Controller
     {
         return Ok(await _productService.GetProductByIdAsync(id));
     }
-    
-    [HttpPost]
-    public async Task<IActionResult> CreateProductAsync(ProductCreateDto productCreateDto)
-    {
-        await _productService.CreateProductAsync(productCreateDto);
-        return Ok();
-    }
-
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProductAsync([FromRoute] Guid id, [FromBody] ProductUpdateDto productUpdateDto)
-    {
-        productUpdateDto.Id = id;
-        await _productService.UpdateProductAsync(productUpdateDto);
-        return Ok();
-    }
-
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteProductAsync([FromRoute]Guid id)
-    {
-        await _productService.DeleteProductAsync(id);
-        return Ok();
-    }
 }

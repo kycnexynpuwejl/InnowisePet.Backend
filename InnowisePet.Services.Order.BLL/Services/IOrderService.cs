@@ -1,6 +1,6 @@
 using InnowisePet.DTO.DTO.Order;
 
-namespace InnowisePet.Services.Order.BLL;
+namespace InnowisePet.Services.Order.BLL.Services;
 
 public interface IOrderService
 {
