@@ -7,7 +7,7 @@ public class OrderGetProfile : Profile
 {
     public OrderGetProfile()
     {
-        CreateMap<DAL.Order, OrderGetDto>()
+        CreateMap<Models.Entities.OrderModel, OrderGetDto>()
             .ForMember(p => p.Id, opt => opt.MapFrom(p => p.Id))
             .ForMember(p => p.Firstname, opt => opt.MapFrom(p => p.Firstname))
             .ForMember(p => p.Lastname, opt => opt.MapFrom(p => p.Lastname))

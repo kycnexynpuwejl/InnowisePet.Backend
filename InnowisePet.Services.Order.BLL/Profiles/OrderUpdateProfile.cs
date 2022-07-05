@@ -7,7 +7,7 @@ public class OrderUpdateProfile : Profile
 {
     public OrderUpdateProfile()
     {
-        CreateMap<OrderUpdateDto, DAL.Order>()
+        CreateMap<OrderUpdateDto, Models.Entities.OrderModel>()
             .ForMember(p => p.Quantity, opt => opt.MapFrom(p => p.Quantity))
             .ForMember(p => p.OrderStatus, opt => opt.MapFrom(p => p.OrderStatus))
             .ForMember(p => p.ProductId, opt => opt.MapFrom(p => p.ProductId))

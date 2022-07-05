@@ -7,7 +7,7 @@ public class OrderCreateProfile : Profile
 {
     public OrderCreateProfile()
     {
-        CreateMap<OrderCreateDto, DAL.Order>()
+        CreateMap<OrderCreateDto, Models.Entities.OrderModel>()
             .ForMember(p => p.Id, opt => opt.MapFrom(p => Guid.NewGuid()));
     }
 }

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace InnowisePet.Services.Product.DAL.Models;
+namespace InnowisePet.Models.Entities;
 
 public class CategoryModel
 {

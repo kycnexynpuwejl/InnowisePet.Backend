@@ -1,6 +1,6 @@
 using AutoMapper;
 using InnowisePet.DTO.DTO.Product;
-using InnowisePet.Services.Product.DAL.Models;
+using InnowisePet.Models.Entities;
 
 namespace InnowisePet.Services.Product.BLL.Profiles;
 

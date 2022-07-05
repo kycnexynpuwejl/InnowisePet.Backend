@@ -1,8 +1,8 @@
 using InnowisePet.Shared.Enums;
 
-namespace InnowisePet.Services.Order.DAL;
+namespace InnowisePet.Models.Entities;
 
-public class Order
+public class OrderModel
 {
     public Guid Id { get; set; }
     

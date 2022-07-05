@@ -17,30 +17,30 @@ public class OrderService : IOrderService
 
     public async Task<IEnumerable<OrderGetDto>> GetOrdersAsync()
     {
-        IEnumerable<DAL.Order> result = await _orderRepository.GetOrdersAsync();
+        IEnumerable<Models.Entities.OrderModel> result = await _orderRepository.GetOrdersAsync();
 
         return _mapper.Map<IEnumerable<OrderGetDto>>(result);
     }
 
     public async Task<OrderGetDto> GetOrderByIdAsync(Guid id)
     {
-        DAL.Order order = await _orderRepository.GetOrderByIdAsync(id);
+        Models.Entities.OrderModel orderModel = await _orderRepository.GetOrderByIdAsync(id);
 
-        return _mapper.Map<OrderGetDto>(order);
+        return _mapper.Map<OrderGetDto>(orderModel);
     }
 
     public async Task CreateOrderAsync(OrderCreateDto orderCreateDto)
     {
-        DAL.Order order = _mapper.Map<DAL.Order>(orderCreateDto);
+        Models.Entities.OrderModel orderModel = _mapper.Map<Models.Entities.OrderModel>(orderCreateDto);
 
-        await _orderRepository.CreateOrderAsync(order);
+        await _orderRepository.CreateOrderAsync(orderModel);
     }
 
     public async Task UpdateOrderAsync(OrderUpdateDto orderUpdateDto)
     {
-        DAL.Order order = _mapper.Map<DAL.Order>(orderUpdateDto);
+        Models.Entities.OrderModel orderModel = _mapper.Map<Models.Entities.OrderModel>(orderUpdateDto);
 
-        await _orderRepository.UpdateOrderAsync(order);
+        await _orderRepository.UpdateOrderAsync(orderModel);
     }
 
     public async Task DeleteOrderAsync(Guid id)

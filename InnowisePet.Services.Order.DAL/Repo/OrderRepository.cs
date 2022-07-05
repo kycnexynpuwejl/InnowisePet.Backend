@@ -1,3 +1,4 @@
+using InnowisePet.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace InnowisePet.Services.Order.DAL.Repo;
@@ -11,47 +12,47 @@ public class OrderRepository : IOrderRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Order>> GetOrdersAsync()
+    public async Task<IEnumerable<OrderModel>> GetOrdersAsync()
     {
         return await _context.Orders.ToListAsync();
     }
 
-    public async Task<Order> GetOrderByIdAsync(Guid id)
+    public async Task<OrderModel> GetOrderByIdAsync(Guid id)
     {
         return await _context.Orders.FindAsync(id);
     }
 
-    public async Task CreateOrderAsync(Order order)
+    public async Task CreateOrderAsync(OrderModel orderModel)
     {
-        await _context.Orders.AddAsync(order);
+        await _context.Orders.AddAsync(orderModel);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateOrderAsync(Order order)
+    public async Task UpdateOrderAsync(OrderModel orderModel)
     {
-        Order orderFromDb = await _context.Orders.FindAsync(order.Id);
+        OrderModel orderModelFromDb = await _context.Orders.FindAsync(orderModel.Id);
 
-        if (orderFromDb == null) return;
+        if (orderModelFromDb == null) return;
 
-        orderFromDb.ProductId = order.ProductId;
-        orderFromDb.Quantity = order.Quantity;
-        orderFromDb.OrderStatus = order.OrderStatus;
-        orderFromDb.Firstname = order.Firstname;
-        orderFromDb.Lastname = order.Lastname;
-        orderFromDb.Address = order.Address;
-        orderFromDb.City = order.City;
-        orderFromDb.Country = order.Country;
+        orderModelFromDb.ProductId = orderModel.ProductId;
+        orderModelFromDb.Quantity = orderModel.Quantity;
+        orderModelFromDb.OrderStatus = orderModel.OrderStatus;
+        orderModelFromDb.Firstname = orderModel.Firstname;
+        orderModelFromDb.Lastname = orderModel.Lastname;
+        orderModelFromDb.Address = orderModel.Address;
+        orderModelFromDb.City = orderModel.City;
+        orderModelFromDb.Country = orderModel.Country;
 
         await _context.SaveChangesAsync();
     }
 
     public async Task DeleteOrderAsync(Guid id)
     {
-        Order orderFromDb = await _context.Orders.FindAsync(id);
+        OrderModel orderModelFromDb = await _context.Orders.FindAsync(id);
 
-        if (orderFromDb == null) return;
+        if (orderModelFromDb == null) return;
 
-        _context.Orders.Remove(orderFromDb);
+        _context.Orders.Remove(orderModelFromDb);
         await _context.SaveChangesAsync();
     }
 }

@@ -1,4 +1,4 @@
-using InnowisePet.Services.Product.DAL.Models;
+using InnowisePet.Models.Entities;
 
 namespace InnowisePet.Services.Product.DAL.Repository;
 

@@ -1,4 +1,4 @@
-using InnowisePet.Services.Product.DAL.Models;
+using InnowisePet.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace InnowisePet.Services.Product.DAL.Data;

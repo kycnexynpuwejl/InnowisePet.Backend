@@ -1,5 +1,5 @@
+using InnowisePet.Models.Entities;
 using InnowisePet.Services.Product.DAL.Data;
-using InnowisePet.Services.Product.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace InnowisePet.Services.Product.DAL.Repository;
