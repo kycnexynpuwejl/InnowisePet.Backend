@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\InnowisePet.DTO\InnowisePet.DTO.csproj" />
       <ProjectReference Include="..\InnowisePet.Services.Product.DAL\InnowisePet.Services.Product.DAL.csproj" />
     </ItemGroup>
 

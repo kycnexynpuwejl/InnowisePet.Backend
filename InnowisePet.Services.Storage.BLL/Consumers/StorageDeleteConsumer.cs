@@ -1,4 +1,3 @@
-using InnowisePet.Models.DTO.ProductStorage;
 using InnowisePet.Models.DTO.Storage;
 using InnowisePet.Services.Storage.BLL.Services;
 using MassTransit;

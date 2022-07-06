@@ -40,14 +40,14 @@ public class GeneratePdfService : IGeneratePdfService
         
         HtmlToPdf renderer = new();
 
-        PdfDocument? pdf = renderer.RenderHtmlAsPdf(@$"
+        PdfDocument pdf = renderer.RenderHtmlAsPdf(@$"
                                 {productQuantity}
                                 <h1>{firstname} {lastname}</h1>"
                                 );
         
         pdf.SaveAs($"{DateTime.Now.ToFileTime()}.pdf");
         
-        byte[]? binaryPdf = pdf.BinaryData;
+        byte[] binaryPdf = pdf.BinaryData;
 
         _repository.AddReportPdf(new ReportPdfModel { PdfFile = binaryPdf });
     }

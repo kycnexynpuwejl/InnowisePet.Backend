@@ -13,8 +13,10 @@ public class OrderAcceptedConsumer : IConsumer<OrderAcceptedDto>
         _generatePdfService = generatePdfService;
     }
 
-    public async Task Consume(ConsumeContext<OrderAcceptedDto> context)
+    public Task Consume(ConsumeContext<OrderAcceptedDto> context)
     {
         _generatePdfService.GeneratePdf(context.Message);
+        
+        return Task.CompletedTask;
     }
 }

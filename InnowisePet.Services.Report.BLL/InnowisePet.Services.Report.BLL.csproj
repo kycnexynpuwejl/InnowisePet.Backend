@@ -12,7 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\InnowisePet.DTO\InnowisePet.DTO.csproj" />
       <ProjectReference Include="..\InnowisePet.Services.Report.DAL\InnowisePet.Services.Report.DAL.csproj" />
     </ItemGroup>
 
