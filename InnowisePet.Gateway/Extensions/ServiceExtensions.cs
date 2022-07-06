@@ -1,8 +1,9 @@
+using System.Reflection;
 using InnowisePet.HttpClients;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 
-namespace InnowisePet.Common.API.Extensions;
+namespace InnowisePet.Gateway.Extensions;
 
 public static class ServiceExtensions
 {
@@ -33,7 +34,11 @@ public static class ServiceExtensions
     public static void ConfigureSwagger(this IServiceCollection services)
     {
         services.AddSwaggerGen(c =>
-        {
+        { 
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            c.IncludeXmlComments(xmlPath);
+            
             // configure SwaggerDoc and others
 
             // add JWT Authentication

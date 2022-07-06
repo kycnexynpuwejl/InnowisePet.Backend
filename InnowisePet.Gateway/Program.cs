@@ -1,4 +1,4 @@
-using InnowisePet.Common.API.Extensions;
+using InnowisePet.Gateway.Extensions;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 

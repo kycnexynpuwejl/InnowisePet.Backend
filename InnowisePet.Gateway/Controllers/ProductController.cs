@@ -1,9 +1,8 @@
 using InnowisePet.HttpClients;
-using InnowisePet.Models.DTO.Category;
 using InnowisePet.Models.DTO.Product;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InnowisePet.Common.API.Controllers;
+namespace InnowisePet.Gateway.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
