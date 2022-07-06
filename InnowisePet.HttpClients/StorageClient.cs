@@ -34,4 +34,14 @@ public class StorageClient
     {
         await _publishEndpoint.Publish(storageCreateDto);
     }
+
+    public async Task UpdateStorageAsync(StorageUpdateDto storageUpdateDto)
+    {
+        await _publishEndpoint.Publish(storageUpdateDto);
+    }
+
+    public async Task DeleteStorageAsync(StorageDeleteDto storageDeleteDto)
+    {
+        await _publishEndpoint.Publish(storageDeleteDto);
+    }
 }

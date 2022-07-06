@@ -1,51 +1,13 @@
 using InnowisePet.Common.API.Extensions;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.OpenApi.Models;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen(c =>
-{
-    // configure SwaggerDoc and others
-
-    // add JWT Authentication
-    var securityScheme = new OpenApiSecurityScheme
-    {
-        Name = "JWT Authentication",
-        Description = "Enter JWT Bearer token **_only_**",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer", // must be lower case
-        BearerFormat = "JWT",
-        Reference = new OpenApiReference
-        {
-            Id = JwtBearerDefaults.AuthenticationScheme,
-            Type = ReferenceType.SecurityScheme
-        }
-    };
-    c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {securityScheme, new string[] { }}
-    });
-
-    // add Basic Authentication
-    var basicSecurityScheme = new OpenApiSecurityScheme
-    {
-        Type = SecuritySchemeType.Http,
-        Scheme = "basic",
-        Reference = new OpenApiReference { Id = "BasicAuth", Type = ReferenceType.SecurityScheme }
-    };
-    c.AddSecurityDefinition(basicSecurityScheme.Reference.Id, basicSecurityScheme);
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {basicSecurityScheme, new string[] { }}
-    });
-});
+builder.Services.ConfigureSwagger();
 
 builder.Services.AddMassTransit(x => x.UsingRabbitMq());
 
@@ -92,7 +54,7 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllers().RequireAuthorization("ApiScope");
+    endpoints.MapControllers();//.RequireAuthorization("ApiScope");
 });
 
 

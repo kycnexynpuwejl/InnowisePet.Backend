@@ -1,3 +1,5 @@
+using InnowisePet.Models.DTO.ProductStorage;
+
 namespace InnowisePet.Models.DTO.Storage;
 
 public class StorageGetDto
@@ -6,5 +8,5 @@ public class StorageGetDto
     
     public string Title { get; set; }
     
-    //public IEnumerable<ProductStorage> ProductStorages { get; set; }
+    public IEnumerable<ProductStorageGetDto> ProductStorages { get; set; }
 }

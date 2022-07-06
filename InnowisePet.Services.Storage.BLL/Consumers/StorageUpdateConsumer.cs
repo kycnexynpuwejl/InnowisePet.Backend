@@ -15,6 +15,6 @@ public class StorageUpdateConsumer : IConsumer<StorageUpdateDto>
 
     public async Task Consume(ConsumeContext<StorageUpdateDto> context)
     {
-       // await _storageService.UpdateStorageAsync(context.Message);
+       await _storageService.UpdateStorageAsync(context.Message);
     }
 }

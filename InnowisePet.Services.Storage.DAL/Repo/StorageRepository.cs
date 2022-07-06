@@ -38,6 +38,16 @@ public class StorageRepository : IStorageRepository
         {
             storageFromDb.Title = storageModel.Title;
         }
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteStorageAsync(Guid id)
+    {
+        var storageFromDb = await _context.Storages.FirstOrDefaultAsync(s => s.Id == id);
+
+        if (storageFromDb != null) _context.Remove(storageFromDb);
+
+        await _context.SaveChangesAsync();
     }
 
     public async Task AddProductToStorageAsync(ProductStorageModel productStorageModel)
@@ -56,17 +66,17 @@ public class StorageRepository : IStorageRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<ProductStorageModel>> GetProductsAsync()
+    public async Task<IEnumerable<ProductStorageModel>> GetProductStoragesAsync()
     {
         return await _context.ProductStorages.ToListAsync();
     }
 
-    public async Task<IEnumerable<ProductStorageModel>> GetProductsByStorageIdAsync(Guid storageId)
+    public async Task<IEnumerable<ProductStorageModel>> GetProductStoragesByStorageIdAsync(Guid storageId)
     {
         return await _context.ProductStorages.Where(x => x.StorageId == storageId).ToListAsync();
     }
 
-    public async Task DeleteProductSorageAsync(Guid storageId, Guid productId)
+    public async Task DeleteProductStorageAsync(Guid storageId, Guid productId)
     {
         var productStorageToDelete = await _context.ProductStorages.FirstOrDefaultAsync(x => 
             x.StorageId == storageId &&

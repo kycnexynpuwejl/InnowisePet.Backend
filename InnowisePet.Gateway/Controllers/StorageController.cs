@@ -35,16 +35,20 @@ public class StorageController : Controller
         return Ok();
     }
 
-    /*[HttpPut("{id}")]
-    public async Task<IActionResult> UpdateStorageAsync([FromRoute] Guid id,
-        [FromBody] StorageUpdateDto storageUpdateDto)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateStorageAsync([FromRoute] Guid id, [FromBody] StorageUpdateDto storageUpdateDto)
     {
-        return Ok(await _storageService.UpdateStorageAsync(id, storageUpdateDto));
+        storageUpdateDto.Id = id;
+        await _storageClient.UpdateStorageAsync(storageUpdateDto);
+        
+        return Ok();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteStorageAsync([FromRoute] Guid id)
     {
-        return Ok(await _storageService.DeleteStorageAsync(id));
-    }*/
+        await _storageClient.DeleteStorageAsync(new StorageDeleteDto() { Id = id });
+        
+        return Ok();
+    }
 }

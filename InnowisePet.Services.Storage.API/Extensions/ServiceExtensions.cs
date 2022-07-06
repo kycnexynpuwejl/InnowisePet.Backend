@@ -10,10 +10,14 @@ public static class ServiceExtensions
         services.AddMassTransit(x =>
         {
             x.AddConsumer<StorageCreateConsumer>();
+            x.AddConsumer<StorageUpdateConsumer>();
+            x.AddConsumer<StorageDeleteConsumer>();
             
             x.UsingRabbitMq((context, cfg) =>
             {
                 cfg.ReceiveEndpoint("StorageCreateQueue", e =>  e.ConfigureConsumer<StorageCreateConsumer>(context));
+                cfg.ReceiveEndpoint("StorageUpdateQueue", c => c.ConfigureConsumer<StorageUpdateConsumer>(context));
+                cfg.ReceiveEndpoint("StorageDeleteQueue", c => c.ConfigureConsumer<StorageDeleteConsumer>(context));
             });
         });
     }

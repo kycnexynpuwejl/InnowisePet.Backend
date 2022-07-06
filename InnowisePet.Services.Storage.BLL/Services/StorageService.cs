@@ -29,10 +29,19 @@ public class StorageService : IStorageService
 
     public async Task CreateStorageAsync(StorageCreateDto storageCreateDto)
     {
-        var storage = _mapper.Map<StorageModel>(storageCreateDto);
-        await _storageRepository.CreateStorageAsync(storage);
+        await _storageRepository.CreateStorageAsync(_mapper.Map<StorageModel>(storageCreateDto));
     }
 
+    public async Task UpdateStorageAsync(StorageUpdateDto storageUpdateDto)
+    {
+        await _storageRepository.UpdateStorageAsync(_mapper.Map<StorageModel>(storageUpdateDto));
+    }
+
+    public async Task DeleteStorageAsync(Guid id)
+    {
+        await _storageRepository.DeleteStorageAsync(id);
+    }
+    
     public async Task AddProductToStorageAsync(ProductStorageCreateDto productStorageCreateDto)
     {
         var productStorage = _mapper.Map<ProductStorageModel>(productStorageCreateDto);
@@ -41,17 +50,17 @@ public class StorageService : IStorageService
 
     public async Task<IEnumerable<ProductStorageModel>> GetProductsAsync()
     {
-        return await _storageRepository.GetProductsAsync();
+        return await _storageRepository.GetProductStoragesAsync();
     }
 
     public async Task<IEnumerable<ProductStorageModel>> GetProductsByStorageIdAsync(Guid storageId)
     {
-        return await _storageRepository.GetProductsByStorageIdAsync(storageId);
+        return await _storageRepository.GetProductStoragesByStorageIdAsync(storageId);
     }
 
-    public async Task DeleteProductSorageAsync(Guid storageId, Guid productId)
+    public async Task DeleteProductStorageAsync(Guid storageId, Guid productId)
     {
-        await _storageRepository.DeleteProductSorageAsync(storageId, productId);
+        await _storageRepository.DeleteProductStorageAsync(storageId, productId);
     }
 
     public async Task UpdateProductStorageAsync(ProductStorageUpdateDto productStorageUpdateDto)
