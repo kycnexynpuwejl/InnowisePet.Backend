@@ -8,23 +8,23 @@ namespace InnowisePet.Common.API.Controllers;
 [Route("api/[controller]")]
 public class ProductStorageController : Controller
 {
-    private readonly StorageClient _storageClient;
+    private readonly ProductStorageClient _productStorageClient;
 
-    public ProductStorageController(StorageClient storageClient)
+    public ProductStorageController(ProductStorageClient productStorageClient)
     {
-        _storageClient = storageClient;
+        _productStorageClient = productStorageClient;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetProductStoragesAsync()
     {
-        return Ok(await _storageClient.GetProductStoragesAsync());
+        return Ok(await _productStorageClient.GetProductStoragesAsync());
     }
 
     [HttpGet("{storageId}")]
     public async Task<IActionResult> GetProductStoragesByStorageIdAsync(Guid storageId)
     {
-        return Ok(await _storageClient.GetProductStoragesByStorageIdAsync(storageId));
+        return Ok(await _productStorageClient.GetProductStoragesByStorageIdAsync(storageId));
     }
     
     [HttpPost("{storageId}")]
@@ -33,7 +33,7 @@ public class ProductStorageController : Controller
         [FromBody] ProductStorageCreateDto productStorageCreateDto)
     {
         productStorageCreateDto.StorageId = storageId;
-        await _storageClient.CreateProductStorageAsync(productStorageCreateDto);
+        await _productStorageClient.CreateProductStorageAsync(productStorageCreateDto);
         
         return Ok();
     }
@@ -44,7 +44,7 @@ public class ProductStorageController : Controller
         [FromRoute]Guid productId,
         [FromBody]int quantity)
     {
-        await _storageClient.UpdateProductStorageAsync(storageId, productId, quantity);
+        await _productStorageClient.UpdateProductStorageAsync(storageId, productId, quantity);
 
         return Ok();
     }
@@ -52,7 +52,7 @@ public class ProductStorageController : Controller
     [HttpDelete("{storageId}/{productId}")]
     public async Task<IActionResult> DeleteProductStorageAsync([FromRoute] Guid storageId, [FromRoute] Guid productId)
     {
-        await _storageClient.DeleteProductStorageAsync(storageId, productId);
+        await _productStorageClient.DeleteProductStorageAsync(storageId, productId);
 
         return Ok();
     }
