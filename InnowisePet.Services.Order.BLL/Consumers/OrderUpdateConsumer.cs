@@ -1,7 +1,7 @@
 using AutoMapper;
 using InnowisePet.Models.DTO.Order;
 using InnowisePet.Services.Order.BLL.Services;
-using InnowisePet.Shared.Enums;
+using InnowisePet.Models.Enums;
 using MassTransit;
 
 namespace InnowisePet.Services.Order.BLL.Consumers;

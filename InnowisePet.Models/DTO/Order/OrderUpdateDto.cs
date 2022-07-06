@@ -1,4 +1,5 @@
 using InnowisePet.Shared.Enums;
+using OrderStatus = InnowisePet.Models.Enums.OrderStatus;
 
 namespace InnowisePet.Models.DTO.Order;
 
