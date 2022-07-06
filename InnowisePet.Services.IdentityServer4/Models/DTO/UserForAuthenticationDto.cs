@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace InnowisePet.IdentityServer4.Models.DTO;
 
 public class UserForAuthenticationDto

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+
 string connString = builder.Configuration.GetConnectionString("IS4Connection");
 
 builder.Services.AddDbContext<AuthDbContext>(options =>
