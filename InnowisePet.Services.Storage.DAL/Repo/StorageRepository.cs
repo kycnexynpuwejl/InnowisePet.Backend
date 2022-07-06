@@ -50,7 +50,17 @@ public class StorageRepository : IStorageRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task AddProductToStorageAsync(ProductStorageModel productStorageModel)
+    public async Task<IEnumerable<ProductStorageModel>> GetProductStoragesAsync()
+    {
+        return await _context.ProductStorages.ToListAsync();
+    }
+
+    public async Task<IEnumerable<ProductStorageModel>> GetProductStoragesByStorageIdAsync(Guid storageId)
+    {
+        return await _context.ProductStorages.Where(x => x.StorageId == storageId).ToListAsync();
+    }
+    
+    public async Task CreateProductStorageAsync(ProductStorageModel productStorageModel)
     {
         var productStorageFromDb = await _context.ProductStorages.FirstOrDefaultAsync(
             ps => ps.ProductId == productStorageModel.ProductId &&
@@ -66,16 +76,19 @@ public class StorageRepository : IStorageRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<ProductStorageModel>> GetProductStoragesAsync()
+    public async Task UpdateProductStorageAsync(ProductStorageModel productStorageModel)
     {
-        return await _context.ProductStorages.ToListAsync();
-    }
+        ProductStorageModel productStorageToUpdate = await _context.ProductStorages.FirstOrDefaultAsync(ps =>
+            ps.StorageId == productStorageModel.StorageId &&
+            ps.ProductId == productStorageModel.ProductId);
 
-    public async Task<IEnumerable<ProductStorageModel>> GetProductStoragesByStorageIdAsync(Guid storageId)
-    {
-        return await _context.ProductStorages.Where(x => x.StorageId == storageId).ToListAsync();
-    }
+        if (productStorageToUpdate == null) return;
 
+        productStorageToUpdate.Quantity = productStorageModel.Quantity;
+        _context.ProductStorages.Update(productStorageToUpdate);
+        await _context.SaveChangesAsync();
+    }
+    
     public async Task DeleteProductStorageAsync(Guid storageId, Guid productId)
     {
         var productStorageToDelete = await _context.ProductStorages.FirstOrDefaultAsync(x => 
@@ -85,19 +98,6 @@ public class StorageRepository : IStorageRepository
         if(productStorageToDelete == null) return;
 
         _context.ProductStorages.Remove(productStorageToDelete);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task UpdateProductStorageAsync(ProductStorageModel productStorageModel)
-    {
-        var productStorageToUpdate = await _context.ProductStorages.FirstOrDefaultAsync(ps =>
-            ps.StorageId == productStorageModel.StorageId &&
-            ps.ProductId == productStorageModel.ProductId);
-
-        if (productStorageToUpdate == null) return;
-
-        productStorageToUpdate.Quantity = productStorageModel.Quantity;
-        _context.ProductStorages.Update(productStorageToUpdate);
         await _context.SaveChangesAsync();
     }
 }

@@ -15,7 +15,7 @@ public class OrderController : ControllerBase
         _orderClient = orderClient;
     }
 
-    [HttpGet("list")]
+    [HttpGet]
     public async Task<IActionResult> GetOrdersAsync()
     {
         return Ok(await _orderClient.GetOrdersAsync());

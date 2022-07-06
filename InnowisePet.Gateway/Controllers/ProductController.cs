@@ -16,7 +16,7 @@ public class ProductController : Controller
         _productClient = productClient;
     }
 
-    [HttpGet("list")]
+    [HttpGet]
     public async Task<IActionResult> GetProductsAsync()
     {
         return Ok(await _productClient.GetProductsAsync());

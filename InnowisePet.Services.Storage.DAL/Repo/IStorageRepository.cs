@@ -14,7 +14,7 @@ public interface IStorageRepository
     
     Task DeleteStorageAsync(Guid id);
     
-    Task AddProductToStorageAsync(ProductStorageModel productStorageModel);
+    Task CreateProductStorageAsync(ProductStorageModel productStorageModel);
 
     Task<IEnumerable<ProductStorageModel>> GetProductStoragesAsync();
 
