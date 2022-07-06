@@ -24,6 +24,10 @@ public static class ServiceExtensions
         {
             c.BaseAddress = new Uri(configuration["StorageServiceUri"]);
         });
+        services.AddHttpClient<ProductStorageClient>(c =>
+        {
+            c.BaseAddress = new Uri(configuration["StorageServiceUri"]);
+        });
     }
 
     public static void ConfigureSwagger(this IServiceCollection services)

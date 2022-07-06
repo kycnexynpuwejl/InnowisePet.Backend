@@ -25,16 +25,4 @@ public class StorageController : Controller
     {
         return Ok(await _storageService.GetStorageByIdAsync(storageID));
     }
-
-    [HttpGet("product")]
-    public async Task<IActionResult> GetProductStoragesAsync()
-    {
-        return Ok(await _storageService.GetProductStoragesAsync());
-    }
-
-    [HttpGet("{storageId}/product")]
-    public async Task<IActionResult> GetProductStoragesByStorageIdAsync(Guid storageId)
-    {
-        return Ok(await _storageService.GetProductStoragesByStorageIdAsync(storageId));
-    }
 }
