@@ -37,11 +37,6 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddMassTransit(x => x.UsingRabbitMq());
 
-builder.Services.AddHttpClient<OrderClient>(c =>
-{
-    c.BaseAddress = new Uri(builder.Configuration["OrderServiceUri"]);
-});
-
 builder.Services.ConfigureHttpClients(builder.Configuration);
 
 builder.Services.AddAuthentication("Bearer")

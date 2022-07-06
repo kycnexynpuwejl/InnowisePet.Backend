@@ -5,14 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.IdentityServer4.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/auth")]
 [ApiController]
-public class AuthenticationController : Controller
+public class AuthController : Controller
 {
     private readonly IAccountService _accountService;
 
 
-    public AuthenticationController(IAccountService accountService)
+    public AuthController(IAccountService accountService)
     {
         _accountService = accountService;
     }
