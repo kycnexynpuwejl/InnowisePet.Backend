@@ -28,25 +28,11 @@ public class ProductController : Controller
         return Ok(await _productClient.GetProductByIdAsync(id));
     }
 
-    [HttpGet("category")]
-    public async Task<IActionResult> GetCategoriesAsync()
-    {
-        return Ok(await _productClient.GetCategoriesAsync());
-    }
-
     [HttpPost]
     public async Task<IActionResult> CreateProductAsync(ProductCreateDto productCreateDto)
     {
         await _productClient.CreateProductAsync(productCreateDto);
         
-        return Ok();
-    }
-
-    [HttpPost("category")]
-    public async Task<IActionResult> CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
-    {
-        await _productClient.CreateCategoryAsync(categoryCreateDto);
-
         return Ok();
     }
 
@@ -60,16 +46,6 @@ public class ProductController : Controller
         return Ok();
     }
 
-    [HttpPut("category/{id}")]
-    public async Task<IActionResult> UpdateCategoryAsync([FromRoute] Guid id,
-        [FromBody]CategoryUpdateDto categoryUpdateDto)
-    {
-        categoryUpdateDto.Id = id;
-        await _productClient.UpdateCategoryAsync(categoryUpdateDto);
-
-        return Ok();
-    }
-
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProductAsync([FromRoute] Guid id)
     {
@@ -78,11 +54,5 @@ public class ProductController : Controller
         return Ok();
     }
 
-    [HttpDelete("category/{id}")]
-    public async Task<IActionResult> DeleteCategoryASync([FromRoute] Guid id)
-    {
-        await _productClient.DeleteCategoryAsync(id);
-
-        return Ok();
-    }
+    
 }

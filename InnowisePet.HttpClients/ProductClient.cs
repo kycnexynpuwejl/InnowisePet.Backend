@@ -31,42 +31,19 @@ public class ProductClient
         return await CommonHttpClientExtensions.Deserialize<ProductGetDto>(result);
     }
 
-    public async Task<IEnumerable<CategoryGetDto>> GetCategoriesAsync()
-    {
-        HttpResponseMessage result = await _httpClient.GetAsync(Url + "category");
-
-        return await CommonHttpClientExtensions.Deserialize<IEnumerable<CategoryGetDto>>(result);
-    }
-
     public async Task CreateProductAsync(ProductCreateDto productCreateDto)
     {
         await _publishEndpoint.Publish(productCreateDto);
     }
-    
-    public async Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
-    {
-        await _publishEndpoint.Publish(categoryCreateDto);
-    }
-    
+
     public async Task UpdateProductAsync(ProductUpdateDto productUpdateDto)
     {
         await _publishEndpoint.Publish(productUpdateDto);
-    }
-
-    public async Task UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto)
-    {
-        await _publishEndpoint.Publish(categoryUpdateDto);
     }
 
     public async Task DeleteProductAsync(Guid id)
     {
         ProductDeleteDto productDeleteDto = new() { Id = id };
         await _publishEndpoint.Publish(productDeleteDto);
-    }
-
-    public async Task DeleteCategoryAsync(Guid id)
-    {
-        CategoryDeleteDto categoryDeleteDto = new() { Id = id };
-        await _publishEndpoint.Publish(categoryDeleteDto);
     }
 }

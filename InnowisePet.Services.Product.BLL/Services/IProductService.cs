@@ -6,12 +6,22 @@ namespace InnowisePet.Services.Product.BLL.Services;
 public interface IProductService
 {
     Task<IEnumerable<ProductGetDto>> GetProductsAsync();
+    
     Task<ProductGetDto> GetProductByIdAsync(Guid id);
-    Task<IEnumerable<CategoryGetDto>> GetCategoriesAsync();
+    
     Task CreateProductAsync(ProductCreateDto productCreateDto);
-    Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto);
+    
     Task UpdateProductAsync(ProductUpdateDto productUpdateDto);
-    Task UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto);
+    
     Task DeleteProductAsync(Guid id);
+    
+    Task<IEnumerable<CategoryGetDtoList>> GetCategoriesAsync();
+    
+    Task<CategoryGetDto> GetCategoryByIdAsync(Guid id);
+    
+    Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto);
+    
+    Task UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto);
+    
     Task DeleteCategoryAsync(Guid id);
 }

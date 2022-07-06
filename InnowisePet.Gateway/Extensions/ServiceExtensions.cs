@@ -16,7 +16,10 @@ public static class ServiceExtensions
         {
             c.BaseAddress = new Uri(configuration["ProductServiceUri"]);
         });
-
+        services.AddHttpClient<CategoryClient>(c =>
+        {
+            c.BaseAddress = new Uri(configuration["ProductServiceUri"]);
+        });
         services.AddHttpClient<StorageClient>(c =>
         {
             c.BaseAddress = new Uri(configuration["StorageServiceUri"]);

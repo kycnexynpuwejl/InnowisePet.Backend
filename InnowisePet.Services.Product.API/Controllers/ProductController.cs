@@ -25,10 +25,4 @@ public class ProductController : Controller
     {
         return Ok(await _productService.GetProductByIdAsync(id));
     }
-
-    [HttpGet("category")]
-    public async Task<IActionResult> GetCategoriesAsync()
-    {
-        return Ok(await _productService.GetCategoriesAsync());
-    }
 }

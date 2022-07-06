@@ -9,5 +9,6 @@ public class CategoryGetProfile : Profile
     public CategoryGetProfile()
     {
         CreateMap<CategoryModel, CategoryGetDto>().ReverseMap();
+        CreateMap<CategoryModel, CategoryGetDtoList>().ReverseMap();
     }
 }

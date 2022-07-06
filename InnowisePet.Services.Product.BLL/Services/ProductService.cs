@@ -26,15 +26,30 @@ public class ProductService : IProductService
     {
         return _mapper.Map<ProductGetDto>(await _productRepository.GetProductByIdAsync(id));
     }
-
-    public async Task<IEnumerable<CategoryGetDto>> GetCategoriesAsync()
-    {
-        return _mapper.Map<IEnumerable<CategoryGetDto>>(await _productRepository.GetCategoriesAsync());
-    }
-
+    
     public async Task CreateProductAsync(ProductCreateDto productCreateDto)
     {
         await _productRepository.CreateProductAsync(_mapper.Map<ProductModel>(productCreateDto));
+    }
+
+    public async Task UpdateProductAsync(ProductUpdateDto productUpdateDto)
+    {
+        await _productRepository.UpdateProductAsync(_mapper.Map<ProductModel>(productUpdateDto));
+    }
+    
+    public async Task DeleteProductAsync(Guid id)
+    {
+        await _productRepository.DeleteProductAsync(id);
+    }
+    
+    public async Task<IEnumerable<CategoryGetDtoList>> GetCategoriesAsync()
+    {
+        return _mapper.Map<IEnumerable<CategoryGetDtoList>>(await _productRepository.GetCategoriesAsync());
+    }
+
+    public async Task<CategoryGetDto> GetCategoryByIdAsync(Guid id)
+    {
+        return _mapper.Map<CategoryGetDto>(await _productRepository.GetCategoryByIdAsync(id));
     }
 
     public async Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
@@ -42,19 +57,9 @@ public class ProductService : IProductService
         await _productRepository.CreateCategoryAsync(_mapper.Map<CategoryModel>(categoryCreateDto));
     }
 
-    public async Task UpdateProductAsync(ProductUpdateDto productUpdateDto)
-    {
-        await _productRepository.UpdateProductAsync(_mapper.Map<ProductModel>(productUpdateDto));
-    }
-
     public async Task UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto)
     {
         await _productRepository.UpdateCategoryAsync(_mapper.Map<CategoryModel>(categoryUpdateDto));
-    }
-
-    public async Task DeleteProductAsync(Guid id)
-    {
-        await _productRepository.DeleteProductAsync(id);
     }
 
     public async Task DeleteCategoryAsync(Guid id)
