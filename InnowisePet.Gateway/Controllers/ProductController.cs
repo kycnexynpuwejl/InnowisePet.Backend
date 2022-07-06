@@ -15,18 +15,32 @@ public class ProductController : Controller
         _productClient = productClient;
     }
 
+    /// <summary>
+    /// Gets all products
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<IActionResult> GetProductsAsync()
     {
         return Ok(await _productClient.GetProductsAsync());
     }
 
+    /// <summary>
+    /// Gets specified product by Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("{id}")]
     public async Task<IActionResult> GetProductByIdAsync([FromRoute] Guid id)
     {
         return Ok(await _productClient.GetProductByIdAsync(id));
     }
 
+    /// <summary>
+    /// Creates product
+    /// </summary>
+    /// <param name="productCreateDto"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<IActionResult> CreateProductAsync(ProductCreateDto productCreateDto)
     {
@@ -35,6 +49,12 @@ public class ProductController : Controller
         return Ok();
     }
 
+    /// <summary>
+    /// Updates product by Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="productUpdateDto"></param>
+    /// <returns></returns>
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateProductAsync([FromRoute] Guid id,
         [FromBody] ProductUpdateDto productUpdateDto)
@@ -45,6 +65,11 @@ public class ProductController : Controller
         return Ok();
     }
 
+    /// <summary>
+    /// Deletes product by Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProductAsync([FromRoute] Guid id)
     {

@@ -17,7 +17,7 @@ public class CategoryController : Controller
     }
 
     /// <summary>
-    /// Show all existing categories
+    /// Gets all existing categories
     /// </summary>
     /// <returns></returns>
     [HttpGet]
@@ -27,7 +27,7 @@ public class CategoryController : Controller
     }
 
     /// <summary>
-    /// Show category with existing in this category products
+    /// Gets specified category with existing in this category products by Id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -38,7 +38,7 @@ public class CategoryController : Controller
     }
     
     /// <summary>
-    /// Create category
+    /// Creates category
     /// </summary>
     /// <param name="categoryCreateDto"></param>
     /// <returns></returns>
@@ -51,7 +51,7 @@ public class CategoryController : Controller
     }
     
     /// <summary>
-    /// Update existing category
+    /// Updates category by Id
     /// </summary>
     /// <param name="id"></param>
     /// <param name="dto"></param>
@@ -66,7 +66,7 @@ public class CategoryController : Controller
     }
     
     /// <summary>
-    /// Delete existing category
+    /// Deletes category by Id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>

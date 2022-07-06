@@ -15,18 +15,33 @@ public class ProductStorageController : Controller
         _productStorageClient = productStorageClient;
     }
 
+    /// <summary>
+    /// Gets all productStorages
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<IActionResult> GetProductStoragesAsync()
     {
         return Ok(await _productStorageClient.GetProductStoragesAsync());
     }
 
+    /// <summary>
+    /// Gets all productStorages in specified storage by storageId
+    /// </summary>
+    /// <param name="storageId"></param>
+    /// <returns></returns>
     [HttpGet("{storageId}")]
     public async Task<IActionResult> GetProductStoragesByStorageIdAsync(Guid storageId)
     {
         return Ok(await _productStorageClient.GetProductStoragesByStorageIdAsync(storageId));
     }
     
+    /// <summary>
+    /// Creates productStorage in specified storage by storageId
+    /// </summary>
+    /// <param name="storageId"></param>
+    /// <param name="productStorageCreateDto"></param>
+    /// <returns></returns>
     [HttpPost("{storageId}")]
     public async Task<IActionResult> CreateProductStorageAsync(
         [FromRoute] Guid storageId,
@@ -38,6 +53,13 @@ public class ProductStorageController : Controller
         return Ok();
     }
 
+    /// <summary>
+    /// Updates specified productStorage in specified storage by both productId and storageId
+    /// </summary>
+    /// <param name="storageId"></param>
+    /// <param name="productId"></param>
+    /// <param name="quantity"></param>
+    /// <returns></returns>
     [HttpPut("{storageId}/{productId}")]
     public async Task<IActionResult> UpdateProductStorageAsync(
         [FromRoute]Guid storageId,
@@ -49,6 +71,12 @@ public class ProductStorageController : Controller
         return Ok();
     }
 
+    /// <summary>
+    /// Deletes productStorage by both specified productId and storageId
+    /// </summary>
+    /// <param name="storageId"></param>
+    /// <param name="productId"></param>
+    /// <returns></returns>
     [HttpDelete("{storageId}/{productId}")]
     public async Task<IActionResult> DeleteProductStorageAsync([FromRoute] Guid storageId, [FromRoute] Guid productId)
     {

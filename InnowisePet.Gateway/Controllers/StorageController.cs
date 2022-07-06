@@ -15,18 +15,32 @@ public class StorageController : Controller
         _storageClient = storageClient;
     }
 
+    /// <summary>
+    /// Gets all storages
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<IActionResult> GetStoragesAsync()
     {
         return Ok(await _storageClient.GetStoragesAsync());
     }
 
+    /// <summary>
+    /// Gets specified storage by Id
+    /// </summary>
+    /// <param name="storageId"></param>
+    /// <returns></returns>
     [HttpGet("{storageId}")]
     public async Task<IActionResult> GetStorageByIdAsync([FromRoute] Guid storageId)
     {
         return Ok(await _storageClient.GetStorageByIdAsync(storageId));
     }
 
+    /// <summary>
+    /// Creates storage
+    /// </summary>
+    /// <param name="storageCreateDto"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<IActionResult> CreateStorageAsync([FromBody]StorageCreateDto storageCreateDto)
     {
@@ -35,6 +49,12 @@ public class StorageController : Controller
         return Ok();
     }
 
+    /// <summary>
+    /// Updates storage
+    /// </summary>
+    /// <param name="storageId"></param>
+    /// <param name="storageUpdateDto"></param>
+    /// <returns></returns>
     [HttpPut("{storageId}")]
     public async Task<IActionResult> UpdateStorageAsync(
         [FromRoute] Guid storageId,
@@ -46,6 +66,11 @@ public class StorageController : Controller
         return Ok();
     }
 
+    /// <summary>
+    /// Deletes storage
+    /// </summary>
+    /// <param name="storageId"></param>
+    /// <returns></returns>
     [HttpDelete("{storageId}")]
     public async Task<IActionResult> DeleteStorageAsync([FromRoute] Guid storageId)
     {
