@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.Services.Produc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.Services.Product.DAL", "InnowisePet.Services.Product.DAL\InnowisePet.Services.Product.DAL.csproj", "{6C493B17-C887-488A-AF36-F6F1CBD1FA60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowisePet.Services.Product.Tests", "InnowisePet.Services.Product.Tests\InnowisePet.Services.Product.Tests.csproj", "{2B19923F-AF3F-4FD5-9CCC-0E590C3A4AA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{6C493B17-C887-488A-AF36-F6F1CBD1FA60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C493B17-C887-488A-AF36-F6F1CBD1FA60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C493B17-C887-488A-AF36-F6F1CBD1FA60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B19923F-AF3F-4FD5-9CCC-0E590C3A4AA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B19923F-AF3F-4FD5-9CCC-0E590C3A4AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B19923F-AF3F-4FD5-9CCC-0E590C3A4AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B19923F-AF3F-4FD5-9CCC-0E590C3A4AA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F87BE861-745C-453C-96F2-8DA70F6363B4} = {7B5AE6E3-CB59-43A2-929D-AF7EEE5EE113}
@@ -140,5 +146,6 @@ Global
 		{6C493B17-C887-488A-AF36-F6F1CBD1FA60} = {343CCFA8-D653-4415-A35C-BDDCA97E30BE}
 		{7B5AE6E3-CB59-43A2-929D-AF7EEE5EE113} = {1250236F-9CFA-4609-82C6-024E9E6BA09E}
 		{AEBCD7B5-5A0C-421B-A6E1-CB33A4A7E1E8} = {0E56B564-6E8F-46F2-BE07-C47779A8A786}
+		{2B19923F-AF3F-4FD5-9CCC-0E590C3A4AA0} = {343CCFA8-D653-4415-A35C-BDDCA97E30BE}
 	EndGlobalSection
 EndGlobal
