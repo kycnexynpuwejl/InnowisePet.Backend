@@ -1,4 +1,3 @@
-using InnowisePet.Models.DTO.Category;
 using InnowisePet.Models.DTO.Product;
 using MassTransit;
 
