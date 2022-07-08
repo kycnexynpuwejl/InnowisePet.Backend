@@ -9,7 +9,7 @@ public interface IProductService
     
     Task<ProductGetDto> GetProductByIdAsync(Guid id);
     
-    Task CreateProductAsync(ProductCreateDto productCreateDto);
+    Task<Guid> CreateProductAsync(ProductCreateDto productCreateDto);
     
     Task UpdateProductAsync(ProductUpdateDto productUpdateDto);
     

@@ -20,6 +20,7 @@ public class ProductServiceTests
         {
             cfg.AddProfile(new ProductGetProfile());
         });
+        
         _mapper = mockMapper.CreateMapper();
         
         _mockProductService = new ProductService(_mockProductRepo.Object, _mapper);
@@ -89,5 +90,28 @@ public class ProductServiceTests
         
         //Assert
         AssertHelper.EqualCollections(listDto, mappedResult);
+    }
+
+    public static IEnumerable<object[]> ProductCreateDtoList =>
+        new List<object[]>
+        {
+            new object[] { new ProductCreateDto() },
+            new object[] { new ProductCreateDto() },
+            new object[] { new ProductCreateDto() }
+        };
+    
+    [Theory]
+    [MemberData(nameof(ProductCreateDtoList))]
+    public async Task CreateProductAsync_ShouldReturnCreatedProductId(ProductCreateDto productCreateDto)
+    {
+        //Arrange
+        var mappedProduct = _mapper.Map<ProductModel>(productCreateDto);
+        _mockProductRepo.Setup(x => x.CreateProductAsync(productCreateDto)).ReturnsAsync(mappedProduct.Id);
+        
+        //Act
+        var result = await _mockProductService.CreateProductAsync(productCreateDto);
+        
+        //Assert
+        Assert.Equal(result, mappedProduct.Id);
     }
 }
