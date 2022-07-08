@@ -12,7 +12,7 @@ public class MockProductRepository : IProductRepository
 
     public Task<ProductModel> GetProductByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(MockProductsDb.productModels.FirstOrDefault(p => p.Id == id));
     }
 
     public Task CreateProductAsync(ProductModel productModel)

@@ -1,6 +1,7 @@
 using AutoMapper;
 using InnowisePet.Models.DTO.Product;
 using InnowisePet.Models.Entities;
+using InnowisePet.Services.Product.BLL.Profiles;
 using InnowisePet.Services.Product.BLL.Services;
 using InnowisePet.Services.Product.DAL.Repository;
 using Moq;
@@ -9,40 +10,84 @@ namespace InnowisePet.Services.Product.Tests;
 
 public class ProductServiceTests
 {
-    private readonly IProductService _productServiceMock;
-    private readonly IProductRepository _productRepoMock = new MockProductRepository();
-    private readonly Mock<IMapper> _mapper = new Mock<IMapper>();
+    private readonly IProductService _mockProductService;
+    private readonly Mock<IProductRepository> _mockProductRepo = new ();
+    private readonly IMapper _mapper;
 
     public ProductServiceTests()
     {
-        _productServiceMock = new ProductService(_productRepoMock, _mapper.Object);
+        MapperConfiguration mockMapper = new(cfg =>
+        {
+            cfg.AddProfile(new ProductGetProfile());
+        });
+        _mapper = mockMapper.CreateMapper();
+        
+        _mockProductService = new ProductService(_mockProductRepo.Object, _mapper);
     }
 
-    [Fact]
-    public async Task GetProductByIdAsync_ShouldReturnProductExists()
+    public static IEnumerable<object[]> Uids =>
+        new List<object[]>
+        {
+            new object[] { Guid.Empty },
+            new object[] { Guid.NewGuid() },
+            new object[] { Guid.NewGuid() },
+            new object[] { Guid.NewGuid() },
+            new object[] { Guid.NewGuid() },
+            new object[] { Guid.NewGuid() },
+        };
+
+    [Theory]
+    [MemberData(nameof(Uids))]
+    public async Task GetProductByIdAsync_WithValidUids_ShouldBeTrue(Guid productId)
     {
         //Arrange
-        var productId = Guid.NewGuid();
-        
-        var product = new ProductModel() { Id = productId };
-
+        _mockProductRepo.Setup(x => x.GetProductByIdAsync(It.IsAny<Guid>())).ReturnsAsync(new ProductModel() {Id = productId});
         //Act
-        ProductGetDto productDto = await _productServiceMock.GetProductByIdAsync(productId);
+        ProductGetDto product = await _mockProductService.GetProductByIdAsync(productId);
         
         //Assert
-        Assert.Equal(productId, productDto.Id);
+        Assert.Equal(productId, product.Id);
     }
     
-    [Fact]
-    public async Task GetProductsAsync_ShouldReturnProductsExists()
+    [Theory]
+    [MemberData(nameof(Uids))]
+    public async Task GetProductByIdAsync_WithNotValidUids_ShouldBeFalse(Guid productId)
     {
         //Arrange
-        
-        
+        _mockProductRepo.Setup(x => x.GetProductByIdAsync(It.IsAny<Guid>())).ReturnsAsync(new ProductModel() {Id = Guid.NewGuid()});
         //Act
-       
+        ProductGetDto product = await _mockProductService.GetProductByIdAsync(productId);
         
         //Assert
-        Assert.Equal(3, _productRepoMock.GetProductsAsync().Result.Count());
+        Assert.NotEqual(productId, product.Id);
+    }
+    
+    public static IEnumerable<object[]> ProductModelList =>
+        new List<object[]>
+        {
+            new object[]
+            {
+                new List<ProductModel>
+                {
+                    new() {Id = Guid.NewGuid(), Title = new string('a', 5), CategoryId = Guid.NewGuid()},
+                    new() {Id = Guid.NewGuid(), Title = new string('a', 5), CategoryId = Guid.NewGuid()},
+                    new() {Id = Guid.NewGuid(), Title = new string('a', 5), CategoryId = Guid.NewGuid()}
+                }
+            }
+        };
+
+    [Theory]
+    [MemberData(nameof(ProductModelList))]
+    public async Task GetProductsAsync_ShouldBeTrue(List<ProductModel> list)
+    {
+        //Arrange
+        _mockProductRepo.Setup(x => x.GetProductsAsync()).ReturnsAsync(list);
+
+        //Act
+        IEnumerable<ProductGetDto> listDto = await _mockProductService.GetProductsAsync();
+        var mappedResult = _mapper.Map<IEnumerable<ProductGetDto>>(list);
+        
+        //Assert
+        AssertHelper.EqualCollections(listDto, mappedResult);
     }
 }
