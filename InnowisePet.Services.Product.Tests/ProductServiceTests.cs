@@ -1,11 +1,3 @@
-using AutoMapper;
-using InnowisePet.Models.DTO.Product;
-using InnowisePet.Models.Entities;
-using InnowisePet.Services.Product.BLL.Profiles;
-using InnowisePet.Services.Product.BLL.Services;
-using InnowisePet.Services.Product.DAL.Repository;
-using Moq;
-
 namespace InnowisePet.Services.Product.Tests;
 
 public class ProductServiceTests
