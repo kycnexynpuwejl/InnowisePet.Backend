@@ -29,9 +29,9 @@ public class ProductService : IProductService
     
     public async Task<Guid> CreateProductAsync(ProductCreateDto productCreateDto)
     {
-        Guid result = await _productRepository.CreateProductAsync(_mapper.Map<ProductModel>(productCreateDto));
-
-        return result;
+        ProductModel mappedProduct = _mapper.Map<ProductModel>(productCreateDto);
+        
+        return await _productRepository.CreateProductAsync(mappedProduct);
     }
 
     public async Task UpdateProductAsync(ProductUpdateDto productUpdateDto)

@@ -2,7 +2,7 @@ namespace InnowisePet.Services.Product.Tests;
 
 public class ProductServiceTests
 {
-    private readonly IProductService _mockProductService;
+    private readonly IProductService _productService;
     private readonly Mock<IProductRepository> _mockProductRepo = new ();
     private readonly IMapper _mapper;
 
@@ -16,7 +16,7 @@ public class ProductServiceTests
         
         _mapper = mockMapper.CreateMapper();
         
-        _mockProductService = new ProductService(_mockProductRepo.Object, _mapper);
+        _productService = new ProductService(_mockProductRepo.Object, _mapper);
     }
 
     public static IEnumerable<object[]> Uids =>
@@ -36,8 +36,9 @@ public class ProductServiceTests
     {
         //Arrange
         _mockProductRepo.Setup(x => x.GetProductByIdAsync(It.IsAny<Guid>())).ReturnsAsync(new ProductModel() {Id = productId});
+        
         //Act
-        ProductGetDto product = await _mockProductService.GetProductByIdAsync(productId);
+        ProductGetDto product = await _productService.GetProductByIdAsync(productId);
         
         //Assert
         Assert.Equal(productId, product.Id);
@@ -50,7 +51,7 @@ public class ProductServiceTests
         //Arrange
         _mockProductRepo.Setup(x => x.GetProductByIdAsync(It.IsAny<Guid>())).ReturnsAsync(new ProductModel() {Id = Guid.NewGuid()});
         //Act
-        ProductGetDto product = await _mockProductService.GetProductByIdAsync(productId);
+        ProductGetDto product = await _productService.GetProductByIdAsync(productId);
         
         //Assert
         Assert.NotEqual(productId, product.Id);
@@ -72,13 +73,13 @@ public class ProductServiceTests
 
     [Theory]
     [MemberData(nameof(ProductModelList))]
-    public async Task GetProductsAsync_ShouldBeTrue(List<ProductModel> list)
+    public async Task GetProductsAsync_ShouldReturnMockProductList(List<ProductModel> list)
     {
         //Arrange
         _mockProductRepo.Setup(x => x.GetProductsAsync()).ReturnsAsync(list);
 
         //Act
-        IEnumerable<ProductGetDto> listDto = await _mockProductService.GetProductsAsync();
+        IEnumerable<ProductGetDto> listDto = await _productService.GetProductsAsync();
         var mappedResult = _mapper.Map<IEnumerable<ProductGetDto>>(list);
         
         //Assert
@@ -102,9 +103,24 @@ public class ProductServiceTests
         _mockProductRepo.Setup(x => x.CreateProductAsync(mappedProduct)).ReturnsAsync(mappedProduct.Id);
 
         //Act
-        Guid result = await _mockProductService.CreateProductAsync(productCreateDto);
+        Guid result = await _productService.CreateProductAsync(productCreateDto);
         
         //Assert
         Assert.Equal(result, mappedProduct.Id);
+    }
+
+    [Theory]
+    [MemberData(nameof(ProductCreateDtoList))]
+    public async Task CreateProductAsync_ShouldReturnFalse(ProductCreateDto productCreateDto)
+    {
+        //Arrange
+        var mappedProduct = _mapper.Map<ProductModel>(productCreateDto);
+        _mockProductRepo.Setup(x => x.CreateProductAsync(mappedProduct)).ReturnsAsync(mappedProduct.Id);
+
+        //Act
+        Guid result = await _productService.CreateProductAsync(new ProductCreateDto());
+        
+        //Assert
+        Assert.NotEqual(result, mappedProduct.Id);
     }
 }

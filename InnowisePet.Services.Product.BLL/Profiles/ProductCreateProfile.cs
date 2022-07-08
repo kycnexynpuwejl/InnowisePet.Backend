@@ -8,6 +8,7 @@ public class ProductCreateProfile : Profile
 {
     public ProductCreateProfile()
     {
-        CreateMap<ProductCreateDto, ProductModel>();
+        CreateMap<ProductCreateDto, ProductModel>()
+            .ForMember(p => p.Id, opt => opt.MapFrom(p => Guid.NewGuid()));
     }
 }
