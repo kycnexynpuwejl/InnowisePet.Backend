@@ -8,7 +8,7 @@ public interface IProductRepository
     
     Task<ProductModel> GetProductByIdAsync(Guid id);
     
-    Task CreateProductAsync(ProductModel productModel);
+    Task<Guid> CreateProductAsync(ProductModel productModel);
     
     Task UpdateProductAsync(ProductModel productModel);
     

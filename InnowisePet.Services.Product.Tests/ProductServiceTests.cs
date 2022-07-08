@@ -19,6 +19,7 @@ public class ProductServiceTests
         MapperConfiguration mockMapper = new(cfg =>
         {
             cfg.AddProfile(new ProductGetProfile());
+            cfg.AddProfile(new ProductCreateProfile());
         });
         
         _mapper = mockMapper.CreateMapper();
@@ -106,10 +107,10 @@ public class ProductServiceTests
     {
         //Arrange
         var mappedProduct = _mapper.Map<ProductModel>(productCreateDto);
-        _mockProductRepo.Setup(x => x.CreateProductAsync(productCreateDto)).ReturnsAsync(mappedProduct.Id);
-        
+        _mockProductRepo.Setup(x => x.CreateProductAsync(mappedProduct)).ReturnsAsync(mappedProduct.Id);
+
         //Act
-        var result = await _mockProductService.CreateProductAsync(productCreateDto);
+        Guid result = await _mockProductService.CreateProductAsync(productCreateDto);
         
         //Assert
         Assert.Equal(result, mappedProduct.Id);

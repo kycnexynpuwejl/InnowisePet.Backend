@@ -33,12 +33,14 @@ public class ProductRepository : IProductRepository
         return await _context.Categories.Include(c => c.Products).FirstOrDefaultAsync(c => c.Id == id);
     }
 
-    public async Task CreateProductAsync(ProductModel productModel)
+    public async Task<Guid> CreateProductAsync(ProductModel productModel)
     {
-        if (productModel == null) return;
+        if (productModel == null) return default;
         
         await _context.Products.AddAsync(productModel);
         await _context.SaveChangesAsync();
+
+        return productModel.Id;
     }
 
     public async Task CreateCategoryAsync(CategoryModel categoryModel)
