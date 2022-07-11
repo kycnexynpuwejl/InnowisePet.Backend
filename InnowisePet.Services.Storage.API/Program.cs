@@ -1,9 +1,5 @@
 using System.Data;
 using InnowisePet.Services.Storage.API.Extensions;
-using InnowisePet.Services.Storage.BLL.Services.Implementations;
-using InnowisePet.Services.Storage.BLL.Services.Interfaces;
-using InnowisePet.Services.Storage.DAL.Repo.Implementations;
-using InnowisePet.Services.Storage.DAL.Repo.Interfaces;
 using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,11 +10,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.ConfigureMassTransit();
+builder.Services.ConfigureServices();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-builder.Services.AddScoped<IStorageRepository, StorageRepository>();
-builder.Services.AddScoped<IStorageService, StorageService>();
 
 builder.Services.AddTransient<IDbConnection>(_ => 
     new SqlConnection(builder.Configuration.GetConnectionString("StorageDBConnection")));

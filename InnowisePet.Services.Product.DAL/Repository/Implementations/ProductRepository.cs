@@ -1,8 +1,9 @@
 using InnowisePet.Models.Entities;
 using InnowisePet.Services.Product.DAL.Data;
+using InnowisePet.Services.Product.DAL.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace InnowisePet.Services.Product.DAL.Repository;
+namespace InnowisePet.Services.Product.DAL.Repository.Implementations;
 
 public class ProductRepository : IProductRepository
 {
@@ -23,16 +24,6 @@ public class ProductRepository : IProductRepository
         return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task<IEnumerable<CategoryModel>> GetCategoriesAsync()
-    {
-        return await _context.Categories.ToListAsync();
-    }
-
-    public async Task<CategoryModel> GetCategoryByIdAsync(Guid id)
-    {
-        return await _context.Categories.Include(c => c.Products).FirstOrDefaultAsync(c => c.Id == id);
-    }
-
     public async Task<Guid> CreateProductAsync(ProductModel productModel)
     {
         if (productModel == null) return default;
@@ -41,14 +32,6 @@ public class ProductRepository : IProductRepository
         await _context.SaveChangesAsync();
 
         return productModel.Id;
-    }
-
-    public async Task CreateCategoryAsync(CategoryModel categoryModel)
-    {
-        if(categoryModel == null) return;
-
-        await _context.Categories.AddAsync(categoryModel);
-        await _context.SaveChangesAsync();
     }
 
     public async Task UpdateProductAsync(ProductModel productModel)
@@ -69,31 +52,11 @@ public class ProductRepository : IProductRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateCategoryAsync(CategoryModel categoryModel)
-    {
-        if(categoryModel == null) return;
-
-        CategoryModel categoryFromDb = await _context.Categories.FirstOrDefaultAsync(c => c.Id == categoryModel.Id);
-
-        if (categoryFromDb != null) categoryFromDb.Title = categoryModel.Title;
-
-        await _context.SaveChangesAsync();
-    }
-
     public async Task DeleteProductAsync(Guid id)
     {
         var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
         
         if (product != null) _context.Products.Remove(product);
-
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task DeleteCategoryAsync(Guid id)
-    {
-        var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
-
-        if (category != null) _context.Categories.Remove(category);
 
         await _context.SaveChangesAsync();
     }

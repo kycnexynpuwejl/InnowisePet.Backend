@@ -1,3 +1,7 @@
+using InnowisePet.Services.Product.BLL.Services.Implementations;
+using InnowisePet.Services.Product.BLL.Services.Interfaces;
+using InnowisePet.Services.Product.DAL.Repository.Interfaces;
+
 namespace InnowisePet.Services.Product.Tests;
 
 public class ProductServiceTests

@@ -1,4 +1,4 @@
-using InnowisePet.Services.Product.BLL.Services;
+using InnowisePet.Services.Product.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Services.Product.API.Controllers;

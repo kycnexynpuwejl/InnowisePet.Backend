@@ -1,10 +1,10 @@
 using AutoMapper;
-using InnowisePet.Models.DTO.Category;
 using InnowisePet.Models.DTO.Product;
 using InnowisePet.Models.Entities;
-using InnowisePet.Services.Product.DAL.Repository;
+using InnowisePet.Services.Product.BLL.Services.Interfaces;
+using InnowisePet.Services.Product.DAL.Repository.Interfaces;
 
-namespace InnowisePet.Services.Product.BLL.Services;
+namespace InnowisePet.Services.Product.BLL.Services.Implementations;
 
 public class ProductService : IProductService
 {
@@ -42,30 +42,5 @@ public class ProductService : IProductService
     public async Task DeleteProductAsync(Guid id)
     {
         await _productRepository.DeleteProductAsync(id);
-    }
-    
-    public async Task<IEnumerable<CategoryGetDtoList>> GetCategoriesAsync()
-    {
-        return _mapper.Map<IEnumerable<CategoryGetDtoList>>(await _productRepository.GetCategoriesAsync());
-    }
-
-    public async Task<CategoryGetDto> GetCategoryByIdAsync(Guid id)
-    {
-        return _mapper.Map<CategoryGetDto>(await _productRepository.GetCategoryByIdAsync(id));
-    }
-
-    public async Task CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
-    {
-        await _productRepository.CreateCategoryAsync(_mapper.Map<CategoryModel>(categoryCreateDto));
-    }
-
-    public async Task UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto)
-    {
-        await _productRepository.UpdateCategoryAsync(_mapper.Map<CategoryModel>(categoryUpdateDto));
-    }
-
-    public async Task DeleteCategoryAsync(Guid id)
-    {
-        await _productRepository.DeleteCategoryAsync(id);
     }
 }

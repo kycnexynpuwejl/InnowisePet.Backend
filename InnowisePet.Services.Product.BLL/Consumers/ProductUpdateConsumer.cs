@@ -1,5 +1,5 @@
 using InnowisePet.Models.DTO.Product;
-using InnowisePet.Services.Product.BLL.Services;
+using InnowisePet.Services.Product.BLL.Services.Interfaces;
 using MassTransit;
 
 namespace InnowisePet.Services.Product.BLL.Consumers;

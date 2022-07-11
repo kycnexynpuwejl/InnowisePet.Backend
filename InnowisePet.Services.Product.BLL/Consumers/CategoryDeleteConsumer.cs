@@ -1,20 +1,20 @@
 using InnowisePet.Models.DTO.Category;
-using InnowisePet.Services.Product.BLL.Services;
+using InnowisePet.Services.Product.BLL.Services.Interfaces;
 using MassTransit;
 
 namespace InnowisePet.Services.Product.BLL.Consumers;
 
 public class CategoryDeleteConsumer : IConsumer<CategoryDeleteDto>
 {
-    private readonly IProductService _productService;
+    private readonly ICategoryService _categoryService;
 
-    public CategoryDeleteConsumer(IProductService productService)
+    public CategoryDeleteConsumer(ICategoryService categoryService)
     {
-        _productService = productService;
+        _categoryService = categoryService;
     }
 
     public async Task Consume(ConsumeContext<CategoryDeleteDto> context)
     {
-        await _productService.DeleteCategoryAsync(context.Message.Id);
+        await _categoryService.DeleteCategoryAsync(context.Message.Id);
     }
 }

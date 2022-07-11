@@ -1,4 +1,4 @@
-using InnowisePet.Services.Product.BLL.Services;
+using InnowisePet.Services.Product.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Services.Product.API.Controllers;
@@ -7,22 +7,22 @@ namespace InnowisePet.Services.Product.API.Controllers;
 [Route("api/[controller]")]
 public class CategoryController : Controller
 {
-    private readonly IProductService _productService;
+    private readonly ICategoryService _categoryService;
 
-    public CategoryController(IProductService productService)
+    public CategoryController(ICategoryService categoryService)
     {
-        _productService = productService;
+        _categoryService = categoryService;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetCategoriesAsync()
     {
-        return Ok(await _productService.GetCategoriesAsync());
+        return Ok(await _categoryService.GetCategoriesAsync());
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetCategoryByIdAsync(Guid id)
     {
-        return Ok(await _productService.GetCategoryByIdAsync(id));
+        return Ok(await _categoryService.GetCategoryByIdAsync(id));
     }
 }

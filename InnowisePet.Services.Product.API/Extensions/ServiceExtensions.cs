@@ -1,4 +1,8 @@
 using InnowisePet.Services.Product.BLL.Consumers;
+using InnowisePet.Services.Product.BLL.Services.Implementations;
+using InnowisePet.Services.Product.BLL.Services.Interfaces;
+using InnowisePet.Services.Product.DAL.Repository.Implementations;
+using InnowisePet.Services.Product.DAL.Repository.Interfaces;
 using MassTransit;
 
 namespace InnowisePet.Services.Product.API.Extensions;
@@ -26,5 +30,14 @@ public static class ServiceExtensions
                 cfg.ReceiveEndpoint("CategoryDeleteQueue", e => e.ConfigureConsumer<CategoryDeleteConsumer>(context));
             });
         });
+    }
+
+    public static void ConfigureServices(this IServiceCollection services)
+    {
+        services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IProductRepository, ProductRepository>();
+
+        services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
     }
 }

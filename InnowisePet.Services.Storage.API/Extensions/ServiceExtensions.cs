@@ -1,4 +1,8 @@
 using InnowisePet.Services.Storage.BLL.Consumers;
+using InnowisePet.Services.Storage.BLL.Services.Implementations;
+using InnowisePet.Services.Storage.BLL.Services.Interfaces;
+using InnowisePet.Services.Storage.DAL.Repo.Implementations;
+using InnowisePet.Services.Storage.DAL.Repo.Interfaces;
 using MassTransit;
 
 namespace InnowisePet.Services.Storage.API.Extensions;
@@ -26,5 +30,14 @@ public static class ServiceExtensions
                 cfg.ReceiveEndpoint("ProductStorageDeleteQueue", c => c.ConfigureConsumer<ProductStorageDeleteConsumer>(context));
             });
         });
+    }
+
+    public static void ConfigureServices(this IServiceCollection services)
+    {
+        services.AddScoped<IStorageRepository, StorageRepository>();
+        services.AddScoped<IStorageService, StorageService>();
+
+        services.AddScoped<IProductStorageRepository, ProductStorageRepository>();
+        services.AddScoped<IProductStorageService, ProductStorageService>();
     }
 }

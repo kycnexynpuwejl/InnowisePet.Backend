@@ -1,20 +1,20 @@
 using InnowisePet.Models.DTO.Category;
-using InnowisePet.Services.Product.BLL.Services;
+using InnowisePet.Services.Product.BLL.Services.Interfaces;
 using MassTransit;
 
 namespace InnowisePet.Services.Product.BLL.Consumers;
 
 public class CategoryUpdateConsumer : IConsumer<CategoryUpdateDto>
 {
-    private readonly IProductService _productService;
+    private readonly ICategoryService _categoryService;
 
-    public CategoryUpdateConsumer(IProductService productService)
+    public CategoryUpdateConsumer(ICategoryService categoryService)
     {
-        _productService = productService;
+        _categoryService = categoryService;
     }
 
     public async Task Consume(ConsumeContext<CategoryUpdateDto> context)
     {
-        await _productService.UpdateCategoryAsync(context.Message);
+        await _categoryService.UpdateCategoryAsync(context.Message);
     }
 }
