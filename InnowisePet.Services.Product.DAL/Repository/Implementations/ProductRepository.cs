@@ -54,7 +54,7 @@ public class ProductRepository : IProductRepository
 
     public async Task DeleteProductAsync(Guid id)
     {
-        var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+        ProductModel product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
         
         if (product != null) _context.Products.Remove(product);
 

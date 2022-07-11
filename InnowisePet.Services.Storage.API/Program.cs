@@ -2,7 +2,7 @@ using System.Data;
 using InnowisePet.Services.Storage.API.Extensions;
 using Microsoft.Data.SqlClient;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
@@ -17,7 +17,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddTransient<IDbConnection>(_ => 
     new SqlConnection(builder.Configuration.GetConnectionString("StorageDBConnection")));
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 
 if (app.Environment.IsDevelopment())

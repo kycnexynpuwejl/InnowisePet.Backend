@@ -12,7 +12,7 @@ public class GeneratePdfService : IGeneratePdfService
 
     public void GeneratePdf(OrderAcceptedDto order)
     {
-        var pdf = new HtmlToPdf().RenderHtmlAsPdf(
+        PdfDocument pdf = new HtmlToPdf().RenderHtmlAsPdf(
             $@"<h1>Thanks for ordering!
                 <h1>{order.Firstname} {order.Lastname}</h1>
                 <h2>{order.Address}</h2>"
