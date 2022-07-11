@@ -1,20 +1,20 @@
 using InnowisePet.Models.DTO.ProductStorage;
-using InnowisePet.Services.Storage.BLL.Services;
+using InnowisePet.Services.Storage.BLL.Services.Interfaces;
 using MassTransit;
 
 namespace InnowisePet.Services.Storage.BLL.Consumers;
 
 public class ProductStorageDeleteConsumer : IConsumer<ProductStorageDeleteDto>
 {
-    private readonly IStorageService _storageService;
+    private readonly IProductStorageService _productStorageService;
 
-    public ProductStorageDeleteConsumer(IStorageService storageService)
+    public ProductStorageDeleteConsumer(IProductStorageService productStorageService)
     {
-        _storageService = storageService;
+        _productStorageService = productStorageService;
     }
 
     public async Task Consume(ConsumeContext<ProductStorageDeleteDto> context)
     {
-        await _storageService.DeleteProductStorageAsync(context.Message.StorageId, context.Message.ProductId);
+        await _productStorageService.DeleteProductStorageAsync(context.Message.StorageId, context.Message.ProductId);
     }
 }

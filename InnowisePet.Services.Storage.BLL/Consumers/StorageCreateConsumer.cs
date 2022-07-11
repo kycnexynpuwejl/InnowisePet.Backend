@@ -1,5 +1,5 @@
 using InnowisePet.Models.DTO.Storage;
-using InnowisePet.Services.Storage.BLL.Services;
+using InnowisePet.Services.Storage.BLL.Services.Interfaces;
 using MassTransit;
 
 namespace InnowisePet.Services.Storage.BLL.Consumers;

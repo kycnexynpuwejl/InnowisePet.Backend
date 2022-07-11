@@ -1,7 +1,9 @@
 using System.Data;
 using InnowisePet.Services.Storage.API.Extensions;
-using InnowisePet.Services.Storage.BLL.Services;
-using InnowisePet.Services.Storage.DAL.Repo;
+using InnowisePet.Services.Storage.BLL.Services.Implementations;
+using InnowisePet.Services.Storage.BLL.Services.Interfaces;
+using InnowisePet.Services.Storage.DAL.Repo.Implementations;
+using InnowisePet.Services.Storage.DAL.Repo.Interfaces;
 using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);

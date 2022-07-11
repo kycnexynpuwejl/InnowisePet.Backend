@@ -1,20 +1,20 @@
 using InnowisePet.Models.DTO.ProductStorage;
-using InnowisePet.Services.Storage.BLL.Services;
+using InnowisePet.Services.Storage.BLL.Services.Interfaces;
 using MassTransit;
 
 namespace InnowisePet.Services.Storage.BLL.Consumers;
 
 public class ProductStorageUpdateConsumer : IConsumer<ProductStorageUpdateDto>
 {
-    private readonly IStorageService _storageService;
+    private readonly IProductStorageService _productStorageService;
 
-    public ProductStorageUpdateConsumer(IStorageService storageService)
+    public ProductStorageUpdateConsumer(IProductStorageService productStorageService)
     {
-        _storageService = storageService;
+        _productStorageService = productStorageService;
     }
 
     public async Task Consume(ConsumeContext<ProductStorageUpdateDto> context)
     {
-        await _storageService.UpdateProductStorageAsync(context.Message);
+        await _productStorageService.UpdateProductStorageAsync(context.Message);
     }
 }

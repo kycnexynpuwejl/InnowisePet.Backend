@@ -1,4 +1,4 @@
-using InnowisePet.Services.Storage.BLL.Services;
+using InnowisePet.Services.Storage.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Services.Storage.API.Controllers;
@@ -7,22 +7,22 @@ namespace InnowisePet.Services.Storage.API.Controllers;
 [Route("api/[controller]")]
 public class ProductStorageController : Controller
 {
-    private readonly IStorageService _storageService;
+    private readonly IProductStorageService _productStorageService;
 
-    public ProductStorageController(IStorageService storageService)
+    public ProductStorageController(IProductStorageService productStorageService)
     {
-        _storageService = storageService;
+        _productStorageService = productStorageService;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetProductStoragesAsync()
     {
-        return Ok(await _storageService.GetProductStoragesAsync());
+        return Ok(await _productStorageService.GetProductStoragesAsync());
     }
 
     [HttpGet("{storageId}")]
     public async Task<IActionResult> GetProductStoragesByStorageIdAsync([FromRoute]Guid storageId)
     {
-        return Ok(await _storageService.GetProductStoragesByStorageIdAsync(storageId));
+        return Ok(await _productStorageService.GetProductStoragesByStorageIdAsync(storageId));
     }
 }

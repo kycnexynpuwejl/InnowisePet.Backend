@@ -1,4 +1,4 @@
-using InnowisePet.Services.Storage.BLL.Services;
+using InnowisePet.Services.Storage.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Services.Storage.API.Controllers;
