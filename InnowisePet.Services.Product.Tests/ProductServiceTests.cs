@@ -94,33 +94,16 @@ public class ProductServiceTests
             new object[] { new ProductCreateDto() }
         };
     
-    [Theory]
-    [MemberData(nameof(ProductCreateDtoList))]
-    public async Task CreateProductAsync_ShouldReturnCreatedProductId(ProductCreateDto productCreateDto)
+    [Fact]
+    public async Task CreateProductAsync_ShouldReturnFalse()
     {
         //Arrange
-        var mappedProduct = _mapper.Map<ProductModel>(productCreateDto);
-        _mockProductRepo.Setup(x => x.CreateProductAsync(mappedProduct)).ReturnsAsync(mappedProduct.Id);
-
-        //Act
-        Guid result = await _productService.CreateProductAsync(productCreateDto);
-        
-        //Assert
-        Assert.Equal(result, mappedProduct.Id);
-    }
-
-    [Theory]
-    [MemberData(nameof(ProductCreateDtoList))]
-    public async Task CreateProductAsync_ShouldReturnFalse(ProductCreateDto productCreateDto)
-    {
-        //Arrange
-        var mappedProduct = _mapper.Map<ProductModel>(productCreateDto);
-        _mockProductRepo.Setup(x => x.CreateProductAsync(mappedProduct)).ReturnsAsync(mappedProduct.Id);
+        _mockProductRepo.Setup(x => x.CreateProductAsync(It.IsAny<ProductModel>())).ReturnsAsync(Guid.NewGuid);
 
         //Act
         Guid result = await _productService.CreateProductAsync(new ProductCreateDto());
         
         //Assert
-        Assert.NotEqual(result, mappedProduct.Id);
+        Assert.NotEqual(result, Guid.Empty);
     }
 }
