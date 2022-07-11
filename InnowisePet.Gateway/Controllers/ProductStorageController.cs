@@ -40,7 +40,8 @@ public class ProductStorageController : Controller
     /// Creates productStorage in specified storage by storageId
     /// </summary>
     /// <param name="storageId"></param>
-    /// <param name="productStorageCreateDto"></param>
+    /// <param name="productId"></param>
+    /// <param name="quantity"></param>
     /// <returns></returns>
     [HttpPost("{storageId}/{productId}")]
     public async Task<IActionResult> CreateProductStorageAsync(

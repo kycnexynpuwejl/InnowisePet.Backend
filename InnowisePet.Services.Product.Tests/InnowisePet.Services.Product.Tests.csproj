@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\InnowisePet.Services.Product.API\InnowisePet.Services.Product.API.csproj" />
+      <ProjectReference Include="..\InnowisePet.Services.Product.BLL\InnowisePet.Services.Product.BLL.csproj" />
     </ItemGroup>
 
 </Project>

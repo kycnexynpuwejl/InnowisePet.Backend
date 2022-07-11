@@ -8,6 +8,7 @@ public class CategoryCreateProfile : Profile
 {
     public CategoryCreateProfile()
     {
-        CreateMap<CategoryCreateDto, CategoryModel>().ReverseMap();
+        CreateMap<CategoryCreateDto, CategoryModel>()
+            .ForMember(c => c.Id, opt => opt.MapFrom(c => Guid.NewGuid()));
     }
 }
