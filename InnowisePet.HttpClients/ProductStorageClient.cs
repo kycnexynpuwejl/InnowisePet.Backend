@@ -18,14 +18,14 @@ public class ProductStorageClient
     
     public async Task<IEnumerable<ProductStorageGetDto>> GetProductStoragesAsync()
     {
-        HttpResponseMessage result = await _httpClient.GetAsync(Url + "product");
+        HttpResponseMessage result = await _httpClient.GetAsync(Url);
 
         return await CommonHttpClientExtensions.Deserialize<IEnumerable<ProductStorageGetDto>>(result);
     }
 
     public async Task<IEnumerable<ProductStorageGetDto>> GetProductStoragesByStorageIdAsync(Guid storageId)
     {
-        HttpResponseMessage result = await _httpClient.GetAsync(Url + $"{storageId}" + "/product");
+        HttpResponseMessage result = await _httpClient.GetAsync(Url + $"{storageId}");
 
         return await CommonHttpClientExtensions.Deserialize<IEnumerable<ProductStorageGetDto>>(result);
     }

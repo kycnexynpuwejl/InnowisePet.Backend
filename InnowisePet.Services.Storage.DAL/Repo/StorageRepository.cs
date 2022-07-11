@@ -1,103 +1,151 @@
+using System.Data;
 using InnowisePet.Models.Entities;
-using InnowisePet.Services.Storage.DAL.Data;
-using Microsoft.EntityFrameworkCore;
+using Dapper;
 
 
 namespace InnowisePet.Services.Storage.DAL.Repo;
 
 public class StorageRepository : IStorageRepository
 {
-    private readonly StorageDbContext _context;
+    private readonly IDbConnection _connection;
 
-    public StorageRepository(StorageDbContext context)
+    public StorageRepository(IDbConnection connection)
     {
-        _context = context;
+        _connection = connection;
     }
 
     public async Task<IEnumerable<StorageModel>> GetStoragesAsync()
     {
-        return await _context.Storages.ToListAsync();
+        const string sql = @"
+                            SELECT Id, Title
+                            FROM [dbo].[Storages]
+                            ";
+
+        return await _connection.QueryAsync<StorageModel>(sql);
     }
 
     public async Task<StorageModel> GetStorageByIdAsync(Guid id)
     {
-        return await _context.Storages.Include(s => s.ProductStorages).FirstOrDefaultAsync(s => s.Id == id);
+        string sql = $@"
+                        SELECT Id, Title
+                        FROM [dbo].[Storages]
+                        WHERE Id = '{id}'
+                       ";
+
+        return await _connection.QueryFirstAsync<StorageModel>(sql);
     }
 
-    public async Task CreateStorageAsync(StorageModel storageModel)
+    public async Task<bool> CreateStorageAsync(StorageModel storageModel)
     {
-        await _context.Storages.AddAsync(storageModel);
-        await _context.SaveChangesAsync();
+        const string sql = @"
+                            INSERT INTO [dbo].[Storages]
+                                (Id, Title)
+                            VALUES(@Id, @Title)
+                            ";
+        int result = await _connection.ExecuteAsync(sql, storageModel);
+
+        return result > 0;
     }
 
-    public async Task UpdateStorageAsync(StorageModel storageModel)
+    public async Task<bool> UpdateStorageAsync(StorageModel storageModel)
     {
-        var storageFromDb = await _context.Storages.FirstOrDefaultAsync(s => s.Id == storageModel.Id);
+        const string sql = @"
+                        UPDATE [dbo].[Storages]
+                        SET
+                            Title = @Title
+                        WHERE Id = @Id
+                        ";
 
-        if (storageFromDb != null)
-        {
-            storageFromDb.Title = storageModel.Title;
-        }
-        await _context.SaveChangesAsync();
+        int result = await _connection.ExecuteAsync(sql, storageModel);
+
+        return result > 0;
     }
 
-    public async Task DeleteStorageAsync(Guid id)
+    public async Task<bool> DeleteStorageAsync(Guid id)
     {
-        var storageFromDb = await _context.Storages.FirstOrDefaultAsync(s => s.Id == id);
+        string sql = $@"
+                        DELETE FROM [dbo].[Storages]
+                        WHERE Id = '{id}'
+                        ";
+        int result = await _connection.ExecuteAsync(sql);
 
-        if (storageFromDb != null) _context.Remove(storageFromDb);
-
-        await _context.SaveChangesAsync();
+        return result > 0;
     }
 
     public async Task<IEnumerable<ProductStorageModel>> GetProductStoragesAsync()
     {
-        return await _context.ProductStorages.ToListAsync();
+        const string sql = @"
+                            SELECT Id, ProductId, StorageId, Quantity
+                            FROM [dbo].[ProductStorages]
+                            ";
+
+        return await _connection.QueryAsync<ProductStorageModel>(sql);
     }
 
     public async Task<IEnumerable<ProductStorageModel>> GetProductStoragesByStorageIdAsync(Guid storageId)
     {
-        return await _context.ProductStorages.Where(x => x.StorageId == storageId).ToListAsync();
+        string sql = $@"
+                        SELECT Id, ProductId, StorageId, Quantity
+                            FROM [dbo].[ProductStorages] ps
+                        JOIN [dbo].[Storages] s ON ps.StorageId = s.Id
+                        WHERE s.Id = '{storageId}'
+                        ";
+        
+        return await _connection.QueryAsync<ProductStorageModel>(sql);
     }
     
-    public async Task CreateProductStorageAsync(ProductStorageModel productStorageModel)
+    public async Task<bool> CreateProductStorageAsync(ProductStorageModel productStorageModel)
     {
-        var productStorageFromDb = await _context.ProductStorages.FirstOrDefaultAsync(
-            ps => ps.ProductId == productStorageModel.ProductId &&
-                  ps.StorageId == productStorageModel.StorageId);
-        if (productStorageFromDb == null)
+        const string sql = @"
+                        SELECT * FROM [dbo].[ProductStorages]
+                        WHERE ProductId = @ProductId AND StorageId = @StorageId
+                        ";
+        var productStorageFromDb = await _connection.QueryFirstOrDefaultAsync<ProductStorageModel>(sql, productStorageModel);
+
+        if (productStorageFromDb != null)
         {
-            await _context.ProductStorages.AddAsync(productStorageModel);
+            const string sqlToUpdate = @"
+                            UPDATE [dbo].[ProductStorages]
+                                SET Quantity = Quantity + @Quantity
+                            WHERE ProductId = @ProductId AND StorageId = @StorageId 
+                            ";
+            var updatedProductStorage = await _connection.ExecuteAsync(sqlToUpdate, productStorageModel);
+
+            return updatedProductStorage > 0;
         }
         else
         {
-            productStorageFromDb.Quantity += productStorageModel.Quantity;
+            const string sqlToInsert = @"
+                            INSERT INTO [dbo].[ProductStorages]
+                                (Id,ProductId, StorageId, Quantity)
+                            VALUES (@Id, @ProductId, @StorageId, @Quantity)
+                            ";
+            var insertedProductStorage = await _connection.ExecuteAsync(sqlToInsert, productStorageModel);
+
+            return insertedProductStorage > 0;
         }
-        await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateProductStorageAsync(ProductStorageModel productStorageModel)
+    public async Task<bool> UpdateProductStorageAsync(ProductStorageModel productStorageModel)
     {
-        ProductStorageModel productStorageToUpdate = await _context.ProductStorages.FirstOrDefaultAsync(ps =>
-            ps.StorageId == productStorageModel.StorageId &&
-            ps.ProductId == productStorageModel.ProductId);
+        const string sql = @"
+                            UPDATE [dbo].[ProductStorages]
+                                SET Quantity = @Quantity
+                            WHERE ProductId = @ProductId AND StorageId = @StorageId
+                            ";
+        var result = await _connection.ExecuteAsync(sql, productStorageModel);
 
-        if (productStorageToUpdate == null) return;
-
-        productStorageToUpdate.Quantity = productStorageModel.Quantity;
-        _context.ProductStorages.Update(productStorageToUpdate);
-        await _context.SaveChangesAsync();
+        return result > 0;
     }
     
-    public async Task DeleteProductStorageAsync(Guid storageId, Guid productId)
+    public async Task<bool> DeleteProductStorageAsync(Guid storageId, Guid productId)
     {
-        var productStorageToDelete = await _context.ProductStorages.FirstOrDefaultAsync(x => 
-            x.StorageId == storageId &&
-            x.ProductId == productId);
-        
-        if(productStorageToDelete == null) return;
+        string sql = $@"
+                        DELETE FROM [dbo].[ProductStorages]
+                        WHERE ProductId = '{productId}' AND StorageId = '{storageId}'
+                        ";
+        var result = await _connection.ExecuteAsync(sql);
 
-        _context.ProductStorages.Remove(productStorageToDelete);
-        await _context.SaveChangesAsync();
+        return result > 0;
     }
 }

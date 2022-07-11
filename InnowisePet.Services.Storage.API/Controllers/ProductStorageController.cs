@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Services.Storage.API.Controllers;
 
+[ApiController]
+[Route("api/[controller]")]
 public class ProductStorageController : Controller
 {
     private readonly IStorageService _storageService;

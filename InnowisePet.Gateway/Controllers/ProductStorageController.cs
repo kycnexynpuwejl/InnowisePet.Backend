@@ -42,13 +42,18 @@ public class ProductStorageController : Controller
     /// <param name="storageId"></param>
     /// <param name="productStorageCreateDto"></param>
     /// <returns></returns>
-    [HttpPost("{storageId}")]
+    [HttpPost("{storageId}/{productId}")]
     public async Task<IActionResult> CreateProductStorageAsync(
         [FromRoute] Guid storageId,
-        [FromBody] ProductStorageCreateDto productStorageCreateDto)
+        [FromRoute] Guid productId,
+        [FromBody] int quantity)
     {
-        productStorageCreateDto.StorageId = storageId;
-        await _productStorageClient.CreateProductStorageAsync(productStorageCreateDto);
+        await _productStorageClient.CreateProductStorageAsync(new ProductStorageCreateDto()
+        {
+            StorageId = storageId,
+            ProductId = productId,
+            Quantity = quantity
+        });
         
         return Ok();
     }

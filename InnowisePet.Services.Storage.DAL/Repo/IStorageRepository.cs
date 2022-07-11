@@ -8,19 +8,19 @@ public interface IStorageRepository
     
     Task<StorageModel> GetStorageByIdAsync(Guid id);
     
-    Task CreateStorageAsync(StorageModel storageModel);
+    Task<bool> CreateStorageAsync(StorageModel storageModel);
     
-    Task UpdateStorageAsync(StorageModel storageModel);
+    Task<bool> UpdateStorageAsync(StorageModel storageModel);
     
-    Task DeleteStorageAsync(Guid id);
-    
-    Task CreateProductStorageAsync(ProductStorageModel productStorageModel);
+    Task<bool> DeleteStorageAsync(Guid id);
 
     Task<IEnumerable<ProductStorageModel>> GetProductStoragesAsync();
 
     Task<IEnumerable<ProductStorageModel>> GetProductStoragesByStorageIdAsync(Guid storageId);
+    
+    Task<bool> CreateProductStorageAsync(ProductStorageModel productStorageModel);
 
-    Task DeleteProductStorageAsync(Guid storageId, Guid productId);
-
-    Task UpdateProductStorageAsync(ProductStorageModel productStorageModel);
+    Task<bool> UpdateProductStorageAsync(ProductStorageModel productStorageModel);
+    
+    Task<bool> DeleteProductStorageAsync(Guid storageId, Guid productId);
 }

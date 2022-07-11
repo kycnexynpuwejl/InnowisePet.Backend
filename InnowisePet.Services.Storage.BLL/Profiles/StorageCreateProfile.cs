@@ -7,6 +7,7 @@ public class StorageCreateProfile : Profile
 {
     public StorageCreateProfile()
     {
-        CreateMap<StorageCreateDto, Models.Entities.StorageModel>().ReverseMap();
+        CreateMap<StorageCreateDto, Models.Entities.StorageModel>()
+            .ForMember(s => s.Id, opt => opt.MapFrom(s => Guid.NewGuid()));
     }
 }

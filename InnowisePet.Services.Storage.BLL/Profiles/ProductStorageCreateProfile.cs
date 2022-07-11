@@ -8,6 +8,7 @@ public class ProductStorageCreateProfile : Profile
 {
     public ProductStorageCreateProfile()
     {
-        CreateMap<ProductStorageCreateDto, ProductStorageModel>().ReverseMap();
+        CreateMap<ProductStorageCreateDto, ProductStorageModel>()
+            .ForMember(ps => ps.Id, opt => opt.MapFrom(ps => Guid.NewGuid()));
     }
 }
