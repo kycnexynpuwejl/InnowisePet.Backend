@@ -7,6 +7,17 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "CORS",
+        policy  =>
+        {
+            policy.AllowAnyOrigin();
+            policy.AllowAnyHeader();
+            policy.AllowAnyHeader();
+        });
+});
+
 builder.Services.ConfigureSwagger();
 
 builder.Services.AddMassTransit(x => x.UsingRabbitMq());
@@ -46,6 +57,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CORS");
 app.UseRouting();
 app.UseHttpsRedirection();
 
