@@ -84,7 +84,7 @@ public class ProductServiceTests
 
         //Act
         IEnumerable<ProductGetDto> listDto = await _productService.GetProductsAsync();
-        var mappedResult = _mapper.Map<IEnumerable<ProductGetDto>>(list);
+        IEnumerable<ProductGetDto> mappedResult = _mapper.Map<IEnumerable<ProductGetDto>>(list);
         
         //Assert
         AssertHelper.EqualCollections(listDto, mappedResult);

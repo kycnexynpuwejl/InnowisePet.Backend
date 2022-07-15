@@ -29,13 +29,13 @@ public class ProductStorageService : IProductStorageService
     
     public async Task CreateProductStorageAsync(ProductStorageCreateDto productStorageCreateDto)
     {
-        var productStorage = _mapper.Map<ProductStorageModel>(productStorageCreateDto);
+        ProductStorageModel productStorage = _mapper.Map<ProductStorageModel>(productStorageCreateDto);
         await _productStorageRepository.CreateProductStorageAsync(productStorage);
     }
     
     public async Task UpdateProductStorageAsync(ProductStorageUpdateDto productStorageUpdateDto)
     {
-        var productStorage = _mapper.Map<ProductStorageModel>(productStorageUpdateDto);
+        ProductStorageModel productStorage = _mapper.Map<ProductStorageModel>(productStorageUpdateDto);
         await _productStorageRepository.UpdateProductStorageAsync(productStorage);
     }
 

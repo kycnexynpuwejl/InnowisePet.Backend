@@ -6,8 +6,8 @@ namespace InnowisePet.IdentityServer4.Configurations;
 
 public static class IdentityConfiguration
 {
-    public static string ScopeApi => "APIScope";
-    public static string ScopeRoles => "roles";
+    private static string ApiScope => "APIScope";
+    private static string ScopeRoles => "roles";
 
     public static IEnumerable<Client> Clients()
     {
@@ -24,7 +24,24 @@ public static class IdentityConfiguration
                     IdentityServerConstants.StandardScopes.OfflineAccess,
                     IdentityServerConstants.StandardScopes.Profile,
                     IdentityServerConstants.StandardScopes.OpenId,
-                    ScopeApi
+                    ApiScope
+                },
+
+                AllowOfflineAccess = true
+            },
+            
+            new()
+            {
+                ClientId = "AngularClient",
+                RequireClientSecret = false,
+
+                AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                AllowedScopes =
+                {
+                    IdentityServerConstants.StandardScopes.OfflineAccess,
+                    IdentityServerConstants.StandardScopes.Profile,
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    ApiScope
                 },
 
                 AllowOfflineAccess = true
@@ -36,11 +53,11 @@ public static class IdentityConfiguration
     {
         return new List<ApiResource>
         {
-            new(ScopeApi, new[] { JwtClaimTypes.Name, JwtClaimTypes.Role })
+            new(ApiScope, new[] { JwtClaimTypes.Name, JwtClaimTypes.Role })
             {
                 Scopes =
                 {
-                    ScopeApi,
+                    ApiScope,
                     ScopeRoles,
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.OfflineAccess,
@@ -64,7 +81,7 @@ public static class IdentityConfiguration
     {
         return new List<ApiScope>
         {
-            new(ScopeApi)
+            new(ApiScope)
         };
     }
 }

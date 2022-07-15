@@ -35,14 +35,14 @@ public static class ServiceExtensions
     {
         services.AddSwaggerGen(c =>
         { 
-            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             c.IncludeXmlComments(xmlPath);
             
             // configure SwaggerDoc and others
 
             // add JWT Authentication
-            var securityScheme = new OpenApiSecurityScheme
+            OpenApiSecurityScheme securityScheme = new OpenApiSecurityScheme
             {
                 Name = "JWT Authentication",
                 Description = "Enter JWT Bearer token **_only_**",
@@ -63,7 +63,7 @@ public static class ServiceExtensions
             });
 
             // add Basic Authentication
-            var basicSecurityScheme = new OpenApiSecurityScheme
+            OpenApiSecurityScheme basicSecurityScheme = new OpenApiSecurityScheme
             {
                 Type = SecuritySchemeType.Http,
                 Scheme = "basic",

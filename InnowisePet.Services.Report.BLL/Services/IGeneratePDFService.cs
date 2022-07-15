@@ -4,6 +4,6 @@ namespace InnowisePet.Services.Report.BLL.Services;
 
 public interface IGeneratePdfService
 {
-    void GeneratePdf(OrderAcceptedDto order);
-    void GeneratePdfFromList(IEnumerable<OrderAcceptedDto> orderList);
+    Task GeneratePdf(OrderAcceptedDto order);
+    Task GeneratePdfFromList(IEnumerable<OrderAcceptedDto> orderList);
 }

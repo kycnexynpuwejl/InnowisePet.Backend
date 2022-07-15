@@ -10,7 +10,7 @@ public class GeneratePdfService : IGeneratePdfService
 
     public GeneratePdfService(ReportPdfRepository repository) => _repository = repository;
 
-    public void GeneratePdf(OrderAcceptedDto order)
+    public async Task GeneratePdf(OrderAcceptedDto order)
     {
         PdfDocument pdf = new HtmlToPdf().RenderHtmlAsPdf(
             $@"<h1>Thanks for ordering!
@@ -20,12 +20,12 @@ public class GeneratePdfService : IGeneratePdfService
             
         pdf.SaveAs($"{DateTime.Now.ToFileTime()}.pdf");
 
-        var binaryPdf = pdf.BinaryData;
+        byte[] binaryPdf = pdf.BinaryData;
         
-        _repository.AddReportPdf(new ReportPdfModel { PdfFile = binaryPdf });
+        await _repository.AddReportPdf(new ReportPdfModel { PdfFile = binaryPdf });
     }
 
-    public void GeneratePdfFromList(IEnumerable<OrderAcceptedDto> orderList)
+    public async Task GeneratePdfFromList(IEnumerable<OrderAcceptedDto> orderList)
     {
 
         string productQuantity = @"<h1>Thanks for ordering!</h1>";
@@ -40,7 +40,8 @@ public class GeneratePdfService : IGeneratePdfService
         
         HtmlToPdf renderer = new();
 
-        PdfDocument pdf = renderer.RenderHtmlAsPdf(@$"
+        PdfDocument pdf = renderer
+            .RenderHtmlAsPdf(@$"
                                 {productQuantity}
                                 <h1>{firstname} {lastname}</h1>"
                                 );
@@ -49,6 +50,6 @@ public class GeneratePdfService : IGeneratePdfService
         
         byte[] binaryPdf = pdf.BinaryData;
 
-        _repository.AddReportPdf(new ReportPdfModel { PdfFile = binaryPdf });
+        await _repository.AddReportPdf(new ReportPdfModel { PdfFile = binaryPdf });
     }
 }

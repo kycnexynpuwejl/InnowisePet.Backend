@@ -42,7 +42,7 @@ public class ProductStorageRepository : IProductStorageRepository
                         SELECT * FROM [dbo].[ProductStorages]
                         WHERE ProductId = @ProductId AND StorageId = @StorageId
                         ";
-        var productStorageFromDb = await _dbConnection.QueryFirstOrDefaultAsync<ProductStorageModel>(sql, productStorageModel);
+        ProductStorageModel productStorageFromDb = await _dbConnection.QueryFirstOrDefaultAsync<ProductStorageModel>(sql, productStorageModel);
 
         if (productStorageFromDb != null)
         {
@@ -51,21 +51,19 @@ public class ProductStorageRepository : IProductStorageRepository
                                 SET Quantity = Quantity + @Quantity
                             WHERE ProductId = @ProductId AND StorageId = @StorageId 
                             ";
-            var updatedProductStorage = await _dbConnection.ExecuteAsync(sqlToUpdate, productStorageModel);
+            int updatedProductStorage = await _dbConnection.ExecuteAsync(sqlToUpdate, productStorageModel);
 
             return updatedProductStorage > 0;
         }
-        else
-        {
-            const string sqlToInsert = @"
+
+        const string sqlToInsert = @"
                             INSERT INTO [dbo].[ProductStorages]
                                 (Id,ProductId, StorageId, Quantity)
                             VALUES (@Id, @ProductId, @StorageId, @Quantity)
                             ";
-            var insertedProductStorage = await _dbConnection.ExecuteAsync(sqlToInsert, productStorageModel);
+        int insertedProductStorage = await _dbConnection.ExecuteAsync(sqlToInsert, productStorageModel);
 
-            return insertedProductStorage > 0;
-        }
+        return insertedProductStorage > 0;
     }
 
     public async Task<bool> UpdateProductStorageAsync(ProductStorageModel productStorageModel)
@@ -75,7 +73,7 @@ public class ProductStorageRepository : IProductStorageRepository
                                 SET Quantity = @Quantity
                             WHERE ProductId = @ProductId AND StorageId = @StorageId
                             ";
-        var result = await _dbConnection.ExecuteAsync(sql, productStorageModel);
+        int result = await _dbConnection.ExecuteAsync(sql, productStorageModel);
 
         return result > 0;
     }
@@ -86,7 +84,7 @@ public class ProductStorageRepository : IProductStorageRepository
                         DELETE FROM [dbo].[ProductStorages]
                         WHERE ProductId = '{productId}' AND StorageId = '{storageId}'
                         ";
-        var result = await _dbConnection.ExecuteAsync(sql);
+        int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;
     }
