@@ -30,7 +30,7 @@ public class ProductStorageController : Controller
     /// </summary>
     /// <param name="storageId"></param>
     /// <returns></returns>
-    [HttpGet("{storageId}")]
+    [HttpGet("storage/{storageId}")]
     public async Task<IActionResult> GetProductStoragesByStorageIdAsync(Guid storageId)
     {
         return Ok(await _productStorageClient.GetProductStoragesByStorageIdAsync(storageId));
@@ -89,5 +89,11 @@ public class ProductStorageController : Controller
         await _productStorageClient.DeleteProductStorageAsync(storageId, productId);
 
         return Ok();
+    }
+
+    [HttpGet("product/{productId}")]
+    public async Task<IActionResult> GetProductCountFromAllStoragesByProductId(Guid productId)
+    {
+        return Ok(await _productStorageClient.GetProductCountFromAllStoragesByProductId(productId));
     }
 }

@@ -25,7 +25,7 @@ public class ProductStorageClient
 
     public async Task<IEnumerable<ProductStorageGetDto>> GetProductStoragesByStorageIdAsync(Guid storageId)
     {
-        HttpResponseMessage result = await _httpClient.GetAsync(Url + $"{storageId}");
+        HttpResponseMessage result = await _httpClient.GetAsync(Url + $"storage/{storageId}");
 
         return await CommonHttpClientExtensions.Deserialize<IEnumerable<ProductStorageGetDto>>(result);
     }
@@ -52,5 +52,12 @@ public class ProductStorageClient
             StorageId = storageId,
             ProductId = productId
         });
+    }
+
+    public async Task<int> GetProductCountFromAllStoragesByProductId(Guid productId)
+    {
+        HttpResponseMessage result = await _httpClient.GetAsync(Url + $"product/{productId}");
+
+        return await CommonHttpClientExtensions.Deserialize<int>(result);
     }
 }

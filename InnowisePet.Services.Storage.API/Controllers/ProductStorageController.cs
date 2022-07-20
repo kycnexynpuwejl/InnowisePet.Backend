@@ -20,13 +20,13 @@ public class ProductStorageController : Controller
         return Ok(await _productStorageService.GetProductStoragesAsync());
     }
 
-    [HttpGet("{storageId}")]
+    [HttpGet("storage/{storageId}")]
     public async Task<IActionResult> GetProductStoragesByStorageIdAsync([FromRoute]Guid storageId)
     {
         return Ok(await _productStorageService.GetProductStoragesByStorageIdAsync(storageId));
     }
 
-    [HttpGet("{productId}")]
+    [HttpGet("product/{productId}")]
     public async Task<IActionResult> GetProductCountFromAllStoragesByProductId([FromRoute] Guid productId)
     {
         return Ok(await _productStorageService.GetProductCountFromAllStoragesByProductId(productId));
