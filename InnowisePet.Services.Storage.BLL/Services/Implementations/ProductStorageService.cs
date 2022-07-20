@@ -43,4 +43,9 @@ public class ProductStorageService : IProductStorageService
     {
         await _productStorageRepository.DeleteProductStorageAsync(storageId, productId);
     }
+
+    public async Task<int> GetProductCountFromAllStoragesByProductId(Guid productId)
+    {
+        return await _productStorageRepository.GetProductCountFromAllStoragesByProductId(productId);
+    }
 }

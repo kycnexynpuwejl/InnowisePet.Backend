@@ -88,4 +88,15 @@ public class ProductStorageRepository : IProductStorageRepository
 
         return result > 0;
     }
+
+    public async Task<int> GetProductCountFromAllStoragesByProductId(Guid productId)
+    {
+        string sql = $@"
+                            SELECT SUM(Quantity)
+                            FROM [dbo].[ProductStorages]
+                            WHERE ProductId = '{productId}'
+                            ";
+
+        return await _dbConnection.QueryFirstOrDefaultAsync<int>(sql);
+    }
 }
