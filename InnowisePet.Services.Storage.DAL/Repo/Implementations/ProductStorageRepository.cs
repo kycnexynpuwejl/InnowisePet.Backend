@@ -36,6 +36,25 @@ public class ProductStorageRepository : IProductStorageRepository
         return await _dbConnection.QueryAsync<ProductStorageModel>(sql);
     }
     
+    public async Task<int> GetProductCountFromAllStoragesByProductIdAsync(Guid productId)
+    {
+        string sql = $@"
+                            SELECT SUM(Quantity)
+                            FROM [dbo].[ProductStorages]
+                            WHERE ProductId = '{productId}'
+                            ";
+
+        try
+        {
+            return await _dbConnection.QueryFirstOrDefaultAsync<int>(sql);
+        }
+        catch (DataException)
+        {
+            return 0;
+        }
+        
+    }
+    
     public async Task<bool> CreateProductStorageAsync(ProductStorageModel productStorageModel)
     {
         const string sql = @"
@@ -87,16 +106,5 @@ public class ProductStorageRepository : IProductStorageRepository
         int result = await _dbConnection.ExecuteAsync(sql);
 
         return result > 0;
-    }
-
-    public async Task<int> GetProductCountFromAllStoragesByProductId(Guid productId)
-    {
-        string sql = $@"
-                            SELECT SUM(Quantity)
-                            FROM [dbo].[ProductStorages]
-                            WHERE ProductId = '{productId}'
-                            ";
-
-        return await _dbConnection.QueryFirstOrDefaultAsync<int>(sql);
     }
 }

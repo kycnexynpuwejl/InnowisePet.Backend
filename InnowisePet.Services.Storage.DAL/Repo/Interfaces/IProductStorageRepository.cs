@@ -8,11 +8,11 @@ public interface IProductStorageRepository
     
     Task<IEnumerable<ProductStorageModel>> GetProductStoragesByStorageIdAsync(Guid storageId);
     
+    Task<int> GetProductCountFromAllStoragesByProductIdAsync(Guid productId);
+    
     Task<bool> CreateProductStorageAsync(ProductStorageModel productStorageModel);
     
     Task<bool> UpdateProductStorageAsync(ProductStorageModel productStorageModel);
     
     Task<bool> DeleteProductStorageAsync(Guid storageId, Guid productId);
-    
-    Task<int> GetProductCountFromAllStoragesByProductId(Guid productId);
 }

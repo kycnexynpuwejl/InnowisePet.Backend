@@ -27,6 +27,11 @@ public class ProductStorageService : IProductStorageService
         return _mapper.Map<IEnumerable<ProductStorageGetDto>>(await _productStorageRepository.GetProductStoragesByStorageIdAsync(storageId));
     }
     
+    public async Task<int> GetProductCountFromAllStoragesByProductIdAsync(Guid productId)
+    {
+        return await _productStorageRepository.GetProductCountFromAllStoragesByProductIdAsync(productId);
+    }
+    
     public async Task CreateProductStorageAsync(ProductStorageCreateDto productStorageCreateDto)
     {
         ProductStorageModel productStorage = _mapper.Map<ProductStorageModel>(productStorageCreateDto);
@@ -42,10 +47,5 @@ public class ProductStorageService : IProductStorageService
     public async Task DeleteProductStorageAsync(Guid storageId, Guid productId)
     {
         await _productStorageRepository.DeleteProductStorageAsync(storageId, productId);
-    }
-
-    public async Task<int> GetProductCountFromAllStoragesByProductId(Guid productId)
-    {
-        return await _productStorageRepository.GetProductCountFromAllStoragesByProductId(productId);
     }
 }

@@ -54,7 +54,7 @@ public class ProductStorageClient
         });
     }
 
-    public async Task<int> GetProductCountFromAllStoragesByProductId(Guid productId)
+    public async Task<int> GetProductCountFromAllStoragesByProductIdAsync(Guid productId)
     {
         HttpResponseMessage result = await _httpClient.GetAsync(Url + $"product/{productId}");
 

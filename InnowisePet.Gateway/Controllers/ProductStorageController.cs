@@ -37,6 +37,17 @@ public class ProductStorageController : Controller
     }
     
     /// <summary>
+    /// Get count of specified product from all storages by productId
+    /// </summary>
+    /// <param name="productId"></param>
+    /// <returns></returns>
+    [HttpGet("product/{productId}")]
+    public async Task<IActionResult> GetProductCountFromAllStoragesByProductIdAsync(Guid productId)
+    {
+        return Ok(await _productStorageClient.GetProductCountFromAllStoragesByProductIdAsync(productId));
+    }
+    
+    /// <summary>
     /// Creates productStorage in specified storage by storageId
     /// </summary>
     /// <param name="storageId"></param>
@@ -89,11 +100,5 @@ public class ProductStorageController : Controller
         await _productStorageClient.DeleteProductStorageAsync(storageId, productId);
 
         return Ok();
-    }
-
-    [HttpGet("product/{productId}")]
-    public async Task<IActionResult> GetProductCountFromAllStoragesByProductId(Guid productId)
-    {
-        return Ok(await _productStorageClient.GetProductCountFromAllStoragesByProductId(productId));
     }
 }

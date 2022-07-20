@@ -8,11 +8,11 @@ public interface IProductStorageService
     
     Task<IEnumerable<ProductStorageGetDto>> GetProductStoragesByStorageIdAsync(Guid storageId);
     
+    Task<int> GetProductCountFromAllStoragesByProductIdAsync(Guid productId);
+    
     Task CreateProductStorageAsync(ProductStorageCreateDto productStorageCreateDto);
     
     Task UpdateProductStorageAsync(ProductStorageUpdateDto productStorageUpdateDto);
     
     Task DeleteProductStorageAsync(Guid storageId, Guid productId);
-
-    Task<int> GetProductCountFromAllStoragesByProductId(Guid productId);
 }
