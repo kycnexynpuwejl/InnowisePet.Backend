@@ -36,21 +36,23 @@ public class ProductStorageRepository : IProductStorageRepository
         return await _dbConnection.QueryAsync<ProductStorageModel>(sql);
     }
     
-    public async Task<int> GetProductCountFromAllStoragesByProductIdAsync(Guid productId)
+    public async Task<IEnumerable<ProductStorageModel>> GetProductStoragesByProductIdAsync(Guid productId)
     {
         string sql = $@"
-                            SELECT SUM(Quantity)
-                            FROM [dbo].[ProductStorages]
-                            WHERE ProductId = '{productId}'
-                            ";
+                        SELECT ps.Id, ps.ProductId, ps.StorageId, ps.Quantity, s.Title as StorageTitle
+                            FROM [dbo].[ProductStorages] ps
+                            JOIN [dbo].[Storages] s
+                            ON ps.StorageId = s.Id
+                        WHERE ProductId = '{productId}'
+                        ";
 
         try
         {
-            return await _dbConnection.QueryFirstOrDefaultAsync<int>(sql);
+            return await _dbConnection.QueryAsync<ProductStorageModel>(sql);
         }
         catch (DataException)
         {
-            return 0;
+            return default;
         }
         
     }

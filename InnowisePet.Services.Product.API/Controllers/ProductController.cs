@@ -25,4 +25,12 @@ public class ProductController : Controller
     {
         return Ok(await _productService.GetProductByIdAsync(id));
     }
+
+    [HttpGet("category/{categoryId}")]
+    public async Task<IActionResult> GetProductsByCategoryIdAsync(Guid categoryId)
+    {
+        var s = await _productService.GetProductsByCategoryIdAsync(categoryId);
+        
+        return Ok(await _productService.GetProductsByCategoryIdAsync(categoryId));
+    }
 }

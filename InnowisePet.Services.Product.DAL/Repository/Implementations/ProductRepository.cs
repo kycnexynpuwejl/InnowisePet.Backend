@@ -19,9 +19,19 @@ public class ProductRepository : IProductRepository
         return await _context.Products.Include(c => c.Category).ToListAsync();
     }
 
-    public async Task<ProductModel> GetProductByIdAsync(Guid id)
+    public async Task<ProductModel> GetProductByIdAsync(Guid productId)
     {
-        return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+        return await _context.Products.FirstOrDefaultAsync(p => p.Id == productId);
+    }
+
+    public async Task<IEnumerable<ProductModel>> GetProductsByCategoryIdAsync(Guid categoryId)
+    {
+        return await _context.Products.FromSqlRaw(
+                                            $@"SELECT *
+                                                FROM [dbo].[Products]
+                                                WHERE CategoryId = '{categoryId}'
+                                                "
+                                        ).ToListAsync();
     }
 
     public async Task<Guid> CreateProductAsync(ProductModel productModel)

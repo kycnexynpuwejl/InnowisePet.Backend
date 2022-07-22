@@ -22,9 +22,15 @@ public class ProductService : IProductService
         return _mapper.Map<IEnumerable<ProductGetDto>>(await _productRepository.GetProductsAsync());
     }
     
-    public async Task<ProductGetDto> GetProductByIdAsync(Guid id)
+    public async Task<ProductGetDto> GetProductByIdAsync(Guid productId)
     {
-        return _mapper.Map<ProductGetDto>(await _productRepository.GetProductByIdAsync(id));
+        return _mapper.Map<ProductGetDto>(await _productRepository.GetProductByIdAsync(productId));
+    }
+
+    public async Task<IEnumerable<ProductGetDto>> GetProductsByCategoryIdAsync(Guid categoryId)
+    {
+        return _mapper.Map<IEnumerable<ProductGetDto>>(
+            await _productRepository.GetProductsByCategoryIdAsync(categoryId));
     }
     
     public async Task<Guid> CreateProductAsync(ProductCreateDto productCreateDto)

@@ -14,4 +14,7 @@ public class ProductStorageModel
 
     public StorageModel Storage { get; set; }
     public int Quantity { get; set; }
+    
+    [NotMapped]
+    public string StorageTitle { get; set; }
 }

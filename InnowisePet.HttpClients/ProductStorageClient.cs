@@ -54,10 +54,10 @@ public class ProductStorageClient
         });
     }
 
-    public async Task<int> GetProductCountFromAllStoragesByProductIdAsync(Guid productId)
+    public async Task<IEnumerable<ProductStorageGetDto>> GetProductStoragesByProductIdAsync(Guid productId)
     {
         HttpResponseMessage result = await _httpClient.GetAsync(Url + $"product/{productId}");
 
-        return await CommonHttpClientExtensions.Deserialize<int>(result);
+        return await CommonHttpClientExtensions.Deserialize<IEnumerable<ProductStorageGetDto>>(result);
     }
 }

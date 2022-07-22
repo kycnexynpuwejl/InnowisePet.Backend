@@ -27,9 +27,9 @@ public class ProductStorageService : IProductStorageService
         return _mapper.Map<IEnumerable<ProductStorageGetDto>>(await _productStorageRepository.GetProductStoragesByStorageIdAsync(storageId));
     }
     
-    public async Task<int> GetProductCountFromAllStoragesByProductIdAsync(Guid productId)
+    public async Task<IEnumerable<ProductStorageGetDto>> GetProductStoragesByProductIdAsync(Guid productId)
     {
-        return await _productStorageRepository.GetProductCountFromAllStoragesByProductIdAsync(productId);
+        return _mapper.Map<IEnumerable<ProductStorageGetDto>>(await _productStorageRepository.GetProductStoragesByProductIdAsync(productId));
     }
     
     public async Task CreateProductStorageAsync(ProductStorageCreateDto productStorageCreateDto)

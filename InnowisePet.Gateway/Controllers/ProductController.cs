@@ -26,14 +26,25 @@ public class ProductController : Controller
     }
 
     /// <summary>
-    /// Gets specified product by Id
+    /// Gets specified product by productId
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="productId"></param>
     /// <returns></returns>
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetProductByIdAsync([FromRoute] Guid id)
+    [HttpGet("{productId}")]
+    public async Task<IActionResult> GetProductByIdAsync([FromRoute] Guid productId)
     {
-        return Ok(await _productClient.GetProductByIdAsync(id));
+        return Ok(await _productClient.GetProductByIdAsync(productId));
+    }
+
+    /// <summary>
+    /// Gets all products from specified category by categoryId
+    /// </summary>
+    /// <param name="categoryId"></param>
+    /// <returns></returns>
+    [HttpGet("category/{categoryId}")]
+    public async Task<IActionResult> GetProductsByCategoryIdAsync(Guid categoryId)
+    {
+        return Ok(await _productClient.GetProductsByCategoryIdAsync(categoryId));
     }
 
     /// <summary>

@@ -29,6 +29,6 @@ public class ProductStorageController : Controller
     [HttpGet("product/{productId}")]
     public async Task<IActionResult> GetProductCountFromAllStoragesByProductIdAsync([FromRoute] Guid productId)
     {
-        return Ok(await _productStorageService.GetProductCountFromAllStoragesByProductIdAsync(productId));
+        return Ok(await _productStorageService.GetProductStoragesByProductIdAsync(productId));
     }
 }

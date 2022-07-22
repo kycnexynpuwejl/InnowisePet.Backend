@@ -44,7 +44,7 @@ public class ProductStorageController : Controller
     [HttpGet("product/{productId}")]
     public async Task<IActionResult> GetProductCountFromAllStoragesByProductIdAsync(Guid productId)
     {
-        return Ok(await _productStorageClient.GetProductCountFromAllStoragesByProductIdAsync(productId));
+        return Ok(await _productStorageClient.GetProductStoragesByProductIdAsync(productId));
     }
     
     /// <summary>

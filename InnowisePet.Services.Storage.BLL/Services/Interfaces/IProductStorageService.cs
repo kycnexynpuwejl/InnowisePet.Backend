@@ -7,8 +7,8 @@ public interface IProductStorageService
     Task<IEnumerable<ProductStorageGetDto>> GetProductStoragesAsync();
     
     Task<IEnumerable<ProductStorageGetDto>> GetProductStoragesByStorageIdAsync(Guid storageId);
-    
-    Task<int> GetProductCountFromAllStoragesByProductIdAsync(Guid productId);
+
+    Task<IEnumerable<ProductStorageGetDto>> GetProductStoragesByProductIdAsync(Guid productId);
     
     Task CreateProductStorageAsync(ProductStorageCreateDto productStorageCreateDto);
     

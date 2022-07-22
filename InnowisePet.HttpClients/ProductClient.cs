@@ -23,11 +23,18 @@ public class ProductClient
         return await CommonHttpClientExtensions.Deserialize<IEnumerable<ProductGetDto>>(result);
     }
 
-    public async Task<ProductGetDto> GetProductByIdAsync(Guid id)
+    public async Task<ProductGetDto> GetProductByIdAsync(Guid productId)
     {
-        HttpResponseMessage result = await _httpClient.GetAsync(Url + id);
+        HttpResponseMessage result = await _httpClient.GetAsync(Url + productId);
 
         return await CommonHttpClientExtensions.Deserialize<ProductGetDto>(result);
+    }
+
+    public async Task<IEnumerable<ProductGetDto>> GetProductsByCategoryIdAsync(Guid categoryId)
+    {
+        HttpResponseMessage result = await _httpClient.GetAsync(Url + $"category/{categoryId}");
+
+        return await CommonHttpClientExtensions.Deserialize<IEnumerable<ProductGetDto>>(result);
     }
 
     public async Task CreateProductAsync(ProductCreateDto productCreateDto)
