@@ -75,7 +75,7 @@ public class ProductServiceTests
             }
         };
 
-    [Theory]
+    /*[Theory]
     [MemberData(nameof(ProductModelList))]
     public async Task GetProductsAsync_ShouldReturnMockProductList(List<ProductModel> list)
     {
@@ -88,7 +88,7 @@ public class ProductServiceTests
         
         //Assert
         AssertHelper.EqualCollections(listDto, mappedResult);
-    }
+    }*/
 
     public static IEnumerable<object[]> ProductCreateDtoList =>
         new List<object[]>

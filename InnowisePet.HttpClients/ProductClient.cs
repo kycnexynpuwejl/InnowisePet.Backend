@@ -16,11 +16,11 @@ public class ProductClient
         _publishEndpoint = publishEndpoint;
     }
 
-    public async Task<IEnumerable<ProductGetDto>> GetProductsAsync()
+    public async Task<PaginatedProductsDto> GetProductsAsync(int pageSize, int pageNumber,string search)
     {
-        HttpResponseMessage result = await _httpClient.GetAsync(Url);
+        HttpResponseMessage result = await _httpClient.GetAsync(Url + $"?pagesize={pageSize}&pagenumber={pageNumber}&search={search}");
 
-        return await CommonHttpClientExtensions.Deserialize<IEnumerable<ProductGetDto>>(result);
+        return await CommonHttpClientExtensions.Deserialize<PaginatedProductsDto>(result);
     }
 
     public async Task<ProductGetDto> GetProductByIdAsync(Guid productId)

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace InnowisePet.Models.Entities;
 
@@ -12,6 +13,7 @@ public class ProductModel
     [ForeignKey("CategoryModel")]
     public Guid CategoryId { get; set; }
     
+    [JsonIgnore]
     public CategoryModel Category { get; set; }
 
     [Required]

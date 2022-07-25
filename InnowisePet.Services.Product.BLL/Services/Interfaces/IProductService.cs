@@ -4,7 +4,7 @@ namespace InnowisePet.Services.Product.BLL.Services.Interfaces;
 
 public interface IProductService
 {
-    Task<IEnumerable<ProductGetDto>> GetProductsAsync();
+    Task<PaginatedProductsDto> GetProductsAsync(ProductFilter productFilter);
     
     Task<ProductGetDto> GetProductByIdAsync(Guid productId);
 

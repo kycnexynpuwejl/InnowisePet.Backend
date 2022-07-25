@@ -1,3 +1,4 @@
+using InnowisePet.Models.DTO.Product;
 using InnowisePet.Services.Product.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,9 +16,14 @@ public class ProductController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetProductsAsync()
+    public async Task<IActionResult> GetProductsAsync([FromQuery]int pageSize,[FromQuery] int pageNumber, [FromQuery]string search)
     {
-        return Ok(await _productService.GetProductsAsync());
+        return Ok(await _productService.GetProductsAsync(new ProductFilter()
+        {
+            PageSize = pageSize,
+            PageNumber = pageNumber,
+            Search = search
+        }));
     }
 
     [HttpGet("{id}")]

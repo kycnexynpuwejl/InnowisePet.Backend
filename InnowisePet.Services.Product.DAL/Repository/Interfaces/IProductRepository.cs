@@ -1,10 +1,11 @@
+using InnowisePet.Models.DTO.Product;
 using InnowisePet.Models.Entities;
 
 namespace InnowisePet.Services.Product.DAL.Repository.Interfaces;
 
 public interface IProductRepository
 {
-    Task<IEnumerable<ProductModel>> GetProductsAsync();
+    Task<PaginatedProductsDto> GetProductsAsync(ProductFilter productFilter);
     
     Task<ProductModel> GetProductByIdAsync(Guid productId);
 

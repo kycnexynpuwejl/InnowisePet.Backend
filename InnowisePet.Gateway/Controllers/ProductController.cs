@@ -20,9 +20,9 @@ public class ProductController : Controller
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public async Task<IActionResult> GetProductsAsync()
+    public async Task<IActionResult> GetProductsAsync([FromQuery]int pageSize = 6,[FromQuery] int pageNumber = 1, [FromQuery]string search = null)
     {
-        return Ok(await _productClient.GetProductsAsync());
+        return Ok(await _productClient.GetProductsAsync(pageSize, pageNumber, search));
     }
 
     /// <summary>

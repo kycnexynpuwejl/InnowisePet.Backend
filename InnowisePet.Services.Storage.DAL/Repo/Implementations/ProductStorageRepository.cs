@@ -44,6 +44,7 @@ public class ProductStorageRepository : IProductStorageRepository
                             JOIN [dbo].[Storages] s
                             ON ps.StorageId = s.Id
                         WHERE ProductId = '{productId}'
+                        ORDER BY Quantity DESC
                         ";
 
         try

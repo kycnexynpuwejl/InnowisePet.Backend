@@ -1,3 +1,4 @@
+using InnowisePet.Models.DTO.Product;
 using InnowisePet.Models.Entities;
 using InnowisePet.Services.Product.DAL.Data;
 using InnowisePet.Services.Product.DAL.Repository.Interfaces;
@@ -14,9 +15,20 @@ public class ProductRepository : IProductRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<ProductModel>> GetProductsAsync()
+    public async Task<PaginatedProductsDto> GetProductsAsync(ProductFilter productFilter)
     {
-        return await _context.Products.Include(c => c.Category).ToListAsync();
+        var products = _context.Products
+            .Include(c => c.Category)
+            .Where(productFilter.Search != null ? p =>  p.Title.Contains(productFilter.Search) : p => true);
+            
+        var productCount = products.Count();
+        
+        var paginatedProducts = await products
+            .Skip(--productFilter.PageNumber * productFilter.PageSize)
+            .Take(productFilter.PageSize)
+            .ToListAsync();
+
+        return new PaginatedProductsDto() { ProductCount = productCount, PaginatedProducts = paginatedProducts };
     }
 
     public async Task<ProductModel> GetProductByIdAsync(Guid productId)
