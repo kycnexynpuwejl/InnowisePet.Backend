@@ -36,14 +36,26 @@ public class ProductRepository : IProductRepository
         return await _context.Products.FirstOrDefaultAsync(p => p.Id == productId);
     }
 
-    public async Task<IEnumerable<ProductModel>> GetProductsByCategoryIdAsync(Guid categoryId)
+    public async Task<PaginatedProductsDto> GetProductsByCategoryIdAsync(Guid categoryId, ProductFilter productFilter)
     {
-        return await _context.Products.FromSqlRaw(
+        var products = _context.Products
+            .Include(c => c.Category)
+            .Where(p => p.CategoryId == categoryId)
+            .Where(productFilter.Search != null ? p =>  p.Title.Contains(productFilter.Search) : p => true);
+            
+        var productCount = products.Count();
+        
+        var paginatedProducts = await _context.Products.FromSqlRaw(
                                             $@"SELECT *
                                                 FROM [dbo].[Products]
                                                 WHERE CategoryId = '{categoryId}'
+                                                ORDER BY Title
+                                                OFFSET {productFilter.PageSize * (productFilter.PageNumber -1)} ROWS
+                                                FETCH FIRST {productFilter.PageSize} ROWS ONLY
                                                 "
                                         ).ToListAsync();
+        
+        return new PaginatedProductsDto() { ProductCount = productCount, PaginatedProducts = paginatedProducts };
     }
 
     public async Task<Guid> CreateProductAsync(ProductModel productModel)

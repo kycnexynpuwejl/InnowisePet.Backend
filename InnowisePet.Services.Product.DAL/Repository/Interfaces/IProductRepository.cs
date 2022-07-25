@@ -9,7 +9,7 @@ public interface IProductRepository
     
     Task<ProductModel> GetProductByIdAsync(Guid productId);
 
-    Task<IEnumerable<ProductModel>> GetProductsByCategoryIdAsync(Guid categoryId);
+    Task<PaginatedProductsDto> GetProductsByCategoryIdAsync(Guid categoryId, ProductFilter productFilter);
     
     Task<Guid> CreateProductAsync(ProductModel productModel);
     

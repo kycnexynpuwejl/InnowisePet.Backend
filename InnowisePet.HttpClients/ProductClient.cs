@@ -30,11 +30,12 @@ public class ProductClient
         return await CommonHttpClientExtensions.Deserialize<ProductGetDto>(result);
     }
 
-    public async Task<IEnumerable<ProductGetDto>> GetProductsByCategoryIdAsync(Guid categoryId)
+    public async Task<PaginatedProductsDto> GetProductsByCategoryIdAsync(Guid categoryId, int pageSize, int pageNumber, string search)
     {
-        HttpResponseMessage result = await _httpClient.GetAsync(Url + $"category/{categoryId}");
+        HttpResponseMessage result = await _httpClient
+            .GetAsync(Url + $"category/{categoryId}?pagesize={pageSize}&pagenumber={pageNumber}&search={search}");
 
-        return await CommonHttpClientExtensions.Deserialize<IEnumerable<ProductGetDto>>(result);
+        return await CommonHttpClientExtensions.Deserialize<PaginatedProductsDto>(result);
     }
 
     public async Task CreateProductAsync(ProductCreateDto productCreateDto)

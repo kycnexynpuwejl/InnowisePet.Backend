@@ -33,10 +33,14 @@ public class ProductController : Controller
     }
 
     [HttpGet("category/{categoryId}")]
-    public async Task<IActionResult> GetProductsByCategoryIdAsync(Guid categoryId)
+    public async Task<IActionResult> GetProductsByCategoryIdAsync([FromRoute]Guid categoryId,
+        [FromQuery]int pageSize,[FromQuery] int pageNumber, [FromQuery]string search)
     {
-        var s = await _productService.GetProductsByCategoryIdAsync(categoryId);
-        
-        return Ok(await _productService.GetProductsByCategoryIdAsync(categoryId));
+        return Ok(await _productService.GetProductsByCategoryIdAsync(categoryId, new ProductFilter()
+        {
+            PageSize = pageSize,
+            PageNumber = pageNumber,
+            Search = search
+        }));
     }
 }

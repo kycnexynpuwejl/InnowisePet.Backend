@@ -8,7 +8,7 @@ public interface IProductService
     
     Task<ProductGetDto> GetProductByIdAsync(Guid productId);
 
-    Task<IEnumerable<ProductGetDto>> GetProductsByCategoryIdAsync(Guid categoryId);
+    Task<PaginatedProductsDto> GetProductsByCategoryIdAsync(Guid categoryId, ProductFilter productFilter);
     
     Task<Guid> CreateProductAsync(ProductCreateDto productCreateDto);
     

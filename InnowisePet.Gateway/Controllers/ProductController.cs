@@ -42,9 +42,9 @@ public class ProductController : Controller
     /// <param name="categoryId"></param>
     /// <returns></returns>
     [HttpGet("category/{categoryId}")]
-    public async Task<IActionResult> GetProductsByCategoryIdAsync(Guid categoryId)
+    public async Task<IActionResult> GetProductsByCategoryIdAsync(Guid categoryId, [FromQuery]int pageSize = 6,[FromQuery] int pageNumber = 1, [FromQuery]string search = null)
     {
-        return Ok(await _productClient.GetProductsByCategoryIdAsync(categoryId));
+        return Ok(await _productClient.GetProductsByCategoryIdAsync(categoryId, pageSize, pageNumber, search));
     }
 
     /// <summary>
