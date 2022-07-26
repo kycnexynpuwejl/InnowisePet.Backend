@@ -1,4 +1,7 @@
+using System.Net.Http.Json;
+using System.Text.Json;
 using InnowisePet.Models.DTO.Product;
+using InnowisePet.Models.Entities;
 using MassTransit;
 
 namespace InnowisePet.HttpClients;
@@ -52,5 +55,12 @@ public class ProductClient
     {
         ProductDeleteDto productDeleteDto = new() { Id = id };
         await _publishEndpoint.Publish(productDeleteDto);
+    }
+
+    public async Task<PaginatedProductsDto> GetProductsByFilterAsync(FilterModel filter)
+    {
+        HttpResponseMessage result = await _httpClient.PostAsync(Url + "filter", CommonHttpClientExtensions.SerializeObject(filter));
+
+        return await CommonHttpClientExtensions.Deserialize<PaginatedProductsDto>(result);
     }
 }

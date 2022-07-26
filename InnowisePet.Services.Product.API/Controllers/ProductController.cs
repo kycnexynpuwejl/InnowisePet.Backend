@@ -1,4 +1,5 @@
 using InnowisePet.Models.DTO.Product;
+using InnowisePet.Models.Entities;
 using InnowisePet.Services.Product.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,5 +43,11 @@ public class ProductController : Controller
             PageNumber = pageNumber,
             Search = search
         }));
+    }
+
+    [HttpPost("filter")]
+    public async Task<IActionResult> GetProductsByFilterAsync(FilterModel filter)
+    {
+        return Ok(await _productService.GetProductsByFilterAsync(filter));
     }
 }

@@ -16,4 +16,5 @@ public interface IProductRepository
     Task UpdateProductAsync(ProductModel productModel);
     
     Task DeleteProductAsync(Guid id);
+    Task<PaginatedProductsDto> GetProductsByFilterAsync(FilterModel filter);
 }

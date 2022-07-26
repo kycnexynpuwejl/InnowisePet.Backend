@@ -94,4 +94,44 @@ public class ProductRepository : IProductRepository
 
         await _context.SaveChangesAsync();
     }
+
+    public async Task<PaginatedProductsDto> GetProductsByFilterAsync(FilterModel filter)
+    {
+        if (filter.CategoryId == null)
+        {
+            var products = _context.Products
+                .Include(c => c.Category)
+                .Where(filter.SearchString != null ? p =>  p.Title.Contains(filter.SearchString) : p => true);
+            
+            var productCount = products.Count();
+        
+            var paginatedProducts = await products
+                .Skip(--filter.PageNumber * filter.PageSize)
+                .Take(filter.PageSize)
+                .ToListAsync();
+
+            return new PaginatedProductsDto() { ProductCount = productCount, PaginatedProducts = paginatedProducts };
+        }
+        else
+        {
+            var products = _context.Products
+                .Include(c => c.Category)
+                .Where(p => p.CategoryId.ToString() == filter.CategoryId)
+                .Where(filter.SearchString != null ? p =>  p.Title.Contains(filter.SearchString) : p => true);
+            
+            var productCount = products.Count();
+        
+            var paginatedProducts = await _context.Products.FromSqlRaw(
+                                            $@"SELECT *
+                                                FROM [dbo].[Products]
+                                                WHERE CategoryId = '{filter.CategoryId}' AND Title LIKE '%{filter.SearchString}%'
+                                                ORDER BY Title
+                                                OFFSET {filter.PageSize * (filter.PageNumber -1)} ROWS
+                                                FETCH FIRST {filter.PageSize} ROWS ONLY
+                                                "
+            ).ToListAsync();
+        
+            return new PaginatedProductsDto() { ProductCount = productCount, PaginatedProducts = paginatedProducts };
+        }
+    }
 }

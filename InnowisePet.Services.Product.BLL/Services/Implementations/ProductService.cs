@@ -48,4 +48,9 @@ public class ProductService : IProductService
     {
         await _productRepository.DeleteProductAsync(id);
     }
+
+    public async Task<PaginatedProductsDto> GetProductsByFilterAsync(FilterModel filter)
+    {
+        return await _productRepository.GetProductsByFilterAsync(filter);
+    }
 }

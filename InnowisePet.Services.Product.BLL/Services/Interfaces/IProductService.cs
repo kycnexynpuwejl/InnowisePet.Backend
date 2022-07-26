@@ -1,4 +1,5 @@
 using InnowisePet.Models.DTO.Product;
+using InnowisePet.Models.Entities;
 
 namespace InnowisePet.Services.Product.BLL.Services.Interfaces;
 
@@ -15,4 +16,5 @@ public interface IProductService
     Task UpdateProductAsync(ProductUpdateDto productUpdateDto);
     
     Task DeleteProductAsync(Guid id);
+    Task<PaginatedProductsDto> GetProductsByFilterAsync(FilterModel filter);
 }

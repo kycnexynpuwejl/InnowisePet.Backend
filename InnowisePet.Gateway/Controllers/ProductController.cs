@@ -1,5 +1,6 @@
 using InnowisePet.HttpClients;
 using InnowisePet.Models.DTO.Product;
+using InnowisePet.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Gateway.Controllers;
@@ -42,9 +43,15 @@ public class ProductController : Controller
     /// <param name="categoryId"></param>
     /// <returns></returns>
     [HttpGet("category/{categoryId}")]
-    public async Task<IActionResult> GetProductsByCategoryIdAsync(Guid categoryId, [FromQuery]int pageSize = 6,[FromQuery] int pageNumber = 1, [FromQuery]string search = null)
+    public async Task<IActionResult> GetProductsByCategoryIdAsync(Guid categoryId, [FromQuery]int pageSize,[FromQuery] int pageNumber, [FromQuery]string search)
     {
         return Ok(await _productClient.GetProductsByCategoryIdAsync(categoryId, pageSize, pageNumber, search));
+    }
+
+    [HttpPost("filter")]
+    public async Task<IActionResult> GetProductsByFilterAsync(FilterModel filter)
+    {
+        return Ok(await _productClient.GetProductsByFilterAsync(filter));
     }
 
     /// <summary>
