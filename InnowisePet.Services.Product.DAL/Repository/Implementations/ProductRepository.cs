@@ -48,7 +48,7 @@ public class ProductRepository : IProductRepository
         var paginatedProducts = await _context.Products.FromSqlRaw(
                                             $@"SELECT *
                                                 FROM [dbo].[Products]
-                                                WHERE CategoryId = '{categoryId}'
+                                                WHERE CategoryId = '{categoryId}' AND Title LIKE '%{productFilter.Search}%'
                                                 ORDER BY Title
                                                 OFFSET {productFilter.PageSize * (productFilter.PageNumber -1)} ROWS
                                                 FETCH FIRST {productFilter.PageSize} ROWS ONLY
