@@ -6,7 +6,7 @@ public class FilterModel
 
     public int PageNumber { get; set; }
 
-    public string SearchString { get; set; }
+    public string Search { get; set; }
 
     public string CategoryId { get; set; }
 }

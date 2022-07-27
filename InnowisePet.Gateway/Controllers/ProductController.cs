@@ -49,7 +49,7 @@ public class ProductController : Controller
     }
 
     [HttpPost("filter")]
-    public async Task<IActionResult> GetProductsByFilterAsync(FilterModel filter)
+    public async Task<IActionResult> GetProductsByFilterAsync([FromBody]FilterModel filter)
     {
         return Ok(await _productClient.GetProductsByFilterAsync(filter));
     }

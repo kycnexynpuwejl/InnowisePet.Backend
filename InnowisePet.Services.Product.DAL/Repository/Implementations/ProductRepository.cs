@@ -97,11 +97,11 @@ public class ProductRepository : IProductRepository
 
     public async Task<PaginatedProductsDto> GetProductsByFilterAsync(FilterModel filter)
     {
-        if (filter.CategoryId == null)
+        if (filter.CategoryId == null | filter.CategoryId == "")
         {
             var products = _context.Products
                 .Include(c => c.Category)
-                .Where(filter.SearchString != null ? p =>  p.Title.Contains(filter.SearchString) : p => true);
+                .Where(filter.Search != null ? p =>  p.Title.Contains(filter.Search) : p => true);
             
             var productCount = products.Count();
         
@@ -117,14 +117,14 @@ public class ProductRepository : IProductRepository
             var products = _context.Products
                 .Include(c => c.Category)
                 .Where(p => p.CategoryId.ToString() == filter.CategoryId)
-                .Where(filter.SearchString != null ? p =>  p.Title.Contains(filter.SearchString) : p => true);
+                .Where(filter.Search != null ? p =>  p.Title.Contains(filter.Search) : p => true);
             
             var productCount = products.Count();
         
             var paginatedProducts = await _context.Products.FromSqlRaw(
                                             $@"SELECT *
                                                 FROM [dbo].[Products]
-                                                WHERE CategoryId = '{filter.CategoryId}' AND Title LIKE '%{filter.SearchString}%'
+                                                WHERE CategoryId = '{filter.CategoryId}' AND Title LIKE '%{filter.Search}%'
                                                 ORDER BY Title
                                                 OFFSET {filter.PageSize * (filter.PageNumber -1)} ROWS
                                                 FETCH FIRST {filter.PageSize} ROWS ONLY
