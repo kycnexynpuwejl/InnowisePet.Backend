@@ -52,7 +52,7 @@ public class AccountService : IAccountService
     {
         AppUser validUser = await _authManager.ReturnUserIfValid(user);
 
-        if (validUser == null) throw new Exception("Unauthorized");
+        if (validUser == null) throw new Exception("Wrong username or password");
 
         (string accessToken, string refreshToken) tokens = await _authManager.GetTokens(user);
 

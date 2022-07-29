@@ -125,7 +125,7 @@ public class ProductRepository : IProductRepository
                                             $@"SELECT *
                                                 FROM [dbo].[Products]
                                                 WHERE CategoryId = '{filter.CategoryId}' AND Title LIKE '%{filter.Search}%'
-                                                ORDER BY Title
+                                                ORDER BY Id
                                                 OFFSET {filter.PageSize * (filter.PageNumber -1)} ROWS
                                                 FETCH FIRST {filter.PageSize} ROWS ONLY
                                                 "

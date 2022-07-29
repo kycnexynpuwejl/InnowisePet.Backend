@@ -1,5 +1,6 @@
 using InnowisePet.HttpClients;
 using InnowisePet.Models.DTO.ProductStorage;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Gateway.Controllers;
@@ -42,7 +43,8 @@ public class ProductStorageController : Controller
     /// <param name="productId"></param>
     /// <returns></returns>
     [HttpGet("product/{productId}")]
-    public async Task<IActionResult> GetProductCountFromAllStoragesByProductIdAsync(Guid productId)
+    [AllowAnonymous]
+    public async Task<IActionResult> GetProductStoragesByProductIdAsync(Guid productId)
     {
         return Ok(await _productStorageClient.GetProductStoragesByProductIdAsync(productId));
     }

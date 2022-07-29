@@ -1,6 +1,7 @@
 using InnowisePet.HttpClients;
 using InnowisePet.Models.DTO.Product;
 using InnowisePet.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Gateway.Controllers;
@@ -21,6 +22,7 @@ public class ProductController : Controller
     /// </summary>
     /// <returns></returns>
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetProductsAsync([FromQuery]int pageSize = 6,[FromQuery] int pageNumber = 1, [FromQuery]string search = null)
     {
         return Ok(await _productClient.GetProductsAsync(pageSize, pageNumber, search));
@@ -32,6 +34,7 @@ public class ProductController : Controller
     /// <param name="productId"></param>
     /// <returns></returns>
     [HttpGet("{productId}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetProductByIdAsync([FromRoute] Guid productId)
     {
         return Ok(await _productClient.GetProductByIdAsync(productId));
@@ -43,12 +46,14 @@ public class ProductController : Controller
     /// <param name="categoryId"></param>
     /// <returns></returns>
     [HttpGet("category/{categoryId}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetProductsByCategoryIdAsync(Guid categoryId, [FromQuery]int pageSize,[FromQuery] int pageNumber, [FromQuery]string search)
     {
         return Ok(await _productClient.GetProductsByCategoryIdAsync(categoryId, pageSize, pageNumber, search));
     }
 
     [HttpPost("filter")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetProductsByFilterAsync([FromBody]FilterModel filter)
     {
         return Ok(await _productClient.GetProductsByFilterAsync(filter));
@@ -60,6 +65,7 @@ public class ProductController : Controller
     /// <param name="productCreateDto"></param>
     /// <returns></returns>
     [HttpPost]
+    [Authorize(Roles = "Administrator")]
     public async Task<IActionResult> CreateProductAsync(ProductCreateDto productCreateDto)
     {
         await _productClient.CreateProductAsync(productCreateDto);
@@ -74,6 +80,7 @@ public class ProductController : Controller
     /// <param name="productUpdateDto"></param>
     /// <returns></returns>
     [HttpPut("{id}")]
+    [Authorize(Roles = "Administrator")]
     public async Task<IActionResult> UpdateProductAsync([FromRoute] Guid id,
         [FromBody] ProductUpdateDto productUpdateDto)
     {
@@ -89,6 +96,7 @@ public class ProductController : Controller
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Administrator")]
     public async Task<IActionResult> DeleteProductAsync([FromRoute] Guid id)
     {
         await _productClient.DeleteProductAsync(id);

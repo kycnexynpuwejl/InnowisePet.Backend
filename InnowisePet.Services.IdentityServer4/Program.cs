@@ -8,6 +8,17 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 string connString = builder.Configuration.GetConnectionString("IS4Connection");
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "CORS",
+        policy  =>
+        {
+            policy.AllowAnyOrigin();
+            policy.AllowAnyHeader();
+            policy.AllowAnyHeader();
+        });
+});
+
 builder.Services.AddDbContext<AuthDbContext>(options =>
     options.UseSqlite(connString));
 
@@ -21,6 +32,7 @@ builder.Services.AddControllers();
 
 WebApplication app = builder.Build();
 
+app.UseCors("CORS");
 app.UseRouting();
 app.UseIdentityServer();
 app.UseAuthentication();

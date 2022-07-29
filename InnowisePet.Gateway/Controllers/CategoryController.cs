@@ -1,5 +1,6 @@
 using InnowisePet.HttpClients;
 using InnowisePet.Models.DTO.Category;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowisePet.Gateway.Controllers;
@@ -21,6 +22,7 @@ public class CategoryController : Controller
     /// </summary>
     /// <returns></returns>
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetCategoriesAsync()
     {
         return Ok(await _categoryClient.GetCategoriesAsync());
@@ -32,6 +34,7 @@ public class CategoryController : Controller
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetCategoryByIdAsync(Guid id)
     {
         return Ok(await _categoryClient.GetCategoryByIdAsync(id));
