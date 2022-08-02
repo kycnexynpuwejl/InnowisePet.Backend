@@ -25,7 +25,10 @@ public class AuthController : Controller
     [Route("register")]
     public async Task<IActionResult> RegisterUser([FromBody] UserForCreationDto userForCreation)
     {
-        await _accountService.CreateUser(userForCreation);
+        if (await _accountService.CreateUser(userForCreation) == "success")
+        {
+            return Ok("success");
+        }
         return Ok();
     }
 

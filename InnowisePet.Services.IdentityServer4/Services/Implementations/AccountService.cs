@@ -64,7 +64,7 @@ public class AccountService : IAccountService
         };
     }
 
-    public async Task CreateUser(UserForCreationDto userForCreation)
+    public async Task<string> CreateUser(UserForCreationDto userForCreation)
     {
         AppUser user = _mapper.Map<AppUser>(userForCreation);
 
@@ -76,5 +76,7 @@ public class AccountService : IAccountService
             foreach (IdentityError error in result.Errors) errors += $"{error.Code}: {error.Description}\n";
             throw new Exception(errors);
         }
+
+        return "success";
     }
 }

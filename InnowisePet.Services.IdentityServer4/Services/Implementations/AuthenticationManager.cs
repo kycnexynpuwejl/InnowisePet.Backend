@@ -43,7 +43,9 @@ public class AuthenticationManager : IAuthenticationManager
             Password = user.Password
         };
         TokenResponse tokenResponse = await client.RequestPasswordTokenAsync(tokenRequest);
-
+        
+        
+        
         return (tokenResponse.AccessToken, tokenResponse.RefreshToken);
     }
 }
